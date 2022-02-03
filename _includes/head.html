@@ -23,3 +23,8 @@
     <script src="{{ script | relative_url }}"></script>
   {% endfor %}
 {% endif %}
+
+<!-- mathjax -->
+{% if page.use_math %}
+         {% include mathjax_support.html %}
+     {% endif %}
