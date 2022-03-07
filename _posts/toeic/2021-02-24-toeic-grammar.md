@@ -6,7 +6,7 @@ categories:
 tag:
   - grammar
 
-toc: true
+toc: false
 ---
 
 1. 명령문은 주어가 없다.
