@@ -5,8 +5,6 @@ categories:
   - TOEIC
 tag:
   - grammar
-
-toc: false
 ---
 
 1. 명령문은 주어가 없다.
