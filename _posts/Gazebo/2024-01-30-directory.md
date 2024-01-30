@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Model Directory"
+title: "Model 폴더"
 categories:
   - Gazebo
 tag:
