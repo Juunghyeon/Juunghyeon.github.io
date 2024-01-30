@@ -45,11 +45,11 @@ recommand 인 'nvidia-driver-535-server-open' 로 설치하니 역시 무한부�
 
 
 ## 해결방법
-#### 1. **Advanced options for Ubuntu 를 선택한다.**
+#### 1. **Advanced options for Ubuntu 를 선택한**
 
 ![image](https://github.com/Juunghyeon/test/assets/78840944/36211bac-1340-4e40-8f5a-c17091a728b1)
 
- #### 2. **recovery mode 선택**
+#### 2. **recovery mode 선택**
 
 ![image](https://github.com/Juunghyeon/test/assets/78840944/42e82278-3897-4c75-b3c1-ab2a1c621188)
 
