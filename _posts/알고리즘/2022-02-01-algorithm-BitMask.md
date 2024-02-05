@@ -1,5 +1,5 @@
 ---
-title: "비트마스크 (BitMask) 알고리즘"
+title: "[Algorithm] 비트마스크 (BitMask) 알고리즘"
 categories: Algorithm
 tags:
   - algorithn

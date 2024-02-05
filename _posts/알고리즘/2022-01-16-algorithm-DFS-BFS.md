@@ -1,5 +1,5 @@
 ---
-title: "DFS와 BFS의 차이점"
+title: "[Algorithm] DFS와 BFS의 차이점"
 categories: Algorithm
 tags:
   - dfs

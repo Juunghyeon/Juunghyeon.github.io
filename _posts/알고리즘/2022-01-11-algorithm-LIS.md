@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[최장 증가 수열] LIS(Longest Increasing Subsequence)"
+title: "[Algorithm] LIS(Longest Increasing Subsequence)"
 categories:
   - Algorithm
 tag:

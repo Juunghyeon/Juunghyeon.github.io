@@ -1,5 +1,5 @@
 ---
-title: "중간에서 만나기(Meet In The Middle, MITM)"
+title: "[Algorithm] 중간에서 만나기(Meet In The Middle, MITM)"
 categories: Algorithm
 tags:
   - algorithm

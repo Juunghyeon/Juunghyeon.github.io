@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "이진탐색(Binary Search)"
+title: "[Algorithm] 이진탐색(Binary Search)"
 # excerpt: "단계 | 번호: 문제이름"
 categories:
   - Algorithm

@@ -1,5 +1,5 @@
 ---
-title: "깊이 우선 탐색(Depth-First Search)"
+title: "[Algorithm] 깊이 우선 탐색(Depth-First Search)"
 categories: Algorithm
 tags:
   - algorithn
