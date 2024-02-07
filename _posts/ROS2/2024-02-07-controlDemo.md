@@ -18,9 +18,9 @@ ROS2에서 control과 관련한 데모가 있어서 공부해보자. example 별
 
 --- 
 
-## 빌드과정
+## 1. 빌드과정
 
-### 1. git clone
+### 1-1. git clone
 ```bash
 $ mkdir -p ros2_control_ws/src
 ```
@@ -61,7 +61,7 @@ ros2_control_demo_hardware     ros2_control_test_nodes
 
 ---
 
-### 2. 패키지 소스코드 다운 (vcs)
+### 1-2. 패키지 소스코드 다운 (vcs)
 
 여기서 `vcs import` 명령을 통해 `ros2_control_demos/ros2_control_demos.foxy.repos` 파일을 사용하여 ROS 2 컨트롤 데모 관련 패키지의 소스코드를 가져온다. 이때 `--input` 옵션을 사용하여 `ros2_control_demos/ros2_control_demos.foxy.repos` 파일을 지정합니다.
 
@@ -89,7 +89,7 @@ control_msgs  realtime_tools  ros2_control  ros2_control_demos  ros2_controllers
 
 ---
 
-### 3. 패키지 의존성 해결 (rosdep install)
+### 1-3. 패키지 의존성 해결 (rosdep install)
 이후 ROS 패키지의 의존성을 확인하고, 의존성에 필요한 패키지를 설치하는 해야한다. 이때 사용하는 명령어가 `rosdep install` 명령이다.
 
 이때 각 옵션의 의미는 다음과 같다.
@@ -106,15 +106,13 @@ $ rosdep install --from-paths src --ignore-src -r -y
 ```
 ---
 
-### 4. 빌드 (colcon)
+### 1-4. 빌드 (colcon)
 
 이후 빌드를 진행해주면 된다.
 
 ```bash
 $ colcon build --symlink-install
-
                 ...
-
 Summary: 29 packages finished [2min 32s]
 ```
 
