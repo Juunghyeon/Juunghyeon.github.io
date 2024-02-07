@@ -11,12 +11,14 @@ toc: true
 toc_sticky: true
 ---
 
-# INTRO
+# Intro
 ROS2에서 control과 관련한 데모가 있어서 공부해보자. example 별로 실습을 진행할 수 있어서 control 과 관련하여 공부하는 데 많은 도움이 될 것 같다.
 
 > <https://github.com/ros-controls/ros2_control_demos/tree/foxy>
 
 --- 
+
+## 빌드과정
 
 ### 1. git clone
 ```bash
