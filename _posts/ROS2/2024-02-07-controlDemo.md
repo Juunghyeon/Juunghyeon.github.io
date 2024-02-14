@@ -27,7 +27,7 @@ $ mkdir -p ros2_control_ws/src
 
 이후 github에 들어가서 오픈소스의 주소를 가져온 뒤 git clone 을 진행해주면 되는데, 이때 주의할 것은 branch에서 foxy를 선택해주어야 한다.
 
-![image](https://github.com/Juunghyeon/test/assets/78840944/64d57e2e-23a7-4f00-9ab9-a974a564ad71)
+![image](https://github.com/Juunghyeon/images/assets/78840944/baea94d4-3d06-4707-8bcc-dd3c245077ca)
 
 일반적으로 오픈 소스 프로젝트는 여러 개발 라인이나 기능 세트를 동시에 관리하기 위해 여러 가지 브랜치를 유지한다. 이러한 브랜치들은 주로 다음과 같은 목적으로 사용된다:
 
@@ -70,7 +70,7 @@ ros2_control_demo_hardware     ros2_control_test_nodes
 이렇게 하면 로컬 시스템에 ROS 2 컨트롤 데모 관련 패키지의 소스코드가 다운로드되고 저장되며, 이후에 빌드하거나 사용할 수 있다.
 
 ```bash
-$ cd ~/ros2_control_demos
+$ cd ~/ros2_control_demos/src
 $ vcs import --input ros2_control_demos/ros2_control_demos.foxy.repos
 ....
 === ./control_msgs (git) ===
