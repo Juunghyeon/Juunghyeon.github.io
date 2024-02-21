@@ -114,5 +114,8 @@ $ rosdep install --from-paths src --ignore-src -r -y
 $ colcon build --symlink-install
                 ...
 Summary: 29 packages finished [2min 32s]
+
+$ sourch install/setup.bash
 ```
+
 
