@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[ROS2] Interface 신규 작성"
+title: "[ROS2] 인터페이스(Interface)"
 categories:
   - ROS2
 tag:
@@ -14,7 +14,10 @@ toc: true
 toc_sticky: true
 ---
 
-# ROS2 인터페이스(Interface) 신규 작성
+# 인터페이스(Interface) 란?
+
+인터페이스는 노드 간의 데이터 통신을 위한 규약을 정의한다. 이러한 인터페이스는 메시지(Message), 서비스(Service), 및 액션(Action)의 세 가지 주요 형태로 나뉜다.
+
 ROS2 프로그래밍은 메시지 통신을 위해 정수, 부동 소수점, 불린과 같은 기본 변수 타입들이 담긴 std_msgs 인터페이스나 병진 속도와 회전 속도를 표현할 수 있는 geometry_msgs의 Twist.msg 인터페이스, 레지저 스캐닝 값을 담을 수 있는 sensor_msgs의 LaserScan.msg 인터페이스 같이 지정된 인터페이스를 사용하는 것이 일반적이다.
 
 하지만 이러한 인터페이스들은 사용자가 원하는 모든 정보를 담을 수 없고 토픽 인터페이스 이외에 서비스나 액션 인터페이스는 매우 기본적인 인터페이스만 제공하기 때문에 사용자가 필요로 하는 형태가 아니면 새로 만들어야 한다.
@@ -48,10 +51,6 @@ ROS2 프로그래밍은 메시지 통신을 위해 정수, 부동 소수점, 불
 
 ### 1-1. 패키지 설정 파일(package.xml)
 
-패키지 설정 파일은 ROS 패키지의 필수 구성 요소로서 패키지의 정보를 기술하는 파일이다. 기술하는 내용으로는 패키지 이름, 저작자, 라이선스, 의존성 패키지 등이 있으며 XML 형식으로 기술하고 파일명은 `package.xml`을 사용한다. 사용되는 빌드 툴, 의존성 패키지들이 모두 기술되기에 빌드 및 패키지 설치, 사용에 있어서 매우 중요한 파일이라고 말할 수 있다. 이에 모든 ROS 패키지의 필수 파일로 각 패키지당 무조건 1개의 패키지 설정 파일 (package.xml)을 포함하고 있다.
-
-[출처] 022 패키지 파일 (환경 설정, 빌드 설정) (오픈소스 소프트웨어 & 하드웨어: 로봇 기술 공유 카페 (오로카)) | 작성자 표윤석
-
 ```bash
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
@@ -79,12 +78,15 @@ ROS2 프로그래밍은 메시지 통신을 위해 정수, 부동 소수점, 불
 </package>
 ```
 
+일반적인 패키지와 다른 점은 
+
+1. **빌드 시에 DDS에서 가용되는 IDL(Interface Definition Language) 생성과 관련한 rosidl_default_generators가 사용된다는 점** 과
+2. **실행 시에 builtin_interfaces와 rosidl_default_runtime이 사용된다는 점**
+
+이다. 그 이외에는 일반적인 패키지의 설정과 동일하다.
+
 ---
 ### 1-2. 빌드 설정 파일(CmakeList.txt)
-
-ROS 2의 빌드 시스템인 ament[7]에서는 C++ 프로그래밍 언어를 사용한 패키지나 RQt Plugin의 경우 CMake(Cross Platform Make)를 이용하고 있고 패키지 폴더의 `CMakeLists.txt`라는 파일에 빌드 환경을 기술하여 사용하고 있다. 이 빌드 설정 파일에 실행 파일 생성, 의존성 패키지 우선 빌드, 링크 생성 등을 설정하게 되어 있다. ROS에서 CMake를 이용하는 이유는 ROS 패키지를 멀티 플랫폼에서 빌드할 수 있게 하기 위함이다. Make가 유닉스 계열만 지원하는 것과 달리, CMake는 유닉스 계열인 리눅스, BSD, OS X뿐만 아니라 윈도우즈 계열도 지원하기 때문이다. 또한 CMakeLists.txt은 Visual Studio, Eclipse, Qt Creator 등 다양한 IDE에서 기본으로 지원하여 쉽게 사용할 수 있다.
-
-[출처] 022 패키지 파일 (환경 설정, 빌드 설정) (오픈소스 소프트웨어 & 하드웨어: 로봇 기술 공유 카페 (오로카)) | 작성자 표윤석
 
 ```bash
 ################################################################################
@@ -137,15 +139,58 @@ ament_export_dependencies(rosidl_default_runtime)
 ament_package()
 ```
 
- ROS 2에서 자신만의 인터페이스 파일 (msg, srv, action)을 사용하는 경우에는 rosidl_generate_interfaces 을 사용하여 인터페이스를 추가해야 한다.
+ROS 2에서 자신만의 인터페이스 파일 (msg, srv, action)을 사용하는 경우에는 rosidl_generate_interfaces 을 사용하여 인터페이스를 추가해야 한다.
 
- `<member_of_group>` 태그는 ROS 2의 ament 빌드 시스템에서 사용되는 특정한 메타데이터 태그 중 하나이다. 이 태그는 패키지가 속한 그룹을 정의한다. 그룹은 패키지들을 논리적으로 묶어 관리할 수 있도록 돕는 메커니즘으로 사용된다. **이 태그는 ROS 2 빌드 시스템에서 메시지 및 서비스 인터페이스를 가진 패키지가 반드시 가져야 하는 메타데이터 중 하나이다.**
+`<member_of_group>` 태그는 ROS 2의 ament 빌드 시스템에서 사용되는 특정한 메타데이터 태그 중 하나이다. 이 태그는 패키지가 속한 그룹을 정의한다. 그룹은 패키지들을 논리적으로 묶어 관리할 수 있도록 돕는 메커니즘으로 사용된다. **이 태그는 ROS 2 빌드 시스템에서 메시지 및 서비스 인터페이스를 가진 패키지가 반드시 가져야 하는 메타데이터 중 하나이다.**
 
- ### 1-3. 빌드
 
- ```bash
- $ cd ~/ws
- $ cbp msg_srv_action_interface_example
+
+
+## 2. 인터페이스 파일(Interface Files)
+### 2.1. ArithmeticArgument.msg
+
+```
+# Messages
+builtin_interfaces/Time stamp
+float32 argument_a
+float32 argument_b
+```
+
+### 2.2. ArithmeticOperator.srv
+
+```
+# Constants
+int8 PLUS = 1
+int8 MINUS = 2
+int8 MULTIPLY = 3
+int8 DIVISION = 4
+
+# Request
+int8 arithmetic_operator
+---
+# Response
+float32 arithmetic_result
+```
+
+### 2.3. ArithmeticChecker.action
+
+```
+# Goal
+float32 goal_sum
+---
+# Result
+string[] all_formula
+float32 total_sum
+---
+# Feedback
+string[] formula
+```
+
+## 3. 빌드
+
+```bash
+$ cd ~/ws
+$ cbp msg_srv_action_interface_example
 Starting >>> msg_srv_action_interface_example
 Finished <<< msg_srv_action_interface_example [1.81s]                     
 
@@ -156,4 +201,6 @@ Summary: 1 package finished [3.63s]
 
 ---
 ## Reference
-<https://cafe.naver.com/openrt/24422>
+- [ROS 2로 시작하는 로봇 프로그래밍 | 표윤석](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwitt6_ryruEAxUCZvUHHV5oA4oQFnoECBEQAQ&url=https%3A%2F%2Fproduct.kyobobook.co.kr%2Fdetail%2FS000001891112&usg=AOvVaw14QJXxcjs_wribUachvF8x&opi=89978449)
+
+- <https://cafe.naver.com/openrt/24422>
