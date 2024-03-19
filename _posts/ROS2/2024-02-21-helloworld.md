@@ -174,24 +174,33 @@ int main(int argc, char * argv[])
 퍼블리셔 노드의 cpp 내용을 정리하면 다음과 같다.
 
 - 해당 노드의 메인 클래스는 rclcpp의 Node 클래스를 상속
+
     ```cpp
     class HelloworldPublisher : public rclcpp::Node
     ```
+
 - 퍼블리셔 의 Qos에서 KeepLast 형태로 depth을 10으로 설정
+
     ```cpp
     auto qos_profile = rclcpp::QoS(rclcpp::KeepLast(10));
     ```
+
 - Node 클래스의 create_publisher 함수를 이용하여 퍼블리셔 설정. 매개변수의 토픽 메시지 타입은 `String`, 토픽 이름은 `"helloworld"`, QoS는 `qos_profile`
+
     ```cpp
     helloworld_publisher_ = this->create_publisher<std_msgs::msg::String>(
       "helloworld", qos_profile);
     ```
+
 - Node 클래스의 create_wall_timer 함수를 이용해 콜백 함수 실행. 주기는 1s.
+
     ```cpp
     timer_ = this->create_wall_timer(
       1s, std::bind(&HelloworldPublisher::publish_helloworld_msg, this));
     ```
+
 - 콜백 함수
+
     ```cpp
     void publish_helloworld_msg()
   {

@@ -35,7 +35,7 @@ ament_target_dependencies(my_node rclcpp std_msgs)
 ```
 
 
-### 2. install() - 설치 매크로(make install) 정의
+### 3. install() - 설치 매크로(make install) 정의
 install은 빌드한 파일들을 시스템에 설치하는 데 사용된다. 이것은 보통 패키지의 라이브러리, 실행 파일, 헤더 파일 등을 시스템의 적절한 위치로 복사하여 다른 프로젝트에서 사용할 수 있도록 하는 과정이다. install 명령은 패키지를 빌드하고 나면 빌드된 파일들을 설치할 위치를 지정한다.
 
 일반적으로 CMakeLists.txt 파일의 install 부분은 다음과 같은 구조를 가진다.
