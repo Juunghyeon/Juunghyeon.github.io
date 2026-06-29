@@ -3,7 +3,8 @@ name: Build CV PDF
 on:
   push:
     paths:
-      - 'cv/cv.tex'
+      - 'cv/main.tex'
+      - 'cv/**'
   workflow_dispatch:
 
 jobs:
@@ -18,12 +19,13 @@ jobs:
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: cv/cv.tex
+          root_file: cv/main.tex
+          work_in_root_file_dir: true
 
       - name: Move PDF to assets
         run: |
           mkdir -p assets/files
-          mv cv.pdf assets/files/cv.pdf
+          mv cv/main.pdf assets/files/cv.pdf
 
       - name: Commit PDF
         run: |
