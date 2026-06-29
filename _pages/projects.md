@@ -9,52 +9,30 @@ author_profile: true
 
 ---
 
-### Project 1
+### Ladder-Crossing Robot
 
-**기간:** 2024.00 ~ 2024.00  
-**역할:** 개인 / 팀
+**Period:** Mar.2023 -- Sep.2023  
+**Category:** Mechanism Design and Control
 
-**설명:**  
-프로젝트 설명을 여기에 작성하세요.
+**Description:**  
+Designed and built a robot mechanism capable of crossing ladder-like structures autonomously.
 
-**사용 기술:**  
-`ROS2` `C++` `Python` `OpenCV`
-
-**링크:**  
-[GitHub](https://github.com/Juunghyeon) · [Demo](#)
+**Skills:**  
+`Arduino` `Creo` `NX` `C++`
 
 ---
 
-### Project 2
+### Solar Tracking Parasol
 
-**기간:** 2024.00 ~ 2024.00  
-**역할:** 개인 / 팀
+**Period:** Sep.2023 -- Nov.2023  
+**Category:** Mechanism Design and Control
 
-**설명:**  
-프로젝트 설명을 여기에 작성하세요.
+**Description:**  
+Developed a parasol system that automatically tracks the sun's position to provide optimal shade.
 
-**사용 기술:**  
-`ROS2` `Gazebo` `URDF`
-
-**링크:**  
-[GitHub](https://github.com/Juunghyeon) · [Demo](#)
+**Skills:**  
+`Arduino` `AutoCAD` `C++`
 
 ---
 
-### Project 3
-
-**기간:** 2024.00 ~ 2024.00  
-**역할:** 개인 / 팀
-
-**설명:**  
-프로젝트 설명을 여기에 작성하세요.
-
-**사용 기술:**  
-`C++` `Linux` `CMake`
-
-**링크:**  
-[GitHub](https://github.com/Juunghyeon)
-
----
-
-> 프로젝트를 추가하려면 이 파일(`_pages/projects.md`)에 위 형식으로 섹션을 추가하세요.
+> More projects coming soon.

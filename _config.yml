@@ -15,7 +15,7 @@
 minimal_mistakes_skin    : "dirt" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale                   : "ko-KR"
+locale                   : "en-US"
 title                    : "Kim Jeonghyeon"
 title_separator          : "-"
 subtitle                 : "Portfolio"
@@ -106,7 +106,7 @@ analytics:
 author:
   name             : "Kim Jeonghyeon"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Robotics & Software Engineer<br>ROS2 · C++ · Python · OpenCV"
+  bio              : "M.S. Student, Mechanical Engineering<br>Korea University<br>Humanoid Robotics · Whole-Body Control"
   location         : "Republic of Korea"
   email            : "ahdtld54@korea.ac.kr"
   links:
@@ -116,11 +116,11 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Juunghyeon"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      # url: ""
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/%EC%A0%95%ED%98%84-%EA%B9%80-b2a0b8263/"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
       # url: ""
 
 # Site Footer
