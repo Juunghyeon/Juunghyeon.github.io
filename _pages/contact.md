@@ -13,8 +13,8 @@ author_profile: true
 
 ### Email
 
-**ahdtld55@gmail.com**  
-[메일 보내기](mailto:ahdtld55@gmail.com)
+**ahdtld54@korea.ac.kr**  
+[메일 보내기](mailto:ahdtld54@korea.ac.kr)
 
 ---
 

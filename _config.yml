@@ -108,11 +108,11 @@ author:
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Robotics & Software Engineer<br>ROS2 · C++ · Python · OpenCV"
   location         : "Republic of Korea"
-  email            : "ahdtld55@gmail.com"
+  email            : "ahdtld54@korea.ac.kr"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:ahdtld55@gmail.com"
+      url: "mailto:ahdtld54@korea.ac.kr"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Juunghyeon"
