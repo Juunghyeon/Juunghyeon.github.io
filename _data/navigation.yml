@@ -4,6 +4,15 @@ main:
     url: /about/
   - title: "Projects"
     url: /projects/
+    children:
+      - title: "Contact Point Recommendation"
+        url: /projects/contact-point-recommendation/
+      - title: "Quadruped Robot (CCP)"
+        url: /projects/ccp-quadruped/
+      - title: "Ladder-Crossing Robot"
+        url: /projects/ladder-crossing/
+      - title: "Solar Tracking Parasol"
+        url: /projects/solar-parasol/
   - title: "CV"
     url: /cv/
   - title: "Contact"
