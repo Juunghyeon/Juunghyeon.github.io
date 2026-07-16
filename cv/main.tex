@@ -86,6 +86,15 @@
     \vspace{-2.4mm}
 }
 
+\newcommand{\resumeAward}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}, #2 & \textit{\footnotesize{#4}} \\
+    \end{tabular*}
+    {\footnotesize\textit{#3}}\\
+    \vspace{-1mm}
+}
+
 \newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
 
 \renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
@@ -132,10 +141,10 @@ dynamic tasks through the integration of model-based and learning-based approach
 \section{\textbf{Education}}
 \resumeSubHeadingListStart
   \resumeSubheading
-    {Korea University}{Seoul, Republic of Korea}
+    {Korea University (GPA: 3.78/4.0, 4.25/4.5)}{Seoul, Republic of Korea}
     {M.S. in Mechanical Engineering}{Mar.2025 -- Present}
   \resumeSubheading
-    {Korea University}{Seoul, Republic of Korea}
+    {Korea University (GPA: 3.48/4.0, 3.9/4.5)}{Seoul, Republic of Korea}
     {B.S. in Mechanical Engineering}{2019 -- 2025}
 \resumeSubHeadingListEnd
 \vspace{-5.5mm}
@@ -175,7 +184,6 @@ dynamic tasks through the integration of model-based and learning-based approach
     \resumeItemListStart
       \item {Developed obstacle detection and avoidance pipeline for DOGZILLA quadruped robot}
       \item {Implemented monocular ORB-SLAM for depth estimation and UV-disparity for obstacle segmentation}
-      \item {Awarded President's Award, Creative Challenger Program (CCP), Korea University}
     \resumeItemListEnd
   \vspace{-2mm}
 
@@ -184,8 +192,7 @@ dynamic tasks through the integration of model-based and learning-based approach
     {Mechanism Design and Control}
     {Mar.2023 -- Sep.2023}
     \resumeItemListStart
-      \item {Tools: Arduino, Creo, NX}
-      \item {Programming Language: C++}
+      \item {Designed the ladder-crossing mechanism and implemented the Arduino-based control code}
     \resumeItemListEnd
   \vspace{-2mm}
 
@@ -194,9 +201,7 @@ dynamic tasks through the integration of model-based and learning-based approach
     {Mechanism Design and Control}
     {Sep.2023 -- Nov.2023}
     \resumeItemListStart
-      \item {Tools: Arduino, AutoCAD}
-      \item {Programming Language: C++}
-      \item {Bronze Award, Creative Comprehensive Design Competition, Korea University}
+      \item {Designed the link mechanism and implemented the sun-tracking control code}
     \resumeItemListEnd
   \vspace{-2mm}
 
@@ -215,14 +220,20 @@ dynamic tasks through the integration of model-based and learning-based approach
 \end{itemize}
 \vspace{-16pt}
 
-%-----------Achievements-----------
-\section{\textbf{Achievements}}
+%-----------Honors and Awards-----------
+\section{\textbf{Honors and Awards}}
 \vspace{-0.4mm}
+\textit{\textbf{Fellowships and Scholarships}}
 \resumeSubHeadingListStart
-  \resumePOR{President's Award}{Creative Challenger Program (CCP), Korea University}{Jan.2025}
-  \resumePOR{Selected}{Master's Research Encouragement Grant, National Research Foundation of Korea}{2025}
-  \resumePOR{Bronze Award}{Creative Comprehensive Design Competition, Korea University}{Sep.2023}
-  \resumePOR{Awarded}{Capstone Design Fair, Korea University}{Nov.2023}
+  \resumeAward{Master's Research Encouragement Grant}{National Research Foundation of Korea}{Awarded to selected research-track graduate students for research funding support}{2025}
+\resumeSubHeadingListEnd
+\vspace{-3mm}
+
+\textit{\textbf{Awards}}
+\resumeSubHeadingListStart
+  \resumeAward{President's Award}{Creative Challenger Program (CCP), Korea University}{Awarded for outstanding performance in autonomous obstacle avoidance for a quadruped robot}{Jan.2025}
+  \resumeAward{Bronze Award}{Creative Comprehensive Design Competition, Korea University}{Awarded for the Solar Tracking Parasol mechanism design project}{Sep.2023}
+  \resumeAward{Design Award}{Capstone Design Fair, Korea University}{}{Nov.2023}
 \resumeSubHeadingListEnd
 \vspace{-5mm}
 

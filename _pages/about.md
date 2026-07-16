@@ -16,10 +16,10 @@ through the integration of model-based and learning-based approaches.
 
 ## Education
 
-| Period | Degree |
-|--------|--------|
-| Mar.2025 -- Present | M.S. in Mechanical Engineering, Korea University |
-| 2019 -- 2025 | B.S. in Mechanical Engineering, Korea University |
+| Period | Degree | GPA |
+|--------|--------|-----|
+| Mar.2025 -- Present | M.S. in Mechanical Engineering, Korea University | 3.78/4.0 (4.25/4.5) |
+| 2019 -- 2025 | B.S. in Mechanical Engineering, Korea University | 3.48/4.0 (3.9/4.5) |
 
 ---
 
