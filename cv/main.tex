@@ -20,10 +20,17 @@
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
+% Polyfill for \AddToHook, needed by fontawesome5 but only provided by
+% LaTeX2e kernels from 2020-10-01 onward; this TeX Live install predates it.
+\usepackage{expl3}
+\ExplSyntaxOn
+\cs_if_exist:NF \AddToHook
+  { \cs_new_protected:Npn \AddToHook #1#2 { } }
+\ExplSyntaxOff
 \usepackage{fontawesome5}
 \usepackage{multicol}
 \usepackage{graphicx}
-\usepackage{cfr-lm}
+\usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage[most]{tcolorbox}
 
@@ -133,9 +140,10 @@
 
 %-----------Research Interest-----------
 \section{\textbf{Research Interest}}
-My research interests lie in \textbf{humanoid robotics} and \textbf{whole-body control}.
-I am interested in developing controllers that enable humanoid robots to perform complex,
-dynamic tasks through the integration of model-based and learning-based approaches.
+My research interests lie in \textbf{control-oriented dynamics modeling} and \textbf{whole-body control} for humanoid robots.
+I am interested in uncovering the physical relationships that govern robot behavior for a given task
+and formulating dynamics models around those relationships, so that robots can coordinate full-body
+motion robustly as contact conditions, payloads, terrain, and external interactions vary.
 
 %-----------EDUCATION-----------
 \section{\textbf{Education}}
@@ -157,7 +165,10 @@ dynamic tasks through the integration of model-based and learning-based approach
     {Graduate Research Student (M.S.)}{Mar.2025 -- Present}
     \vspace{-2.0mm}
     \resumeItemListStart
-      \item {Research on humanoid robotics and whole-body control}
+      \item {\textbf{Whole-body Adaptation for Humanoid Standing Manipulation}: formulated the shared physical
+        effect of upper-body motion, payload, and external interaction on whole-body balance as a
+        \textbf{Balance Demand Descriptor (BDD)} based on centroidal dynamics, and incorporated it directly
+        into locomotion control so the controller explicitly accounts for changing balance demands}
     \resumeItemListEnd
 
   \vspace{-3.0mm}
@@ -167,7 +178,14 @@ dynamic tasks through the integration of model-based and learning-based approach
     {Undergraduate Research Student}{Mar.2024 -- Feb.2025}
     \vspace{-2.0mm}
     \resumeItemListStart
-      \item {Participated in robotics research projects}
+      \item {\textbf{Visual Perception for Quadrupedal Object Interaction}: designed a dual-camera perception
+        pipeline (global camera for workspace-level observation, local camera for precise near-field sensing)
+        calibrated into a consistent coordinate frame, delivering task-appropriate visual information in
+        real time despite viewpoint changes and occlusion during locomotion}
+      \item {\textbf{Real-time Architecture for a Generative-AI-based Mobile Manipulator}: designed the
+        real-time communication framework connecting simulation, an LLM, the user interface, and the physical
+        robot; reorganized data flow around the robot's control cycle to resolve cross-module latency and
+        meet real-time constraints}
     \resumeItemListEnd
 
 \resumeSubHeadingListEnd
