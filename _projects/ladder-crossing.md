@@ -6,6 +6,13 @@ period: "Mar.2023 -- Sep.2023"
 category: "Mechanism Design and Control"
 role: "Team Leader"
 skills: ["Arduino", "Creo", "NX", "C++"]
+icon: "gears"
+header:
+  teaser: # /assets/images/projects/ladder-crossing/teaser.jpg
+  image: # /assets/images/projects/ladder-crossing/cover.jpg
+  # video:
+  #   id: # YouTube video ID
+  #   provider: youtube
 ---
 
 ## Overview

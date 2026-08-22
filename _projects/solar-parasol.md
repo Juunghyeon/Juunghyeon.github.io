@@ -7,6 +7,13 @@ category: "Mechanism Design and Control"
 award: "Bronze Award, Creative Comprehensive Design Competition, Korea University — Sep.2023"
 role: "Team Leader"
 skills: ["Arduino", "AutoCAD", "C++"]
+icon: "sun"
+header:
+  teaser: # /assets/images/projects/solar-parasol/teaser.jpg
+  image: # /assets/images/projects/solar-parasol/cover.jpg
+  # video:
+  #   id: # YouTube video ID
+  #   provider: youtube
 ---
 
 ## Overview

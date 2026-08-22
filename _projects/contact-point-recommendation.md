@@ -7,6 +7,13 @@ category: "Robot Learning · Vision-Language Models"
 status: "Ongoing"
 award: "Master's Research Encouragement Grant, National Research Foundation of Korea (2025)"
 skills: ["Python", "ROS2", "PyTorch", "VLM", "OpenCV"]
+icon: "brain"
+header:
+  teaser: # /assets/images/projects/contact-point-recommendation/teaser.jpg
+  image: # /assets/images/projects/contact-point-recommendation/cover.jpg
+  # video:
+  #   id: # YouTube video ID
+  #   provider: youtube
 ---
 
 ## Overview

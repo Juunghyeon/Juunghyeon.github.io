@@ -8,6 +8,13 @@ award: "President's Award, Creative Challenger Program (CCP), Korea University â
 role: "Team Leader"
 team: "RoboStride"
 skills: ["C++", "Python", "ROS2", "ORB-SLAM", "OpenCV"]
+icon: "robot"
+header:
+  teaser: # /assets/images/projects/ccp-quadruped/teaser.jpg
+  image: # /assets/images/projects/ccp-quadruped/cover.jpg
+  # video:
+  #   id: # YouTube video ID
+  #   provider: youtube
 ---
 
 ## Overview
