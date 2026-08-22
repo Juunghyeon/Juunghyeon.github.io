@@ -155,12 +155,14 @@
   \end{itemize}\vspace{-0.5mm}
 }
 
-% Nested sub-bullets, for detail lines under a bold project/topic title
+% Bullets for detail lines under a bold project/topic title (title itself
+% is plain bold text, not a list item, so this is the only marker level)
 \newcommand{\resumeItemListStartSub}{
   \begin{itemize}[
-    leftmargin=2.2ex,
+    leftmargin=3ex,
     rightmargin=0ex,
-    label={\tiny$-$},
+    label={$\vcenter{\hbox{\tiny$\bullet$}}$},
+    labelsep=1.2mm,
     itemsep=0.3mm,
     topsep=0.3mm,
     parsep=0mm
@@ -253,43 +255,41 @@ relationships and incorporating them into robust robot control.
     {Research Student}
     {Mar. 2024 -- Present}
 
-  \resumeItemListStart
-
+  \vspace{0.5mm}
+  \textbf{Whole-body Adaptation for Humanoid Standing Manipulation}
+  \resumeItemListStartSub
     \item
-    \textbf{Whole-body Adaptation for Humanoid Standing Manipulation}
-    \resumeItemListStartSub
-      \item
-      Formulated a \textbf{Balance Demand Descriptor (BDD)} based on
-      centroidal dynamics to represent the effects of upper-body motion,
-      payload, and external interaction on whole-body balance.
-      \item
-      Integrated BDD into locomotion control to explicitly account for
-      changing balance demands during standing manipulation.
-    \resumeItemListEndSub
-
+    Formulated a \textbf{Balance Demand Descriptor (BDD)} based on
+    centroidal dynamics to represent the effects of upper-body motion,
+    payload, and external interaction on whole-body balance.
     \item
-    \textbf{Visual Perception for Quadrupedal Object Interaction}
-    \resumeItemListStartSub
-      \item
-      Designed a dual-camera perception pipeline combining global workspace
-      observation and local near-field sensing in a common coordinate frame.
-      \item
-      Enabled real-time, task-specific perception under viewpoint changes
-      and occlusion during locomotion.
-    \resumeItemListEndSub
+    Integrated BDD into locomotion control to explicitly account for
+    changing balance demands during standing manipulation.
+  \resumeItemListEndSub
 
+  \vspace{1.3mm}
+  \textbf{Visual Perception for Quadrupedal Object Interaction}
+  \resumeItemListStartSub
     \item
-    \textbf{Real-time Architecture for a Generative-AI-based Mobile Manipulator}
-    \resumeItemListStartSub
-      \item
-      Designed the real-time communication framework connecting simulation,
-      an LLM, the user interface, and the physical robot.
-      \item
-      Reorganized data flow around the robot's control cycle to resolve
-      cross-module latency and meet real-time constraints.
-    \resumeItemListEndSub
+    Designed a dual-camera perception pipeline combining global workspace
+    observation and local near-field sensing in a common coordinate frame.
+    \item
+    Enabled real-time, task-specific perception under viewpoint changes
+    and occlusion during locomotion.
+  \resumeItemListEndSub
 
-  \resumeItemListEnd
+  \vspace{1.3mm}
+  \textbf{Real-time Architecture for a Generative-AI-based Mobile Manipulator}
+  \resumeItemListStartSub
+    \item
+    Designed the real-time communication framework connecting simulation,
+    an LLM, the user interface, and the physical robot.
+    \item
+    Reorganized data flow around the robot's control cycle to resolve
+    cross-module latency and meet real-time constraints.
+  \resumeItemListEndSub
+
+  \vspace{1mm}
 
 \resumeSubHeadingListEnd
 
@@ -298,7 +298,7 @@ relationships and incorporating them into robust robot control.
 
 \section{\textbf{Publications \& Manuscripts}}
 
-\textit{\textbf{Manuscripts in Preparation}}
+\textit{\textbf{\small Manuscripts in Preparation}}
 
 \vspace{-0.5mm}
 
@@ -315,7 +315,7 @@ relationships and incorporating them into robust robot control.
 
 \vspace{-1mm}
 
-\textit{\textbf{Conference Presentations}}
+\textit{\textbf{\small Conference Presentations}}
 
 \vspace{-0.5mm}
 
