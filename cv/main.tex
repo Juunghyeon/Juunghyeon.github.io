@@ -1,11 +1,10 @@
 %-------------------------
-% Resume in Latex
-% License : MIT
-%------------------------
-
-%---- Required Packages and Functions ----
+% Academic CV
+%-------------------------
 
 \documentclass[a4paper,11pt]{article}
+
+%---- Required Packages ----
 \usepackage{latexsym}
 \usepackage{xcolor}
 \usepackage{float}
@@ -20,13 +19,15 @@
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
+
 % Polyfill for \AddToHook, needed by fontawesome5 but only provided by
-% LaTeX2e kernels from 2020-10-01 onward; this TeX Live install predates it.
+% LaTeX2e kernels from 2020-10-01 onward
 \usepackage{expl3}
 \ExplSyntaxOn
 \cs_if_exist:NF \AddToHook
   { \cs_new_protected:Npn \AddToHook #1#2 { } }
 \ExplSyntaxOff
+
 \usepackage{fontawesome5}
 \usepackage{multicol}
 \usepackage{graphicx}
@@ -34,92 +35,150 @@
 \usepackage[T1]{fontenc}
 \usepackage[most]{tcolorbox}
 
-\setlength{\footskip}{4.08003pt}
+%---- Page Setup ----
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-\geometry{left=1.4cm, top=1cm, right=1.4cm, bottom=1cm}
+
+% Slightly more white space than the original version
+\geometry{
+  left=1.4cm,
+  right=1.4cm,
+  top=1.3cm,
+  bottom=1.3cm
+}
+
+\setlength{\footskip}{8pt}
 
 \tcbset{
-    frame code={}
-    center title,
-    left=0pt, right=0pt, top=0pt, bottom=0pt,
-    colback=gray!20, colframe=white,
-    width=\dimexpr\textwidth\relax,
-    enlarge left by=-2mm,
-    boxsep=4pt,
-    arc=0pt, outer arc=0pt,
+  frame code={},
+  center title,
+  left=0pt,
+  right=0pt,
+  top=0pt,
+  bottom=0pt,
+  colback=gray!20,
+  colframe=white,
+  width=\dimexpr\textwidth\relax,
+  enlarge left by=-2mm,
+  boxsep=4pt,
+  arc=0pt,
+  outer arc=0pt,
 }
 
 \urlstyle{same}
 \raggedright
-\setlength{\footskip}{4.08003pt}
 
-% Sections formatting
+%---- Section Formatting ----
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+  \vspace{-2pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
 
-%---- Custom commands ----
+%---- Custom Commands ----
+
 \newcommand{\resumeItem}[2]{
-  \item{\textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}}
+  \item{\textbf{#1}{\hspace{0.5mm}#2}}
 }
 
 \newcommand{\resumePOR}[3]{
-\vspace{0.5mm}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}}
-    \end{tabular*}
-    \vspace{-2mm}
+  \vspace{0.5mm}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1}\hspace{0.3mm}#2 &
+    \textit{\small{#3}}
+  \end{tabular*}
+  \vspace{-1.5mm}
 }
 
 \newcommand{\resumeSubheading}[4]{
-\vspace{0.5mm}\item
-    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-        \textbf{#1} & \textit{\footnotesize{#4}} \\
-        \textit{\footnotesize{#3}} & \footnotesize{#2}\\
-    \end{tabular*}
-    \vspace{-2.4mm}
+  \vspace{0.5mm}\item
+  \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textit{\footnotesize{#4}} \\
+    \textit{\footnotesize{#3}} & \footnotesize{#2} \\
+  \end{tabular*}
+  \vspace{-1.5mm}
 }
 
 \newcommand{\resumeProject}[3]{
-\vspace{0.5mm}\item
-    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-        \textbf{#1} & \textit{\footnotesize{#3}} \\
-        \footnotesize{\textit{#2}} &
-    \end{tabular*}
-    \vspace{-2.4mm}
+  \vspace{0.5mm}\item
+  \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textit{\footnotesize{#3}} \\
+    \footnotesize{\textit{#2}} &
+  \end{tabular*}
+  \vspace{-1.5mm}
+}
+
+\newcommand{\resumeProjectSimple}[2]{
+  \vspace{0.5mm}\item
+  \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & \textit{\footnotesize{#2}}
+  \end{tabular*}
+  \vspace{-1.5mm}
 }
 
 \newcommand{\resumeAward}[4]{
-\vspace{0.5mm}\item
-    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-        \textbf{#1}, #2 & \textit{\footnotesize{#4}} \\
-    \end{tabular*}
+  \vspace{0.5mm}\item
+  \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1}, #2 & \textit{\footnotesize{#4}} \\
+  \end{tabular*}
+  \ifx&#3&
+  \else
     {\footnotesize\textit{#3}}\\
-    \vspace{-1mm}
+  \fi
+  \vspace{-0.5mm}
 }
-
-\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
 
 \renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=0mm]}
-\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm,rightmargin=2ex]}
-\newcommand{\resumeItemListStart}{\begin{justify}\begin{itemize}[leftmargin=3ex,rightmargin=2ex,noitemsep,labelsep=1.2mm,itemsep=0mm]\small}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
-\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\end{justify}\vspace{-2mm}}
+\newcommand{\resumeSubHeadingListStart}{
+  \begin{itemize}[leftmargin=*,labelsep=0mm]
+}
+
+\newcommand{\resumeSubHeadingListEnd}{
+  \end{itemize}\vspace{1mm}
+}
+
+% Increased bullet spacing and removed justify environment
+\newcommand{\resumeItemListStart}{
+  \begin{itemize}[
+    leftmargin=3ex,
+    rightmargin=0ex,
+    labelsep=1.2mm,
+    itemsep=0.7mm,
+    topsep=0.5mm,
+    parsep=0mm
+  ]\small
+}
+
+\newcommand{\resumeItemListEnd}{
+  \end{itemize}\vspace{-0.5mm}
+}
+
+% Nested sub-bullets, for detail lines under a bold project/topic title
+\newcommand{\resumeItemListStartSub}{
+  \begin{itemize}[
+    leftmargin=2.2ex,
+    rightmargin=0ex,
+    label={\tiny$-$},
+    itemsep=0.3mm,
+    topsep=0.3mm,
+    parsep=0mm
+  ]\small
+}
+
+\newcommand{\resumeItemListEndSub}{
+  \end{itemize}
+}
 
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
 \newcolumntype{C}{>{\centering\arraybackslash}X}
-%---- End of Packages and Functions ------
 
 %-------------------------------------------
-%%%%%%  CV STARTS HERE  %%%%%%%%%%%
+%%%%%% CV STARTS HERE %%%%%%
+%-------------------------------------------
+
 \newcommand{\name}{JeongHyeon Kim}
 \newcommand{\phone}{+82-10-8274-5411}
 \newcommand{\emaila}{ahdtld54@korea.ac.kr}
@@ -127,161 +186,302 @@
 \newcommand{\website}{Juunghyeon.github.io}
 
 \begin{document}
+
 \fontfamily{cmr}\selectfont
 
 %----------HEADING-----------------
-\begin{tabularx}{\linewidth}{L r}
-  \textbf{\Large \name} & {\footnotesize \faPhone\ \phone} \\
-  {\footnotesize M.S. Student, Mechanical Engineering, Korea University} & \href{mailto:\emaila}{\footnotesize \faEnvelope\ \emaila} \\
-  {\footnotesize Human-Machine Systems Lab (Advisor: Prof. Shinsuk Park)} & \href{https://\github}{\footnotesize \faGithub\ \github} \\
-  & \href{https://\website}{\footnotesize \faGlobe\ \website}
-\end{tabularx}
-\vspace{-3mm}
 
-%-----------Research Interest-----------
-\section{\textbf{Research Interest}}
-My research interests lie in \textbf{control-oriented dynamics modeling} and \textbf{whole-body control} for humanoid robots.
-I am interested in uncovering the physical relationships that govern robot behavior for a given task
-and formulating dynamics models around those relationships, so that robots can coordinate full-body
-motion robustly as contact conditions, payloads, terrain, and external interactions vary.
+\begin{tabularx}{\linewidth}{L r}
+  \textbf{\Large \name} &
+  {\footnotesize \faPhone\ \phone} \\
+
+  {\footnotesize M.S. Student, Mechanical Engineering, Korea University} &
+  \href{mailto:\emaila}
+  {\footnotesize \faEnvelope\ \emaila} \\
+
+  {\footnotesize Human-Machine Systems Lab (Advisor: Prof. Shinsuk Park)} &
+  \href{https://\github}
+  {\footnotesize \faGithub\ \github} \\
+
+  &
+  \href{https://\website}
+  {\footnotesize \faGlobe\ \website}
+\end{tabularx}
+
+\vspace{-1.5mm}
+
+
+%-----------RESEARCH INTERESTS-----------
+
+\section{\textbf{Research Interests}}
+
+My research interests lie in \textbf{control-oriented dynamics modeling} and
+\textbf{whole-body control}, with a focus on identifying task-relevant physical
+relationships and incorporating them into robust robot control.
+
 
 %-----------EDUCATION-----------
+
 \section{\textbf{Education}}
+
 \resumeSubHeadingListStart
-  \resumeSubheading
-    {Korea University (GPA: 3.78/4.0, 4.25/4.5)}{Seoul, Republic of Korea}
-    {M.S. in Mechanical Engineering}{Mar.2025 -- Feb.2027 (Expected)}
-  \resumeSubheading
-    {Korea University (GPA: 3.48/4.0, 3.9/4.5)}{Seoul, Republic of Korea}
-    {B.S. in Mechanical Engineering}{2019 -- 2025}
-\resumeSubHeadingListEnd
-\vspace{-5.5mm}
-
-%-----------EXPERIENCE-----------
-\section{\textbf{Experience}}
-\resumeSubHeadingListStart
-  \resumeSubheading
-    {Human-Machine Systems Lab, Korea University}{Seoul, Republic of Korea}
-    {Graduate Research Student (M.S.)}{Mar.2025 -- Present}
-    \vspace{-2.0mm}
-    \resumeItemListStart
-      \item {\textbf{Whole-body Adaptation for Humanoid Standing Manipulation}: formulated the shared physical
-        effect of upper-body motion, payload, and external interaction on whole-body balance as a
-        \textbf{Balance Demand Descriptor (BDD)} based on centroidal dynamics, and incorporated it directly
-        into locomotion control so the controller explicitly accounts for changing balance demands}
-    \resumeItemListEnd
-
-  \vspace{-3.0mm}
 
   \resumeSubheading
-    {Human-Machine Systems Lab, Korea University}{Seoul, Republic of Korea}
-    {Undergraduate Research Student}{Mar.2024 -- Feb.2025}
-    \vspace{-2.0mm}
-    \resumeItemListStart
-      \item {\textbf{Visual Perception for Quadrupedal Object Interaction}: designed a dual-camera perception
-        pipeline (global camera for workspace-level observation, local camera for precise near-field sensing)
-        calibrated into a consistent coordinate frame, delivering task-appropriate visual information in
-        real time despite viewpoint changes and occlusion during locomotion}
-      \item {\textbf{Real-time Architecture for a Generative-AI-based Mobile Manipulator}: designed the
-        real-time communication framework connecting simulation, an LLM, the user interface, and the physical
-        robot; reorganized data flow around the robot's control cycle to resolve cross-module latency and
-        meet real-time constraints}
-    \resumeItemListEnd
+    {Korea University (GPA: 3.78/4.0, 4.25/4.5)}
+    {Seoul, Republic of Korea}
+    {M.S. in Mechanical Engineering}
+    {Mar. 2025 -- Feb. 2027 (Expected)}
+
+  \resumeSubheading
+    {Korea University (GPA: 3.48/4.0, 3.9/4.5)}
+    {Seoul, Republic of Korea}
+    {B.S. in Mechanical Engineering}
+    {2019 -- 2025}
 
 \resumeSubHeadingListEnd
-\vspace{-8.5mm}
 
-%-----------PROJECTS-----------
-\section{\textbf{Projects}}
+
+%-----------RESEARCH EXPERIENCE-----------
+
+\section{\textbf{Research Experience}}
+
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Human-Machine Systems Lab, Korea University}
+    {Seoul, Republic of Korea}
+    {Research Student}
+    {Mar. 2024 -- Present}
+
+  \resumeItemListStart
+
+    \item
+    \textbf{Whole-body Adaptation for Humanoid Standing Manipulation}
+    \resumeItemListStartSub
+      \item
+      Formulated a \textbf{Balance Demand Descriptor (BDD)} based on
+      centroidal dynamics to represent the effects of upper-body motion,
+      payload, and external interaction on whole-body balance.
+      \item
+      Integrated BDD into locomotion control to explicitly account for
+      changing balance demands during standing manipulation.
+    \resumeItemListEndSub
+
+    \item
+    \textbf{Visual Perception for Quadrupedal Object Interaction}
+    \resumeItemListStartSub
+      \item
+      Designed a dual-camera perception pipeline combining global workspace
+      observation and local near-field sensing in a common coordinate frame.
+      \item
+      Enabled real-time, task-specific perception under viewpoint changes
+      and occlusion during locomotion.
+    \resumeItemListEndSub
+
+    \item
+    \textbf{Real-time Architecture for a Generative-AI-based Mobile Manipulator}
+    \resumeItemListStartSub
+      \item
+      Designed the real-time communication framework connecting simulation,
+      an LLM, the user interface, and the physical robot.
+      \item
+      Reorganized data flow around the robot's control cycle to resolve
+      cross-module latency and meet real-time constraints.
+    \resumeItemListEndSub
+
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+
+%-----------PUBLICATIONS-----------
+
+\section{\textbf{Publications \& Manuscripts}}
+
+\textit{\textbf{Manuscripts in Preparation}}
+
+\vspace{-0.5mm}
+
+\resumeSubHeadingListStart
+
+  \item
+  {\footnotesize
+  \textbf{J. Kim} and S. Park,
+  ``Balance Demand Descriptor: A Physics-Informed Representation of
+  Whole-Body Dynamics for Humanoid Standing Manipulation,''
+  \textit{manuscript in preparation}.}
+
+\resumeSubHeadingListEnd
+
+\vspace{-1mm}
+
+\textit{\textbf{Conference Presentations}}
+
+\vspace{-0.5mm}
+
+\resumeSubHeadingListStart
+
+  \item
+  {\footnotesize
+  \textbf{J. Kim} and S. Park,
+  ``Obstacle Detection Using ORB-SLAM and UV-Disparity with a Low-Cost
+  Quadruped Robot,''
+  \textit{KSPE 2025 Spring Conference},
+  Jeju, Republic of Korea, May 2025.}
+
+\resumeSubHeadingListEnd
+
+
+%-----------SELECTED PROJECTS-----------
+
+\section{\textbf{Selected Projects}}
+
 \resumeSubHeadingListStart
 
   \resumeProject
     {Quadruped Robot Obstacle Avoidance (CCP) --- \textit{Team Leader}}
     {Computer Vision, Autonomous Navigation}
-    {Mar.2024 -- Jan.2025}
-    \resumeItemListStart
-      \item {Developed obstacle detection and avoidance pipeline for DOGZILLA quadruped robot}
-      \item {Implemented monocular ORB-SLAM for depth estimation and UV-disparity for obstacle segmentation}
-    \resumeItemListEnd
-  \vspace{-2mm}
+    {Mar. 2024 -- Jan. 2025}
 
-  \resumeProject
+  \resumeItemListStart
+
+    \item
+    Developed an obstacle detection and avoidance pipeline for the
+    DOGZILLA quadruped robot.
+
+    \item
+    Implemented ORB-SLAM for localization and mapping and UV-disparity
+    for obstacle detection.
+
+  \resumeItemListEnd
+
+  \vspace{0.5mm}
+
+  \resumeProjectSimple
     {Ladder-Crossing Robot --- \textit{Team Leader}}
-    {Mechanism Design and Control}
-    {Mar.2023 -- Sep.2023}
-    \resumeItemListStart
-      \item {Designed the ladder-crossing mechanism and implemented the Arduino-based control code}
-    \resumeItemListEnd
-  \vspace{-2mm}
+    {Mar. 2023 -- Sep. 2023}
 
-  \resumeProject
+  \resumeItemListStart
+
+    \item
+    Designed a ladder-crossing mechanism and implemented an
+    Arduino-based control system.
+
+  \resumeItemListEnd
+
+  \vspace{0.5mm}
+
+  \resumeProjectSimple
     {Solar Tracking Parasol --- \textit{Team Leader}}
-    {Mechanism Design and Control}
-    {Sep.2023 -- Nov.2023}
-    \resumeItemListStart
-      \item {Designed the link mechanism and implemented the sun-tracking control code}
-    \resumeItemListEnd
-  \vspace{-2mm}
+    {Sep. 2023 -- Nov. 2023}
+
+  \resumeItemListStart
+
+    \item
+    Designed the linkage mechanism and implemented a sun-tracking
+    control system.
+
+  \resumeItemListEnd
 
 \resumeSubHeadingListEnd
-\vspace{-5.5mm}
 
-%-----------Publications-----------
-\section{\textbf{Publications \& Manuscripts}}
-\vspace{-0.4mm}
-\textit{\textbf{Manuscripts in Preparation}}
-\resumeSubHeadingListStart
-  \item {\footnotesize J. Kim and S. Park, ``Balance Demand Descriptor: A Physics-Informed Representation of Whole-Body Dynamics for Humanoid Standing Manipulation,'' \textit{manuscript in preparation}.}
-\resumeSubHeadingListEnd
-\vspace{-3mm}
 
-\textit{\textbf{Conference Presentations}}
-\resumeSubHeadingListStart
-  \item {\footnotesize J. Kim and S. Park, ``Obstacle Detection Using ORB-SLAM and UV-Disparity with a Low-Cost Quadruped Robot,'' \textit{KSPE 2025 Spring Conference}, Jeju, Republic of Korea, May 2025.}
-\resumeSubHeadingListEnd
-\vspace{-5mm}
+%-----------TEACHING EXPERIENCE-----------
 
-%-----------Teaching Experience-----------
 \section{\textbf{Teaching Experience}}
-\vspace{-0.4mm}
-\textit{\footnotesize Teaching Assistant, Korea University, Seoul, Republic of Korea}
+
+\textit{\footnotesize
+Teaching Assistant, Korea University, Seoul, Republic of Korea}
+
+\vspace{-0.5mm}
+
 \resumeSubHeadingListStart
+
   \resumePOR{Robotics}{}{Spring 2026}
+
   \resumePOR{Computer-Aided Design}{}{Fall 2025}
+
   \resumePOR{Dynamics (English)}{}{Summer 2025}
+
   \resumePOR{Kinematics of Mechanisms}{}{Spring 2025}
+
 \resumeSubHeadingListEnd
-\vspace{-5.5mm}
 
-%-----------Technical Skills-----------
-\section{\textbf{Technical Skills}}
-\begin{itemize}[leftmargin=0.1in, label={}]
-  \small{\item{
-    \textbf{Languages}{: Python, C/C++, MATLAB} \\
-    \textbf{Robotics}{: ROS2, Gazebo, Isaac Gym, MuJoCo, Pinocchio, URDF/XACRO} \\
-    \textbf{Control \& Optimization}{: Reinforcement Learning, Trajectory Optimization} \\
-    \textbf{Tools}{: OpenCV, Arduino, Creo, NX, AutoCAD, SolidWorks, Git} \\
-    \textbf{OS}{: Linux (Ubuntu)} \\
-  }}
-\end{itemize}
-\vspace{-16pt}
 
-%-----------Honors and Awards-----------
+%-----------HONORS AND AWARDS-----------
+
 \section{\textbf{Honors and Awards}}
-\vspace{-0.4mm}
+
 \textit{\textbf{Fellowships and Scholarships}}
+
+\vspace{-0.5mm}
+
 \resumeSubHeadingListStart
-  \resumeAward{Master's Research Encouragement Grant}{National Research Foundation of Korea}{Awarded to selected research-track graduate students for research funding support}{2025}
+
+  \resumeAward
+    {Master's Research Encouragement Grant}
+    {National Research Foundation of Korea}
+    {Awarded to selected research-track graduate students for research funding support}
+    {2025}
+
 \resumeSubHeadingListEnd
-\vspace{-3mm}
+
+\vspace{-1mm}
 
 \textit{\textbf{Awards}}
+
+\vspace{-0.5mm}
+
 \resumeSubHeadingListStart
-  \resumeAward{President's Award}{Creative Challenger Program (CCP), Korea University}{Awarded for outstanding performance in autonomous obstacle avoidance for a quadruped robot}{Jan.2025}
-  \resumeAward{Bronze Award}{Creative Comprehensive Design Competition, Korea University}{Awarded for the Solar Tracking Parasol mechanism design project}{Sep.2023}
-  \resumeAward{Design Award}{Capstone Design Fair, Korea University}{}{Nov.2023}
+
+  \resumeAward
+    {President's Award}
+    {Creative Challenger Program (CCP), Korea University}
+    {Awarded for outstanding performance in autonomous obstacle avoidance for a quadruped robot}
+    {Jan. 2025}
+
+  \resumeAward
+    {Bronze Award}
+    {Creative Comprehensive Design Competition, Korea University}
+    {}
+    {Sep. 2023}
+
+  \resumeAward
+    {Design Award}
+    {Capstone Design Fair, Korea University}
+    {}
+    {Nov. 2023}
+
 \resumeSubHeadingListEnd
-\vspace{-5mm}
+
+
+%-----------TECHNICAL SKILLS-----------
+
+\section{\textbf{Technical Skills}}
+
+\begin{itemize}[leftmargin=0.1in, label={}, itemsep=0.6mm, topsep=1mm]
+
+  \small{\item{
+    \textbf{Programming:} Python, C/C++, MATLAB \\
+
+    \textbf{Robotics \& Simulation:}
+    ROS2, Gazebo, Isaac Gym, MuJoCo, Pinocchio, URDF/XACRO \\
+
+    \textbf{Learning \& Optimization:}
+    Reinforcement Learning, Trajectory Optimization \\
+
+    \textbf{Perception:}
+    OpenCV \\
+
+    \textbf{Engineering \& Development:}
+    Git, Arduino, Creo, NX, SolidWorks \\
+
+    \textbf{OS:}
+    Linux (Ubuntu)
+  }}
+
+\end{itemize}
 
 %-------------------------------------------
+
 \end{document}
