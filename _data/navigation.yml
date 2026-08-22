@@ -15,5 +15,7 @@ main:
         url: /projects/solar-parasol/
   - title: "CV"
     url: /cv/
+  - title: "Outside the Lab"
+    url: /outside-the-lab/
   - title: "Contact"
     url: /contact/

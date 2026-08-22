@@ -28,6 +28,9 @@ codekit-config.json
 _asset_bundler_cache
 _site
 
+# Raw hobby photos (originals kept locally, web-optimized copies in assets/images/hobbies)
+images/hobbies/
+
 # LaTeX build artifacts
 cv/*.aux
 cv/*.log
