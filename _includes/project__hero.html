@@ -1,98 +1,111 @@
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+
+.project-page, .project-page a {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+}
+.project-page a {
+  color: #1772d0;
+  text-decoration: none;
+}
+.project-page a:hover,
+.project-page a:focus {
+  color: #f09228;
+}
+.project-page .page__content {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1em;
+  line-height: 1.6;
+}
+.project-page .page__content h2 {
+  font-weight: 700;
+  font-size: 1.05em;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+.project-page .page__content hr {
+  display: none;
+}
+
 .project-hero {
-  margin-bottom: 1.5em;
+  max-width: 680px;
+  margin: 0 auto 2em;
+  text-align: center;
 }
 .project-hero__title {
-  font-size: 2em;
-  line-height: 1.25;
+  font-weight: 400;
+  font-size: 1.6em;
+  line-height: 1.4;
   margin: 0 0 0.6em;
 }
 .project-hero__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-  margin-bottom: 1.3em;
+  font-size: 0.85em;
+  opacity: 0.7;
+  margin: 0 0 0.3em;
 }
-.project-chip {
-  font-size: 0.82em;
-  padding: 0.3em 0.8em;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.06);
-  white-space: nowrap;
+.project-hero__award {
+  font-size: 0.85em;
+  opacity: 0.85;
+  margin: 0 0 0.3em;
 }
-.project-chip--award {
-  background: #fff6df;
-  color: #9a6b12;
+.project-hero__links {
+  font-size: 0.9em;
+  margin: 0.7em 0 0;
 }
-.project-chip--status {
-  background: #e8f3ff;
-  color: #1772d0;
+.project-hero__links a {
+  margin: 0 0.4em;
 }
 .project-hero__banner {
-  aspect-ratio: 16 / 6;
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 3.4em;
-  margin-bottom: 1.3em;
+  margin: 1.6em auto 0;
+  max-width: 560px;
 }
 .project-hero__banner img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  border-radius: 4px;
+  display: block;
 }
-.project-hero__skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4em;
-  margin-bottom: 0.2em;
-}
-.project-skill {
-  font-size: 0.78em;
-  background: rgba(0, 0, 0, 0.06);
-  padding: 0.2em 0.7em;
-  border-radius: 999px;
-}
+
 .project-back-link {
-  display: inline-block;
-  margin-top: 2.5em;
+  display: block;
+  text-align: center;
+  margin-top: 3em;
   font-size: 0.9em;
 }
 </style>
 
-{% case page.icon %}
-  {% when "robot" %}{% assign gradient = "135deg, #33475f, #1b2733" %}
-  {% when "brain" %}{% assign gradient = "135deg, #3f6b58, #1e3327" %}
-  {% when "gears" %}{% assign gradient = "135deg, #6b4f33, #33230f" %}
-  {% when "sun" %}{% assign gradient = "135deg, #5b3f6b, #2a1a33" %}
-  {% else %}{% assign gradient = "135deg, #33475f, #1b2733" %}
-{% endcase %}
-
 <div class="project-hero">
   <h1 class="project-hero__title">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>
 
-  <div class="project-hero__meta">
-    {% if page.period %}<span class="project-chip"><i class="fas fa-calendar" aria-hidden="true"></i> {{ page.period }}</span>{% endif %}
-    {% if page.category %}<span class="project-chip">{{ page.category }}</span>{% endif %}
-    {% if page.role %}<span class="project-chip"><i class="fas fa-user" aria-hidden="true"></i> {{ page.role }}{% if page.team %} &middot; {{ page.team }}{% endif %}</span>{% endif %}
-    {% if page.status %}<span class="project-chip project-chip--status">{{ page.status }}</span>{% endif %}
-    {% if page.award %}<span class="project-chip project-chip--award"><i class="fas fa-trophy" aria-hidden="true"></i> {{ page.award }}</span>{% endif %}
-  </div>
+  {%- assign meta_line = "" -%}
+  {%- if page.period -%}{% assign meta_line = meta_line | append: page.period %}{%- endif -%}
+  {%- if page.category -%}
+    {%- if meta_line != "" -%}{% assign meta_line = meta_line | append: " &middot; " %}{%- endif -%}
+    {%- assign meta_line = meta_line | append: page.category -%}
+  {%- endif -%}
+  {%- if page.role -%}
+    {%- assign role_str = page.role -%}
+    {%- if page.team -%}{% assign role_str = role_str | append: ", " | append: page.team %}{%- endif -%}
+    {%- if meta_line != "" -%}{% assign meta_line = meta_line | append: " &middot; " %}{%- endif -%}
+    {%- assign meta_line = meta_line | append: role_str -%}
+  {%- endif -%}
+  {%- if page.status -%}
+    {%- if meta_line != "" -%}{% assign meta_line = meta_line | append: " &middot; " %}{%- endif -%}
+    {%- assign meta_line = meta_line | append: page.status -%}
+  {%- endif -%}
+  {%- if meta_line != "" -%}<p class="project-hero__meta">{{ meta_line }}</p>{%- endif -%}
 
-  <div class="project-hero__banner" style="background: linear-gradient({{ gradient }});">
-    {% if page.header.teaser %}
+  {% if page.award %}<p class="project-hero__award">{{ page.award }}</p>{% endif %}
+
+  {% if page.links %}
+    <p class="project-hero__links">
+      {% for link in page.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% unless forloop.last %} / {% endunless %}{% endfor %}
+    </p>
+  {% endif %}
+
+  {% if page.header.teaser %}
+    <div class="project-hero__banner">
       <img src="{{ page.header.teaser | relative_url }}" alt="{{ page.title }}">
-    {% else %}
-      <i class="fas fa-{{ page.icon | default: 'diagram-project' }}" aria-hidden="true"></i>
-    {% endif %}
-  </div>
-
-  {% if page.skills %}
-    <div class="project-hero__skills">
-      {% for skill in page.skills %}<span class="project-skill">{{ skill }}</span>{% endfor %}
     </div>
   {% endif %}
 </div>

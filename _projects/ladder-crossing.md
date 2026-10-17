@@ -10,26 +10,22 @@ icon: "gears"
 header:
   teaser: /assets/images/projects/ladder-crossing/teaser.jpg
   image: # /assets/images/projects/ladder-crossing/cover.jpg
-  # video:
-  #   id: # YouTube video ID
-  #   provider: youtube
 ---
 
-## Overview
+## Abstract
 
-Designed and built a robot mechanism capable of crossing ladder-like structures autonomously.
+Led a five-person team to design and build a robot that climbs a horizontal ladder by gripping successive rungs and shifting its center of mass forward, without falling. The arm joints are tendon-driven by fishing line rather than rigid linkages — simple to 3D-print, but prone to slack once a joint's return force is too slow. Iterated through three physical prototypes to resolve that and two other structural issues before arriving at the final design.
 
-**Period:** Mar.2023 -- Sep.2023  
-**Role:** Team Leader  
-**Category:** Mechanism Design and Control
+## Method
 
----
+- **Arm joints:** driven by fishing-line tendons through 3D-printed links; slack after fast release fixed by retuning motor-driven return speed
+- **Joint rigidity:** early single-pin joints couldn't brace each other under load; widened each joint to a two-pin, double-walled 3D-printed interface, reinforced with a backing plate and tape until the geometry itself was redesigned
+- **Link length vs. rung pitch:** a mismatch between link length and the gap between fishing-line anchor points forced a geometry revision, verified with a kinematic link simulation before the final 3D print
+- **Drive:** step motors for body/base locomotion, servo motors for arm actuation, coordinated via Arduino
 
-## Description
+## Results
 
-The project focused on the mechanical design and embedded control of a robot that can traverse ladder-like obstacles. The robot was designed to grip rungs, shift its center of mass, and advance along the structure without falling.
-
----
+Validated through three prototype iterations (sketch-scale mockup → reinforced full-scale print → final geometry), with motor spacing further adjusted from feedback during in-class testing to keep the body narrow without shortening the arm's effective reach.
 
 ## Skills
 

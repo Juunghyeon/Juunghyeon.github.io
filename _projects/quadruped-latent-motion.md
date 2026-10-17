@@ -8,44 +8,32 @@ status: "Working paper"
 role: "Co-author"
 skills: ["Python", "PyTorch", "Reinforcement Learning", "AprilTag", "ROS2"]
 icon: "paw"
+links:
+  - label: "Video"
+    url: "https://www.youtube.com/watch?v=EZbM594T3c4"
 header:
   teaser: /assets/images/projects/quadruped-latent-motion/teaser.png
   image: # /assets/images/projects/quadruped-latent-motion/cover.jpg
-  # video:
-  #   id: # YouTube video ID
-  #   provider: youtube
 ---
 
-## Overview
+*Hyeyun Kim, Junyong Seo, **Jeonghyeon Kim**, Shinsuk Park*
 
-Adapts Conditional Adversarial Latent Models (CALM) — originally proposed for animating virtual characters — to quadruped robot control. A latent-conditioned low-level controller is trained once from a reference motion dataset (walking, crouched walking, foot positioning) and shared across every downstream task; task-specific high-level policies then select latent codes to solve locomotion and object-interaction tasks (WALK, MOVE BOX, LIMBO, PUSH BUTTON, KICK) and the transitions between them.
+## Abstract
 
-**Authors:** Hyeyun Kim, Junyong Seo, **Jeonghyeon Kim**, Shinsuk Park
-**Platform:** Unitree A1 (simulation + real-world deployment)
-**Video:** [youtube.com/watch?v=EZbM594T3c4](https://www.youtube.com/watch?v=EZbM594T3c4)
+Adapts Conditional Adversarial Latent Models (CALM) — originally built for animating virtual characters — to quadruped control. A single latent-conditioned low-level controller is trained once from a reference motion dataset and shared across every task; task-specific high-level policies then pick latent codes to drive locomotion and object-interaction tasks (walk, move box, limbo, push button, kick) and the transitions between them. On a Unitree A1, the approach held up better under real-world sensing noise than end-to-end and hand-designed-command-space baselines, with smoother, more stable behavior right after each transition.
 
----
+## Method
 
-## Problem
-
-End-to-end policies that map observations directly to joint actions tend to produce overly aggressive corrective actions at transition boundaries, especially under the sensor noise and state-estimation error that's unavoidable on real hardware. Most hierarchical controllers sidestep this with hand-designed, human-interpretable command spaces (base velocities, footholds, end-effector trajectories), which inherently constrain the range of motions the low-level controller can generate.
-
----
-
-## Approach
-
-- Trained a CALM-style low-level controller π<sub>L</sub>(a | s, z) on a reference motion dataset, conditioned on a unit-norm latent code z learned by an encoder and regularized with an alignment&ndash;uniformity objective for local smoothness of the latent manifold
-- Kept the low-level controller fully task-agnostic and shared across all five tasks; task-specific high-level policies π<sub>H</sub>(z | s, g) select latent codes from proprioceptive state and task-relevant goal information (target/box/limbo/goal positions)
-- Used AprilTag fiducial markers (robot, target, box, tunnel entry/exit, button, goal) for real-world task-observation estimation
-- Evaluated single tasks (WALK, MOVE BOX, LIMBO, PUSH BUTTON, KICK) and three transition scenarios (WALK→MOVE BOX, LIMBO→PUSH BUTTON, LIMBO→KICK) against AMP- and WTW-style baselines, in simulation and on real hardware with injected observation noise
-
----
+- Low-level controller trained on a reference motion dataset (walking, crouched walking, foot positioning), conditioned on a unit-norm latent code regularized for a smooth, continuous latent manifold
+- Low-level controller kept fully task-agnostic and shared across all five tasks; high-level policies select latent codes from proprioceptive state and task-relevant goals (target, box, limbo gap, button, ball position)
+- AprilTag fiducial markers used for real-world task-observation estimation
+- Evaluated against AMP- and WTW-style baselines, in simulation and on hardware with injected observation noise, across five single tasks and three transitions (walk→move box, limbo→push button, limbo→kick)
 
 ## Results
 
-Compared to baselines, the CALM-style hierarchical controller achieved consistently higher real-world success rates for both single tasks and task transitions, and exhibited smoother post-transition behavior — lower action smoothness, joint jerk, and gravity-vector-smoothness error — in nearly every transition case. The one exception was LIMBO→KICK, where the kicking motion's impulsive front-leg strike inherently increases jerk and body tilt; a locomotion-only baseline scored lower on these metrics there without actually completing the task.
-
----
+- Higher real-world success rate than both baselines, on single tasks and on transitions
+- Lower action smoothness, joint jerk, and gravity-vector-smoothness error right after a transition in nearly every case
+- One exception: limbo→kick, where the kick's impulsive leg strike inherently raises jerk and tilt — a locomotion-only baseline scored better on these metrics there *without* completing the task
 
 ## Skills
 

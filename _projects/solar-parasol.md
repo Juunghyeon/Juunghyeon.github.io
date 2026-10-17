@@ -11,26 +11,21 @@ icon: "sun"
 header:
   teaser: /assets/images/projects/solar-parasol/teaser.png
   image: # /assets/images/projects/solar-parasol/cover.jpg
-  # video:
-  #   id: # YouTube video ID
-  #   provider: youtube
 ---
 
-## Overview
+## Abstract
 
-Developed a parasol system that automatically tracks the sun's position to provide optimal shade.
+A parasol that automatically reorients its canopy to track the sun and maximize shade coverage, rather than staying fixed as the sun moves. Built on a tripod-mounted dual-panel frame with a light-sensor array for sun-position sensing and servo actuation for canopy orientation, controlled by an Arduino. Won the Bronze Award at Korea University's Creative Comprehensive Design Competition.
 
-**Period:** Sep.2023 -- Nov.2023  
-**Role:** Team Leader  
-**Award:** Bronze Award, Creative Comprehensive Design Competition, Korea University — Sep.2023
+## Method
 
----
+- Sensed sun position with a light-sensor array rather than a fixed ephemeris model, so tracking adapts to real lighting conditions (cloud cover, obstructions)
+- Computed the canopy orientation needed to maximize shade from the sensor readings
+- Actuated the canopy angle with servo motors under Arduino control, mounted on a tripod base for standalone outdoor use
 
-## Description
+## Results
 
-The system uses a solar tracking algorithm to orient the parasol canopy toward the sun throughout the day, maximizing shade coverage. Actuation is handled via servo motors controlled by an Arduino, with sun position calculated from a light sensor array.
-
----
+Demonstrated continuous shade tracking through the day on the physical prototype, and won the Bronze Award at Korea University's Creative Comprehensive Design Competition.
 
 ## Skills
 

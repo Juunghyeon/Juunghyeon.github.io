@@ -12,50 +12,21 @@ icon: "robot"
 header:
   teaser: # /assets/images/projects/ccp-quadruped/teaser.jpg
   image: # /assets/images/projects/ccp-quadruped/cover.jpg
-  # video:
-  #   id: # YouTube video ID
-  #   provider: youtube
 ---
 
-## Overview
+## Abstract
 
-Developed an obstacle detection and avoidance pipeline for the DOGZILLA quadruped robot using monocular ORB-SLAM for depth estimation and UV-disparity maps for obstacle segmentation. The system enabled real-time autonomous navigation in unstructured environments.
+Built a monocular-camera obstacle-avoidance pipeline for the DOGZILLA quadruped, estimating scene depth with ORB-SLAM and segmenting obstacles from U/V-disparity maps — enabling real-time autonomous navigation in unstructured environments without a dedicated depth sensor (LiDAR or stereo). Led the four-person RoboStride team through Korea University's Creative Challenger Program; the project won the President's Award.
 
-**Period:** Mar.2024 -- Jan.2025  
-**Role:** Team Leader  
-**Team:** RoboStride  
-**Award:** President's Award, Creative Challenger Program (CCP), Korea University — Jan.2025
+## Method
 
----
+- Estimated scene depth from a single RGB feed with monocular ORB-SLAM, extracting sparse 3D point clouds for obstacle localization
+- Built U-disparity and V-disparity maps from the estimated depth to segment obstacles from the ground plane by disparity peaks
+- Fed detections into the robot's navigation controller to trigger real-time avoidance maneuvers
 
-## Problem
+## Platform
 
-Quadruped robots operating in real-world environments face unstructured terrain and unexpected obstacles. Deploying reliable obstacle avoidance without dedicated depth sensors (e.g., LiDAR, stereo cameras) is a key challenge for cost-effective and lightweight robot platforms.
-
----
-
-## Approach
-
-### Depth Estimation via ORB-SLAM
-- Applied monocular ORB-SLAM to estimate scene depth from a single camera feed
-- Extracted sparse 3D point clouds for obstacle localization
-
-### Obstacle Segmentation via UV-Disparity
-- Constructed U-disparity and V-disparity maps from the estimated depth
-- Segmented obstacles based on disparity peaks, distinguishing ground plane from objects
-
-### Avoidance Behavior
-- Integrated detection output into the robot's navigation controller
-- Triggered avoidance maneuvers in real time upon obstacle detection
-
----
-
-## Robot Platform
-
-**DOGZILLA** — quadruped robot platform  
-Camera: monocular RGB camera
-
----
+DOGZILLA quadruped · monocular RGB camera
 
 ## Skills
 
