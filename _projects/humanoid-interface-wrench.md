@@ -6,6 +6,7 @@ period: "2026"
 category: "Humanoid Robotics · Dynamics & Estimation"
 status: "Working paper"
 skills: ["MuJoCo", "Python", "Inverse Dynamics", "Sensor Fusion"]
+summary: "Characterizes how accurately a humanoid's waist interface wrench can be reconstructed from proprioception alone, in simulation."
 icon: "walking"
 header:
   teaser: # /assets/images/projects/humanoid-interface-wrench/teaser.jpg

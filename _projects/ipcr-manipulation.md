@@ -8,6 +8,7 @@ status: "Working paper"
 role: "First Author"
 award: "Master's Research Encouragement Grant, National Research Foundation of Korea (2025)"
 skills: ["Python", "Manipulator Control", "Contact Mechanics", "Optimization"]
+summary: "A framework for executing Cartesian manipulation trajectories that preserves task intent under unknown contact constraints."
 icon: "hand-paper"
 header:
   teaser: # /assets/images/projects/ipcr-manipulation/teaser.jpg

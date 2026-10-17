@@ -8,6 +8,7 @@ award: "President's Award, Creative Challenger Program (CCP), Korea University â
 role: "Team Leader"
 team: "RoboStride"
 skills: ["C++", "Python", "ROS2", "ORB-SLAM", "OpenCV"]
+summary: "Monocular ORB-SLAM depth estimation and UV-disparity segmentation for real-time obstacle avoidance on a quadruped, without a dedicated depth sensor."
 icon: "robot"
 header:
   teaser: # /assets/images/projects/ccp-quadruped/teaser.jpg

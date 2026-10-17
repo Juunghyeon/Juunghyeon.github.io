@@ -7,6 +7,7 @@ category: "Legged Robotics · Reinforcement Learning"
 status: "Working paper"
 role: "Co-author"
 skills: ["Python", "PyTorch", "Reinforcement Learning", "AprilTag", "ROS2"]
+summary: "Adapts CALM's latent motion representations to quadruped control for transition-stable locomotion and object interaction."
 icon: "paw"
 links:
   - label: "Video"
