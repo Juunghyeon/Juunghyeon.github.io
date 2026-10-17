@@ -31,6 +31,10 @@ _site
 # Raw hobby photos (originals kept locally, web-optimized copies in assets/images/hobbies)
 images/hobbies/
 
+# Raw project reference material (reports, slides, raw photos/video) — local source
+# material only, not meant to be published or pushed; see _project-refs/README.md
+_project-refs/
+
 # LaTeX build artifacts
 cv/*.aux
 cv/*.log

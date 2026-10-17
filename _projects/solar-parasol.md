@@ -9,7 +9,7 @@ role: "Team Leader"
 skills: ["Arduino", "AutoCAD", "C++"]
 icon: "sun"
 header:
-  teaser: # /assets/images/projects/solar-parasol/teaser.jpg
+  teaser: /assets/images/projects/solar-parasol/teaser.png
   image: # /assets/images/projects/solar-parasol/cover.jpg
   # video:
   #   id: # YouTube video ID

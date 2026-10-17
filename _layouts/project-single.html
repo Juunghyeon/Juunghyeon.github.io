@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div id="main" role="main">
+  <article class="page project-page" itemscope itemtype="https://schema.org/CreativeWork">
+    {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
+
+    <div class="page__inner-wrap">
+      {% include project__hero.html %}
+
+      <section class="page__content e-content" itemprop="text">
+        {{ content }}
+      </section>
+
+      <a class="project-back-link" href="{{ '/projects/' | relative_url }}">&larr; All Projects</a>
+    </div>
+  </article>
+</div>

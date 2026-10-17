@@ -8,7 +8,7 @@ role: "Team Leader"
 skills: ["Arduino", "Creo", "NX", "C++"]
 icon: "gears"
 header:
-  teaser: # /assets/images/projects/ladder-crossing/teaser.jpg
+  teaser: /assets/images/projects/ladder-crossing/teaser.jpg
   image: # /assets/images/projects/ladder-crossing/cover.jpg
   # video:
   #   id: # YouTube video ID
