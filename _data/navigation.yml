@@ -5,8 +5,12 @@ main:
   - title: "Projects"
     url: /projects/
     children:
-      - title: "Contact Point Recommendation"
-        url: /projects/contact-point-recommendation/
+      - title: "Intent-Preserving Manipulation (IPCR)"
+        url: /projects/ipcr-manipulation/
+      - title: "Quadruped Latent Motion Control"
+        url: /projects/quadruped-latent-motion/
+      - title: "Humanoid Interface Wrench"
+        url: /projects/humanoid-interface-wrench/
       - title: "Quadruped Robot (CCP)"
         url: /projects/ccp-quadruped/
       - title: "Ladder-Crossing Robot"
@@ -17,5 +21,3 @@ main:
     url: /cv/
   - title: "Outside the Lab"
     url: /outside-the-lab/
-  - title: "Contact"
-    url: /contact/

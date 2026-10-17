@@ -7,6 +7,7 @@ category: "Computer Vision · Autonomous Navigation"
 award: "President's Award, Creative Challenger Program (CCP), Korea University — Jan.2025"
 role: "Team Leader"
 team: "RoboStride"
+group: "coursework"
 skills: ["C++", "Python", "ROS2", "ORB-SLAM", "OpenCV"]
 summary: "Monocular ORB-SLAM depth estimation and UV-disparity segmentation for real-time obstacle avoidance on a quadruped, without a dedicated depth sensor."
 icon: "robot"

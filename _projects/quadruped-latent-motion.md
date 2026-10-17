@@ -5,6 +5,7 @@ date: 2026-01-01
 period: "2025 -- 2026"
 category: "Legged Robotics · Reinforcement Learning"
 status: "Working paper"
+group: "research"
 role: "Co-author"
 skills: ["Python", "PyTorch", "Reinforcement Learning", "AprilTag", "ROS2"]
 summary: "Adapts CALM's latent motion representations to quadruped control for transition-stable locomotion and object interaction."

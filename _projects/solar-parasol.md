@@ -6,6 +6,7 @@ period: "Sep.2023 -- Nov.2023"
 category: "Mechanism Design and Control"
 award: "Bronze Award, Creative Comprehensive Design Competition, Korea University — Sep.2023"
 role: "Team Leader"
+group: "coursework"
 skills: ["Arduino", "AutoCAD", "C++"]
 summary: "A parasol that senses sun position and actuates its canopy to track the sun and maximize shade throughout the day."
 icon: "sun"

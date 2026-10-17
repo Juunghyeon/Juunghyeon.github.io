@@ -69,13 +69,53 @@ author_profile: true
   opacity: 0.7;
   margin: 0.4em 0 0;
 }
+.pub-section-title {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  margin: 1.6em 0 0.2em;
+}
+.pub-section-blurb {
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 0.92em;
+  opacity: 0.75;
+  margin: 0 0 0.4em;
+}
 </style>
 
-{% assign sorted_projects = site.projects | sort: "date" | reverse %}
 {% assign thumb_gradients = "135deg, #33475f, #1b2733|135deg, #3f6b58, #1e3327|135deg, #6b4f33, #33230f|135deg, #5b3f6b, #2a1a33" | split: "|" %}
+{% assign research_projects = site.projects | where: "group", "research" | sort: "date" | reverse %}
+{% assign coursework_projects = site.projects | where: "group", "coursework" | sort: "date" | reverse %}
 
+<h2 class="pub-section-title">Research</h2>
+<p class="pub-section-blurb">Ongoing graduate research in dynamics modeling and whole-body control, advised by Prof. Shinsuk Park.</p>
 <div class="pub-list" markdown="0">
-{% for project in sorted_projects %}
+{% for project in research_projects %}
+  {% assign gradient_index = forloop.index0 | modulo: 4 %}
+  {% assign gradient = thumb_gradients[gradient_index] %}
+  <div class="pub-row">
+    <a class="pub-row__thumb" href="{{ project.url | relative_url }}" style="background: linear-gradient({{ gradient }});">
+      {% if project.header.teaser %}
+        <img src="{{ project.header.teaser | relative_url }}" alt="">
+      {% else %}
+        <i class="fas fa-{{ project.icon | default: "diagram-project" }}" aria-hidden="true"></i>
+      {% endif %}
+    </a>
+    <div class="pub-row__body">
+      <a class="pub-row__title" href="{{ project.url | relative_url }}">{{ project.title }}</a>
+      <p class="pub-row__meta">{{ project.period }}{% if project.category %} &middot; {{ project.category }}{% endif %}{% if project.status %} &middot; {{ project.status }}{% endif %}</p>
+      {% if project.award %}<p class="pub-row__award"><i class="fas fa-award" aria-hidden="true"></i> {{ project.award }}</p>{% endif %}
+      {% if project.summary %}<p class="pub-row__summary">{{ project.summary }}</p>{% endif %}
+      {% if project.role %}<p class="pub-row__role">Role: {{ project.role }}{% if project.team %}, {{ project.team }}{% endif %}</p>{% endif %}
+    </div>
+  </div>
+{% endfor %}
+</div>
+
+<h2 class="pub-section-title">Earlier Projects</h2>
+<p class="pub-section-blurb">Undergraduate coursework and competition projects in mechanism design and robot perception.</p>
+<div class="pub-list" markdown="0">
+{% for project in coursework_projects %}
   {% assign gradient_index = forloop.index0 | modulo: 4 %}
   {% assign gradient = thumb_gradients[gradient_index] %}
   <div class="pub-row">

@@ -5,6 +5,7 @@ date: 2026-10-15
 period: "Sep.2025 -- Present"
 category: "Robot Learning · Contact-Rich Manipulation"
 status: "Working paper"
+group: "research"
 role: "First Author"
 award: "Master's Research Encouragement Grant, National Research Foundation of Korea (2025)"
 skills: ["Python", "Manipulator Control", "Contact Mechanics", "Optimization"]

@@ -5,6 +5,7 @@ date: 2023-09-01
 period: "Mar.2023 -- Sep.2023"
 category: "Mechanism Design and Control"
 role: "Team Leader"
+group: "coursework"
 skills: ["Arduino", "Creo", "NX", "C++"]
 summary: "A tendon-driven, 3D-printed robot that climbs a horizontal ladder by gripping rungs and shifting its center of mass."
 icon: "gears"
