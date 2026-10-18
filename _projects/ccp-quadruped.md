@@ -4,7 +4,7 @@ permalink: /projects/ccp-quadruped/
 date: 2025-01-01
 period: "Mar.2024 -- Jan.2025"
 category: "Computer Vision · Autonomous Navigation"
-award: "President's Award, Creative Challenger Program (CCP), Korea University — Jan.2025"
+award: "President's Award (1st Place), Creative Challenger Program (CCP), Korea University — Jan.2025"
 role: "Team Leader"
 team: "RoboStride"
 group: "coursework"
@@ -18,7 +18,7 @@ header:
 
 ## Abstract
 
-Built a monocular-camera obstacle-avoidance pipeline for the DOGZILLA quadruped, estimating scene depth with ORB-SLAM and segmenting obstacles from U/V-disparity maps — enabling real-time autonomous navigation in unstructured environments without a dedicated depth sensor (LiDAR or stereo). Led the four-person RoboStride team through Korea University's Creative Challenger Program; the project won the President's Award.
+Built a monocular-camera obstacle-avoidance pipeline for the DOGZILLA quadruped, estimating scene depth with ORB-SLAM and segmenting obstacles from U/V-disparity maps — enabling real-time autonomous navigation in unstructured environments without a dedicated depth sensor (LiDAR or stereo). Led the four-person RoboStride team through Korea University's Creative Challenger Program; the project won the President's Award (1st Place) and was later presented at the KSPE 2025 Spring Conference.
 
 ## Method
 

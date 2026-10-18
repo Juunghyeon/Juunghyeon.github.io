@@ -4,7 +4,7 @@ permalink: /projects/solar-parasol/
 date: 2023-11-01
 period: "Sep.2023 -- Nov.2023"
 category: "Mechanism Design and Control"
-award: "Bronze Award, Creative Comprehensive Design Competition, Korea University — Sep.2023"
+award: "Bronze Award, Creative Comprehensive Design Competition — Sep.2023; Design Award, Capstone Design Fair, Korea University — Nov.2023"
 role: "Team Leader"
 group: "coursework"
 skills: ["Arduino", "AutoCAD", "C++"]
@@ -17,7 +17,7 @@ header:
 
 ## Abstract
 
-A parasol that automatically reorients its canopy to track the sun and maximize shade coverage, rather than staying fixed as the sun moves. Built on a tripod-mounted dual-panel frame with a light-sensor array for sun-position sensing and servo actuation for canopy orientation, controlled by an Arduino. Won the Bronze Award at Korea University's Creative Comprehensive Design Competition.
+A parasol that automatically reorients its canopy to track the sun and maximize shade coverage, rather than staying fixed as the sun moves. Built on a tripod-mounted dual-panel frame with a light-sensor array for sun-position sensing and servo actuation for canopy orientation, controlled by an Arduino. Won the Bronze Award at the Creative Comprehensive Design Competition and the Design Award at Korea University's Capstone Design Fair.
 
 ## Method
 
@@ -27,7 +27,7 @@ A parasol that automatically reorients its canopy to track the sun and maximize 
 
 ## Results
 
-Demonstrated continuous shade tracking through the day on the physical prototype, and won the Bronze Award at Korea University's Creative Comprehensive Design Competition.
+Demonstrated continuous shade tracking through the day on the physical prototype, winning the Bronze Award at the Creative Comprehensive Design Competition and the Design Award at Korea University's Capstone Design Fair.
 
 ## Skills
 

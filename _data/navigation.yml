@@ -5,6 +5,8 @@ main:
   - title: "Projects"
     url: /projects/
     children:
+      - title: "Balance Demand Descriptor"
+        url: /projects/balance-demand-descriptor/
       - title: "Intent-Preserving Manipulation (IPCR)"
         url: /projects/ipcr-manipulation/
       - title: "Quadruped Latent Motion Control"
@@ -13,6 +15,8 @@ main:
         url: /projects/humanoid-interface-wrench/
       - title: "Mapless Navigation Sim-to-Real"
         url: /projects/mapless-navigation-sim2real/
+      - title: "Mobile Manipulator Architecture"
+        url: /projects/mobile-manipulator-architecture/
       - title: "Quadruped Robot (CCP)"
         url: /projects/ccp-quadruped/
       - title: "Ladder-Crossing Robot"
