@@ -11,6 +11,8 @@ main:
         url: /projects/quadruped-latent-motion/
       - title: "Humanoid Interface Wrench"
         url: /projects/humanoid-interface-wrench/
+      - title: "Mapless Navigation Sim-to-Real"
+        url: /projects/mapless-navigation-sim2real/
       - title: "Quadruped Robot (CCP)"
         url: /projects/ccp-quadruped/
       - title: "Ladder-Crossing Robot"
