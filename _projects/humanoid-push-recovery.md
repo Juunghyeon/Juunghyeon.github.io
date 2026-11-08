@@ -11,7 +11,7 @@ summary: "Measures how fast and accurate a sensorless humanoid's push estimate n
 skills: ["Python", "MuJoCo", "Model Predictive Control", "State Estimation"]
 icon: "walking"
 header:
-  teaser: # /assets/images/projects/humanoid-push-recovery/teaser.jpg
+  teaser: /assets/images/projects/humanoid-push-recovery/teaser.png
   image: # /assets/images/projects/humanoid-push-recovery/cover.jpg
 ---
 

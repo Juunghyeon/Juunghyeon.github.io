@@ -11,7 +11,7 @@ summary: "Tunes a simulator's wheel-friction and suspension parameters to real r
 skills: ["Python", "Isaac Sim", "Isaac Lab", "PPO", "ROS2"]
 icon: "route"
 header:
-  teaser: # /assets/images/projects/mapless-navigation-sim2real/teaser.jpg
+  teaser: /assets/images/projects/mapless-navigation-sim2real/teaser.jpg
   image: # /assets/images/projects/mapless-navigation-sim2real/cover.jpg
 ---
 
