@@ -1,0 +1,127 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.45cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+
+\definecolor{accent}{HTML}{123F5A}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\linespread{1.015}
+\urlstyle{same}
+
+\titleformat{\section}
+  {\Large\sffamily\bfseries\color{accent}}
+  {}{0pt}{}
+  [\vspace{-0.6ex}\color{accent}\titlerule]
+\titlespacing*{\section}{0pt}{1.15ex}{0.6ex}
+
+\newcommand{\eduentry}[4]{%
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    \textbf{#1} & \textbf{#3} \\
+    {\small\textit{#2}} & {\small\textit{#4}}
+  \end{tabularx}\vspace{0.15ex}
+}
+
+\newcommand{\researchentry}[2]{%
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    \textbf{#1} & \textit{#2}
+  \end{tabularx}\vspace{-0.5ex}
+}
+
+\newcommand{\compactlist}{%
+  \begin{itemize}[leftmargin=1.3em,itemsep=0.12ex,topsep=0.22ex,parsep=0pt,partopsep=0pt]
+}
+\newcommand{\finishcompactlist}{\end{itemize}\vspace{0.28ex}}
+
+\newcommand{\pubentry}[1]{%
+  \par\hangindent=1.15em\hangafter=1 #1\par\vspace{0.25ex}
+}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries JEONGHYEON KIM}\\[0.4ex]
+  {\small M.S. Student, Mechanical Engineering, Korea University}\\[0.45ex]
+  {\small
+    \href{mailto:ahdtld54@korea.ac.kr}{ahdtld54@korea.ac.kr}
+    \enspace$\vert$\enspace
+    +82-10-8274-5411
+    \enspace$\vert$\enspace
+    \href{https://www.linkedin.com/in/\%EC\%A0\%95\%ED\%98\%84-\%EA\%B9\%80-b2a0b8263/}{LinkedIn}
+  }\\[0.7ex]
+  \begin{minipage}{0.95\textwidth}
+    \small\centering
+    Robotics researcher focused on \textbf{control-oriented dynamics modeling} and \textbf{whole-body control} for legged and humanoid robots, with experience in reinforcement learning, robot perception, and real-time ROS~2 systems.
+  \end{minipage}
+\end{center}
+\vspace{-1.0ex}
+
+\section{Education}
+
+\eduentry{Korea University}{M.S. in Mechanical Engineering; Advisor: Prof. Shinsuk Park; GPA: 3.78/4.0}{Seoul, Republic of Korea}{Mar. 2025 -- Feb. 2027 (Expected)}
+\eduentry{Korea University}{B.S. in Mechanical Engineering; GPA: 3.48/4.0}{Seoul, Republic of Korea}{Mar. 2019 -- Feb. 2025}
+
+\section{Research Experience}
+
+\researchentry{Balance-Aware Whole-Body Control for Humanoid Standing Manipulation}{Mar. 2025 -- Present}
+{\small\textit{Human-Machine Systems Lab, Korea University}}
+\compactlist
+  \item Developed a physics-informed \textbf{Balance Demand Descriptor (BDD)} from centroidal dynamics to encode the direction and magnitude of lower-body balance demand induced by upper-body motion, payloads, and external interaction.
+  \item Integrated BDD into a reinforcement-learning locomotion policy to promote stance-consistent mitigation and direction-appropriate corrective stepping under continuous upper-body demand.
+\finishcompactlist
+
+\researchentry{Visual Perception for Quadrupedal Object Interaction}{Mar. 2025 -- Nov. 2025}
+{\small\textit{Human-Machine Systems Lab, Korea University}}
+\compactlist
+  \item Built a ROS~2 dual-camera system to track a ball and moving ArUco markers across fixed global and onboard views, transforming observations into a common coordinate frame for robust target localization.
+\finishcompactlist
+
+\researchentry{Real-Time Architecture for a Generative-AI-Based Mobile Manipulator}{Mar. 2025 -- Aug. 2026}
+{\small\textit{Human-Machine Systems Lab, Korea University}}
+\compactlist
+  \item Designed a ROS~2 architecture connecting simulation, an LLM, a user interface, and a physical robot; implemented edge-based data collection and cloud synchronization without interrupting the real-time control cycle.
+\finishcompactlist
+
+\researchentry{Quadruped Robot Obstacle Avoidance}{Mar. 2024 -- Feb. 2025}
+{\small\textit{Undergraduate Researcher, Human-Machine Systems Lab, Korea University}}
+\compactlist
+  \item Developed an ORB-SLAM- and UV-disparity-based quadruped navigation pipeline for localization, obstacle detection, and avoidance; presented the work at the KSPE 2025 Spring Conference.
+\finishcompactlist
+
+\section{Selected Publications \& Manuscripts}
+
+\pubentry{H.-Y. Ju, \textbf{J.-H. Kim}, and S.-S. Park, ``A Study on Improving Sim-to-Real Accuracy through Dynamics Parameter Tuning in Reinforcement Learning-based Mapless Navigation,'' \textit{Journal of Institute of Control, Robotics and Systems}, accepted, 2026.}
+\pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Feasible Is Not Faithful: Intent-Preserving Constraint Realization for Contact Tasks on Unknown Surfaces,'' \textit{IEEE Robotics and Automation Letters}, submitted, Nov. 2026. Preprint on arXiv.}
+\pubentry{\textbf{J.-H. Kim}, J. Kim, and S.-S. Park, ``Hold Before You Step: IMU-Resolved Disturbance Estimation for In-Place Push Recovery on Force-Sensorless Humanoids,'' manuscript in preparation. Preprint on arXiv.}
+\pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Balance Demand Descriptor: A Physics-Informed Representation of Whole-Body Dynamics for Humanoid Standing Manipulation,'' manuscript in preparation.}
+\pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Obstacle Detection Using ORB-SLAM and UV-Disparity with a Low-Cost Quadruped Robot,'' \textit{KSPE 2025 Spring Conference}, May 2025.}
+
+\section{Technical Skills}
+
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
+Programming & Python, C/C++, MATLAB \\
+Robotics \& Learning & ROS~2, PyTorch, reinforcement learning, Pinocchio, URDF/XACRO \\
+Simulation \& Optimization & Isaac Gym, Isaac Sim, MuJoCo, Gazebo, CVXPY, CasADi \\
+Perception \& Development & OpenCV, ORB-SLAM, Git, Linux/Ubuntu
+\end{tabularx}
+
+\section{Honors \& Research Support}
+
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+\textbf{Master's Research Encouragement Grant}, National Research Foundation of Korea & 2025 \\
+\textbf{President's Award}, Creative Challenger Program, Korea University & Jan. 2025
+\end{tabularx}
+
+\end{document}

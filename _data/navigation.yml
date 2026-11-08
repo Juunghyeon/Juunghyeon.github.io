@@ -11,8 +11,8 @@ main:
         url: /projects/ipcr-manipulation/
       - title: "Quadruped Latent Motion Control"
         url: /projects/quadruped-latent-motion/
-      - title: "Humanoid Interface Wrench"
-        url: /projects/humanoid-interface-wrench/
+      - title: "Humanoid Push Recovery"
+        url: /projects/humanoid-push-recovery/
       - title: "Mapless Navigation Sim-to-Real"
         url: /projects/mapless-navigation-sim2real/
       - title: "Mobile Manipulator Architecture"

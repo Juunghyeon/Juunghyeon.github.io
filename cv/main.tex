@@ -1,480 +1,150 @@
-%-------------------------
-% Academic CV
-%-------------------------
-
 \documentclass[a4paper,11pt]{article}
 
-%---- Required Packages ----
-\usepackage{latexsym}
-\usepackage{xcolor}
-\usepackage{float}
-\usepackage{ragged2e}
-\usepackage[empty]{fullpage}
-\usepackage{wrapfig}
-\usepackage{tabularx}
-\usepackage{titlesec}
-\usepackage{geometry}
-\usepackage{marvosym}
-\usepackage{verbatim}
-\usepackage{enumitem}
-\usepackage[hidelinks]{hyperref}
-\usepackage{fancyhdr}
-\usepackage{multicol}
-\usepackage{graphicx}
-\usepackage{lmodern}
 \usepackage[T1]{fontenc}
-\usepackage[most]{tcolorbox}
+\usepackage{lmodern}
+\usepackage[margin=1.65cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage{fancyhdr}
 
-%---- Page Setup ----
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
-
-% Slightly more white space than the original version
-\geometry{
-  left=1.4cm,
-  right=1.4cm,
-  top=1.3cm,
-  bottom=1.3cm
-}
-
-\setlength{\footskip}{8pt}
-
-\tcbset{
-  frame code={},
-  center title,
-  left=0pt,
-  right=0pt,
-  top=0pt,
-  bottom=0pt,
-  colback=gray!20,
-  colframe=white,
-  width=\dimexpr\textwidth\relax,
-  enlarge left by=-2mm,
-  boxsep=4pt,
-  arc=0pt,
-  outer arc=0pt,
-}
-
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
 \urlstyle{same}
-\raggedright
 
-%---- Section Formatting ----
-\titleformat{\section}{
-  \vspace{-2pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+\titleformat{\section}
+  {\large\scshape\bfseries}
+  {}{0pt}{}
+  [\vspace{-0.5ex}\titlerule]
+\titlespacing*{\section}{0pt}{1.5ex}{0.8ex}
 
-%---- Custom Commands ----
-
-\newcommand{\resumeItem}[2]{
-  \item{\textbf{#1}{\hspace{0.5mm}#2}}
+\newcommand{\entry}[4]{%
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    \textbf{#1} & \textit{#4} \\
+    \textit{#2} & #3
+  \end{tabularx}\vspace{0.15ex}
 }
 
-\newcommand{\resumePOR}[3]{
-  \vspace{0.5mm}\item
-  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-    \textbf{#1}\hspace{0.3mm}#2 &
-    \textit{\small{#3}}
-  \end{tabular*}
-  \vspace{-1.5mm}
+\newcommand{\project}[2]{%
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    \textbf{#1} & \textit{#2}
+  \end{tabularx}\vspace{0.1ex}
 }
 
-\newcommand{\resumeSubheading}[4]{
-  \vspace{0.5mm}\item
-  \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-    \textbf{#1} & \textit{\footnotesize{#4}} \\
-    \textit{\footnotesize{#3}} & \footnotesize{#2} \\
-  \end{tabular*}
-  \vspace{-1.5mm}
+\newcommand{\researchentry}[2]{%
+  \textbf{#1}\par
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    \textit{Human-Machine Systems Lab, Korea University} & \textit{#2}
+  \end{tabularx}\vspace{0.1ex}
 }
 
-\newcommand{\resumeProject}[3]{
-  \vspace{0.5mm}\item
-  \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-    \textbf{#1} & \textit{\footnotesize{#3}} \\
-    \footnotesize{\textit{#2}} &
-  \end{tabular*}
-  \vspace{-1.5mm}
+\newcommand{\detail}[1]{%
+  \par\vspace{0.1ex}{\small #1\par}\vspace{0.45ex}
 }
 
-\newcommand{\resumeProjectSimple}[2]{
-  \vspace{0.5mm}\item
-  \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-    \textbf{#1} & \textit{\footnotesize{#2}}
-  \end{tabular*}
-  \vspace{-1.5mm}
+\newcommand{\pubentry}[1]{%
+  \par\hangindent=1.35em\hangafter=1 #1\par\vspace{0.45ex}
 }
-
-\newcommand{\resumeAward}[4]{
-  \vspace{0.5mm}\item
-  \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
-    \textbf{#1}, #2 & \textit{\footnotesize{#4}} \\
-  \end{tabular*}
-  \ifx&#3&
-  \else
-    {\footnotesize\textit{#3}}\\
-  \fi
-  \vspace{-0.5mm}
-}
-
-\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
-
-\newcommand{\resumeSubHeadingListStart}{
-  \begin{itemize}[leftmargin=*,labelsep=0mm]
-}
-
-\newcommand{\resumeSubHeadingListEnd}{
-  \end{itemize}\vspace{1mm}
-}
-
-% Increased bullet spacing and removed justify environment
-\newcommand{\resumeItemListStart}{
-  \begin{itemize}[
-    leftmargin=3ex,
-    rightmargin=0ex,
-    labelsep=1.2mm,
-    itemsep=0.7mm,
-    topsep=0.5mm,
-    parsep=0mm
-  ]\small
-}
-
-\newcommand{\resumeItemListEnd}{
-  \end{itemize}\vspace{-0.5mm}
-}
-
-% Bullets for detail lines under a bold project/topic title (title itself
-% is plain bold text, not a list item, so this is the only marker level)
-\newcommand{\resumeItemListStartSub}{
-  \begin{itemize}[
-    leftmargin=3ex,
-    rightmargin=0ex,
-    label={$\vcenter{\hbox{\tiny$\bullet$}}$},
-    labelsep=1.2mm,
-    itemsep=0.3mm,
-    topsep=0.3mm,
-    parsep=0mm
-  ]\small
-}
-
-\newcommand{\resumeItemListEndSub}{
-  \end{itemize}
-}
-
-\newcolumntype{L}{>{\raggedright\arraybackslash}X}
-\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
-\newcolumntype{C}{>{\centering\arraybackslash}X}
-
-%-------------------------------------------
-%%%%%% CV STARTS HERE %%%%%%
-%-------------------------------------------
-
-\newcommand{\name}{Jeonghyeon Kim}
-\newcommand{\phone}{+82-10-8274-5411}
-\newcommand{\emaila}{ahdtld54@korea.ac.kr}
-\newcommand{\github}{github.com/Juunghyeon}
-\newcommand{\website}{Juunghyeon.github.io}
 
 \begin{document}
 
-\fontfamily{cmr}\selectfont
-
-%----------HEADING-----------------
-
 \begin{center}
-  {\LARGE \textbf{\name}} \\[1.2mm]
-  {\small M.S. Student in Mechanical Engineering, Korea University} \\[1mm]
-  {\footnotesize
-    \href{mailto:\emaila}{\emaila}
-    \ $\cdot$ \
-    \href{https://\github}{\github}
-    \ $\cdot$ \
-    \href{https://\website}{\website}
-    \ $\cdot$ \
-    \phone
+  {\LARGE\bfseries Jeonghyeon Kim}\\[0.5ex]
+  {\small M.S. Student in Mechanical Engineering, Korea University}\\[0.55ex]
+  {\small
+    \href{mailto:ahdtld54@korea.ac.kr}{ahdtld54@korea.ac.kr}
+    \enspace$\cdot$\enspace
+    \href{https://github.com/Juunghyeon}{github.com/Juunghyeon}
+    \enspace$\cdot$\enspace
+    \href{https://Juunghyeon.github.io}{Juunghyeon.github.io}
+    \enspace$\cdot$\enspace
+    +82-10-8274-5411
   }
 \end{center}
+\vspace{-1.2ex}
 
-\vspace{-1mm}
+\section{Education}
 
+\entry{Korea University}{M.S. in Mechanical Engineering}{Seoul, Republic of Korea}{Mar. 2025 -- Feb. 2027 (Expected)}
+\detail{Advisor: Prof. Shinsuk Park}
+\detail{GPA: 3.78/4.0 \enspace$\cdot$\enspace Research interests: control-oriented dynamics modeling and whole-body control}
 
-%-----------EDUCATION-----------
+\entry{Korea University}{B.S. in Mechanical Engineering}{Seoul, Republic of Korea}{Mar. 2019 -- Feb. 2025}
+\detail{GPA: 3.48/4.0}
 
-\section{\textbf{Education}}
+\section{Research Experience}
 
-\resumeSubHeadingListStart
+\researchentry{Balance-Aware Whole-Body Control for Humanoid Standing Manipulation}{Mar. 2025 -- Present}
+\detail{Formulated a \textbf{Balance Demand Descriptor (BDD)} based on centroidal dynamics to represent balance demands induced by upper-body motion, payloads, and external interaction. Integrated BDD into a reinforcement-learning locomotion policy to distinguish demands manageable within the current stance from those requiring corrective stepping.}
 
-  \resumeSubheading
-    {Korea University}
-    {Seoul, Republic of Korea}
-    {M.S. in Mechanical Engineering}
-    {Mar. 2025 -- Feb. 2027 (Expected)}
+\researchentry{Visual Perception for Quadrupedal Object Interaction}{Mar. 2025 -- Nov. 2025}
+\detail{Developed a dual-camera perception system to track a ball and moving ArUco markers from fixed global and onboard views. Calibrated the cameras and transformed observations into a common coordinate frame to maintain target localization during robot motion and partial occlusion.}
 
-  \resumeItemListStartSub
-    \item Advisor: Prof. Shinsuk Park
-    \item GPA: 3.78/4.0
-    \item Research interests: control-oriented dynamics modeling and whole-body control
-  \resumeItemListEndSub
+\researchentry{Real-Time Architecture for a Generative-AI-Based Mobile Manipulator}{Mar. 2025 -- Aug. 2026}
+\detail{Developed a ROS~2 communication architecture connecting simulation, an LLM, a user interface, and a physical mobile manipulator. Implemented edge-based robot data collection with automatic cloud synchronization while preserving the robot's real-time control cycle.}
 
-  \vspace{1mm}
+\section{Publications \& Manuscripts}
 
-  \resumeSubheading
-    {Korea University}
-    {Seoul, Republic of Korea}
-    {B.S. in Mechanical Engineering}
-    {Mar. 2019 -- Feb. 2025}
+\textit{Accepted}
+\pubentry{H.-Y. Ju, \textbf{J.-H. Kim}, and S.-S. Park, ``A Study on Improving Sim-to-Real Accuracy through Dynamics Parameter Tuning in Reinforcement Learning-based Mapless Navigation,'' \textit{Journal of Institute of Control, Robotics and Systems}, accepted, 2026.}
 
-  \resumeItemListStartSub
-    \item GPA: 3.48/4.0
-  \resumeItemListEndSub
+\textit{Submitted Manuscripts}
+\pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Feasible Is Not Faithful: Intent-Preserving Constraint Realization for Contact Tasks on Unknown Surfaces,'' \textit{IEEE Robotics and Automation Letters}, submitted, Nov. 2026. Preprint on arXiv.}
 
-\resumeSubHeadingListEnd
+\textit{Manuscripts in Preparation}
+\pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Balance Demand Descriptor: A Physics-Informed Representation of Whole-Body Dynamics for Humanoid Standing Manipulation,'' manuscript in preparation.}
+\pubentry{\textbf{J.-H. Kim}, J. Kim, and S.-S. Park, ``Hold Before You Step: IMU-Resolved Disturbance Estimation for In-Place Push Recovery on Force-Sensorless Humanoids,'' manuscript in preparation. Preprint on arXiv.}
 
+\textit{Conference Presentations}
+\pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Obstacle Detection Using ORB-SLAM and UV-Disparity with a Low-Cost Quadruped Robot,'' \textit{KSPE 2025 Spring Conference}, Jeju, Republic of Korea, May 2025.}
 
-%-----------RESEARCH EXPERIENCE-----------
+\newpage
 
-\section{\textbf{Research Experience}}
+\section{Engineering Design Projects}
 
-\resumeSubHeadingListStart
+\project{Quadruped Robot Obstacle Avoidance}{Mar. 2024 -- Jan. 2025}
+Led the development of an autonomous obstacle detection and avoidance system for the DOGZILLA quadruped robot. Integrated ORB-SLAM with UV-disparity-based obstacle detection, earning the President's Award in the Korea University Creative Challenger Program.\\[1.0ex]
 
-  \resumeSubheading
-    {Human-Machine Systems Lab, Korea University}
-    {Seoul, Republic of Korea}
-    {Graduate Researcher}
-    {Mar. 2024 -- Present}
+\project{Ladder-Crossing Robot}{Mar. 2023 -- Sep. 2023}
+Designed and prototyped a mobile robot capable of traversing ladder-like structures. Developed the crossing mechanism and Arduino-based motion control, earning a Bronze Award at the Creative Comprehensive Design Competition.\\[1.0ex]
 
-  \vspace{0.5mm}
-  \textbf{Balance-Aware Whole-Body Control for Humanoid Standing Manipulation}
-  \resumeItemListStartSub
-    \item
-    Formulated a \textbf{Balance Demand Descriptor (BDD)} based on
-    centroidal dynamics to represent lower-body balance demands induced by
-    upper-body motion, payloads, and external interaction.
-    \item
-    Integrated BDD into a reinforcement-learning locomotion policy to
-    distinguish demands manageable within the current stance from those
-    requiring corrective stepping.
-    \item
-    Designed simulation evaluations involving payload variation and
-    continuous upper-body disturbances to assess physical validity and
-    behavioral utility.
-  \resumeItemListEndSub
+\project{Solar-Tracking Parasol}{Sep. 2023 -- Nov. 2023}
+Designed a linkage mechanism and tracking controller that automatically adjusts the parasol's orientation with changes in incident-light direction, receiving the Design Award at the Korea University Capstone Design Fair.
 
-  \vspace{1.3mm}
-  \textbf{Visual Perception for Quadrupedal Object Interaction}
-  \resumeItemListStartSub
-    \item
-    Designed a dual-camera perception pipeline combining global workspace
-    observation and local near-field sensing in a common coordinate frame.
-    \item
-    Enabled task-specific perception under viewpoint changes and partial
-    occlusion during quadrupedal locomotion.
-  \resumeItemListEndSub
+\section{Honors and Awards}
 
-  \vspace{1.3mm}
-  \textbf{Real-Time Architecture for a Generative-AI-Based Mobile Manipulator}
-  \resumeItemListStartSub
-    \item
-    Designed the communication architecture connecting a simulation
-    environment, an LLM, a user interface, and a physical mobile
-    manipulator.
-    \item
-    Reorganized asynchronous data exchange around the robot's control
-    cycle to prevent cross-module communication latency from interfering
-    with real-time control.
-  \resumeItemListEndSub
+\project{Master's Research Encouragement Grant, National Research Foundation of Korea}{2025}
+\project{President's Award, Creative Challenger Program, Korea University}{Jan. 2025}
+\project{Bronze Award, Creative Comprehensive Design Competition, Korea University}{Sep. 2023}
+\project{Design Award, Capstone Design Fair, Korea University}{Nov. 2023}
 
-  \vspace{1mm}
+\section{Teaching Experience}
 
-\resumeSubHeadingListEnd
+\textit{Teaching Assistant, Korea University, Seoul, Republic of Korea}\\[0.3ex]
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+  Robotics & Spring 2026 \\
+  Computer-Aided Design & Fall 2025 \\
+  Dynamics (English-taught course) & Summer 2025 \\
+  Kinematics of Mechanisms & Spring 2025
+\end{tabularx}
 
+\section{Technical Skills}
 
-%-----------PUBLICATIONS-----------
-
-\section{\textbf{Publications \& Manuscripts}}
-
-\textit{\textbf{\small Submitted Manuscripts}}
-
-\vspace{-0.5mm}
-
-\resumeSubHeadingListStart
-
-  \item
-  {\footnotesize
-  H.-Y. Ju, \textbf{J.-H. Kim}, and S.-S. Park,
-  ``A Study on Improving Sim-to-Real Accuracy through Dynamics Parameter
-  Tuning in Reinforcement Learning-based Mapless Navigation,''
-  \textit{Journal of Institute of Control, Robotics and Systems},
-  submitted, Sep. 2026.}
-
-\resumeSubHeadingListEnd
-
-\vspace{-1mm}
-
-\textit{\textbf{\small Manuscripts in Preparation}}
-
-\vspace{-0.5mm}
-
-\resumeSubHeadingListStart
-
-  \item
-  {\footnotesize
-  \textbf{J.-H. Kim} and S.-S. Park,
-  ``Balance Demand Descriptor: A Physics-Informed Representation of
-  Whole-Body Dynamics for Humanoid Standing Manipulation,''
-  \textit{manuscript in preparation}.}
-
-\resumeSubHeadingListEnd
-
-\vspace{-1mm}
-
-\textit{\textbf{\small Conference Presentations}}
-
-\vspace{-0.5mm}
-
-\resumeSubHeadingListStart
-
-  \item
-  {\footnotesize
-  \textbf{J.-H. Kim} and S.-S. Park,
-  ``Obstacle Detection Using ORB-SLAM and UV-Disparity with a Low-Cost
-  Quadruped Robot,''
-  \textit{KSPE 2025 Spring Conference},
-  Jeju, Republic of Korea, May 2025.}
-
-\resumeSubHeadingListEnd
-
-
-%-----------SELECTED PROJECTS-----------
-
-\section{\textbf{Selected Projects}}
-
-\resumeSubHeadingListStart
-
-  \resumeProjectSimple
-    {Quadruped Robot Obstacle Avoidance --- \textit{Team Leader}}
-    {Mar. 2024 -- Jan. 2025}
-
-  \resumeItemListStart
-    \item
-    Developed an obstacle detection and avoidance pipeline for the
-    DOGZILLA quadruped robot using ORB-SLAM and UV-disparity.
-  \resumeItemListEnd
-
-  \vspace{0.5mm}
-
-  \resumeProjectSimple
-    {Ladder-Crossing Robot --- \textit{Team Leader}}
-    {Mar. 2023 -- Sep. 2023}
-
-  \resumeItemListStart
-    \item
-    Designed a ladder-crossing mechanism and implemented an
-    Arduino-based control system.
-  \resumeItemListEnd
-
-  \vspace{0.5mm}
-
-  \resumeProjectSimple
-    {Solar-Tracking Parasol --- \textit{Team Leader}}
-    {Sep. 2023 -- Nov. 2023}
-
-  \resumeItemListStart
-    \item
-    Designed the linkage mechanism and implemented a sun-tracking
-    control system.
-  \resumeItemListEnd
-
-\resumeSubHeadingListEnd
-
-
-%-----------HONORS AND AWARDS-----------
-
-\section{\textbf{Honors and Awards}}
-
-\resumeSubHeadingListStart
-
-  \resumeAward
-    {Master's Research Encouragement Grant}
-    {National Research Foundation of Korea}
-    {}
-    {2025}
-
-  \resumeAward
-    {President's Award}
-    {Creative Challenger Program (CCP), Korea University}
-    {}
-    {Jan. 2025}
-
-  \resumeAward
-    {Bronze Award}
-    {Creative Comprehensive Design Competition, Korea University}
-    {}
-    {Sep. 2023}
-
-  \resumeAward
-    {Design Award}
-    {Capstone Design Fair, Korea University}
-    {}
-    {Nov. 2023}
-
-\resumeSubHeadingListEnd
-
-
-%-----------TEACHING EXPERIENCE-----------
-
-\section{\textbf{Teaching Experience}}
-
-\textit{\footnotesize
-Teaching Assistant, Korea University, Seoul, Republic of Korea}
-
-\vspace{-0.5mm}
-
-\resumeSubHeadingListStart
-
-  \resumePOR{Robotics}{}{Spring 2026}
-
-  \resumePOR{Computer-Aided Design}{}{Fall 2025}
-
-  \resumePOR{Dynamics, English-Taught Course}{}{Summer 2025}
-
-  \resumePOR{Kinematics of Mechanisms}{}{Spring 2025}
-
-\resumeSubHeadingListEnd
-
-
-%-----------TECHNICAL SKILLS-----------
-
-\section{\textbf{Technical Skills}}
-
-\begin{itemize}[leftmargin=0.1in, label={}, itemsep=0.6mm, topsep=1mm]
-
-  \small{\item{
-    \textbf{Programming:} Python, C/C++, MATLAB \\
-
-    \textbf{Robotics:}
-    ROS2, Pinocchio, URDF/XACRO \\
-
-    \textbf{Simulation:}
-    Isaac Gym, MuJoCo, Gazebo \\
-
-    \textbf{Learning \& Optimization:}
-    Reinforcement Learning, Trajectory Optimization \\
-
-    \textbf{Perception:}
-    OpenCV \\
-
-    \textbf{Engineering Tools:}
-    Git, Creo, NX, SolidWorks, Arduino \\
-
-    \textbf{Operating Systems:}
-    Linux (Ubuntu)
-  }}
-
-\end{itemize}
-
-%-------------------------------------------
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
+Programming & Python, C/C++, MATLAB \\
+Robotics & ROS 2, Pinocchio, URDF/XACRO \\
+Simulation & Isaac Gym, Isaac Sim, MuJoCo, Gazebo \\
+Learning \& Optimization & PyTorch, reinforcement learning, CVXPY, CasADi, trajectory optimization \\
+Perception & OpenCV, ORB-SLAM \\
+Engineering Tools & Git, SolidWorks, Creo, NX, Arduino \\
+Operating Systems & Linux/Ubuntu
+\end{tabularx}
 
 \end{document}
