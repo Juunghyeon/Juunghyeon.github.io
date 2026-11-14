@@ -40,7 +40,7 @@ header:
 </div>
 <p class="hb-cap" style="text-align:center">Narrated overview (2.5 min). Robot scenes are logged runs on a simulated Unitree G1 (MuJoCo); the hardware results are estimator tests only.</p>
 
-<div class="hb-media">
+<div class="hb-media hb-wide">
   <a href="{{ '/assets/images/projects/humanoid-push-recovery/overview.png' | relative_url }}"><img src="{{ '/assets/images/projects/humanoid-push-recovery/overview.png' | relative_url }}" alt="Overview: the same 70 N push makes the stepping baseline step while our controller holds; holdable force falls with the hold-start latency; the estimate uses the pelvis IMU and the 12 leg joints."></a>
 </div>
 <p class="hb-cap"><b>(a)</b> The same 70 N lateral push (registered run, same seed): our controller entered an ankle-priority hold 10 ms after onset and did not step; the stepping baseline lifted a foot after 85 ms. Both recovered on all four seeds of this condition. <b>(b)</b> Holdable force when the hold starts <i>L</i> after onset, relative to <i>L</i> = 0: pendulum model (line, band ±0.08) and measured boundaries. <b>(c)</b> The estimate resolves the pelvis IMU through the floating-base model using the 12 leg joints. Simulated Unitree G1.</p>
