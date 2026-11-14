@@ -13,7 +13,7 @@ summary: "A control framework where the task specifies what to preserve under un
 icon: "hand-paper"
 group: "research"
 header:
-  teaser: # removed 2026-11-15 (old render)
+  teaser: /assets/images/projects/ipcr-manipulation/teaser.png
   image: # /assets/images/projects/ipcr-manipulation/cover.jpg
 ---
 
