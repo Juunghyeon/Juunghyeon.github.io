@@ -1,10 +1,10 @@
 ---
-title: "Hold Before You Step: IMU-Resolved Disturbance Estimation for In-Place Push Recovery on Force-Sensorless Humanoids"
+title: "Hold Before You Step: The Information Requirement of In-Place Push Recovery on Force-Sensorless Humanoids"
 permalink: /projects/humanoid-push-recovery/
 date: 2026-11-05
 period: "2026"
 category: "Humanoid Robotics · Disturbance Estimation"
-status: "Preprint (arXiv)"
+status: "Manuscript in Preparation"
 role: "First Author"
 group: "research"
 summary: "Measures how fast and accurate a sensorless humanoid's push estimate needs to be to safely hold in place instead of stepping — then uses that to cut base displacement by 96% on real pushes."

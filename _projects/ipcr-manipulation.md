@@ -4,7 +4,7 @@ permalink: /projects/ipcr-manipulation/
 date: 2026-11-01
 period: "Sep.2025 -- Present"
 category: "Robot Learning · Contact-Rich Manipulation"
-status: "Preprint (arXiv) · Manuscript in Preparation"
+status: "Manuscript in Preparation"
 role: "First Author"
 award: "Master's Research Encouragement Grant, National Research Foundation of Korea (2025)"
 skills: ["Python", "NMPC", "Contact Mechanics", "ROS2", "Gazebo"]

@@ -5,8 +5,6 @@ main:
   - title: "Projects"
     url: /projects/
     children:
-      - title: "Balance Demand Descriptor"
-        url: /projects/balance-demand-descriptor/
       - title: "Intent-Preserving Manipulation (IPCR)"
         url: /projects/ipcr-manipulation/
       - title: "Quadruped Latent Motion Control"
