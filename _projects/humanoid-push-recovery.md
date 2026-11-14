@@ -10,6 +10,7 @@ group: "research"
 summary: "Measures how fast and how accurately a force-sensorless humanoid must know a push to hold it in place instead of stepping, then designs the estimator and the controller's signal paths by that requirement."
 skills: ["Python", "MuJoCo", "Model Predictive Control", "State Estimation"]
 icon: "walking"
+hide_hero_teaser: true
 links:
   - label: "Video"
     url: "#video"
