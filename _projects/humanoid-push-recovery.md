@@ -40,7 +40,7 @@ header:
 </div>
 <p class="hb-cap" style="text-align:center">Narrated overview (2.5 min). Robot scenes are logged runs on a simulated Unitree G1 (MuJoCo); the hardware results are estimator tests only.</p>
 
-<div class="hb-media hb-wide">
+<div class="hb-media">
   <a href="{{ '/assets/images/projects/humanoid-push-recovery/overview.png' | relative_url }}"><img src="{{ '/assets/images/projects/humanoid-push-recovery/overview.png' | relative_url }}" alt="Overview: the same 70 N push makes the stepping baseline step while our controller holds; holdable force falls with the hold-start latency; the estimate uses the pelvis IMU and the 12 leg joints."></a>
 </div>
 <p class="hb-cap"><b>(a)</b> The same 70 N lateral push (registered run, same seed): our controller entered an ankle-priority hold 10 ms after onset and did not step; the stepping baseline lifted a foot after 85 ms. Both recovered on all four seeds of this condition. <b>(b)</b> Holdable force when the hold starts <i>L</i> after onset, relative to <i>L</i> = 0: pendulum model (line, band ±0.08) and measured boundaries. <b>(c)</b> The estimate resolves the pelvis IMU through the floating-base model using the 12 leg joints. Simulated Unitree G1.</p>
@@ -59,7 +59,7 @@ The goal is the requirement and its use, not maximal push recovery. The hold-fir
 
 ## The information requirement
 
-<div class="hb-media hb-wide">
+<div class="hb-media">
   <a href="{{ '/assets/images/projects/humanoid-push-recovery/requirement.png' | relative_url }}"><img src="{{ '/assets/images/projects/humanoid-push-recovery/requirement.png' | relative_url }}" alt="Information requirement and estimators: holds versus delay and noise, one latency budget, error tolerance by time scale, estimator noise at equal latency, and closed-loop holdable force versus hold-entry latency."></a>
 </div>
 <p class="hb-cap"><b>(a)</b> Pushes held without a step when the true push force reaches the hold decision delayed by <i>L</i> and with white noise σ (12 near-boundary pushes per cell). <b>(b)</b> Holdable force relative to no delay versus the total of command and information delay (608 runs). <b>(c)</b> Holds under injected errors of different correlation times (240 runs). <b>(d)</b> Quiet-stance noise versus detection latency over each estimator family's tuning range (55 logs). <b>(e)</b> Closed-loop holdable force against the prediction from hold-entry latency (380 runs).</p>
