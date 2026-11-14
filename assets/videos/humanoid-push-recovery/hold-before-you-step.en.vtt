@@ -1,0 +1,76 @@
+WEBVTT
+
+00:00:00.400 --> 00:00:01.680
+Hold Before You Step
+
+00:00:06.400 --> 00:00:07.929
+The same 70 N push.
+
+00:00:07.929 --> 00:00:13.966
+Our controller enters an in-place hold 10 ms after onset and does not step.
+
+00:00:13.966 --> 00:00:17.748
+The stepping baseline lifts a foot after 85 ms.
+
+00:00:17.748 --> 00:00:18.795
+Both recover.
+
+00:00:20.033 --> 00:00:25.784
+Without force/torque sensors, a humanoid knows a push only through a delayed, noisy estimate.
+
+00:00:25.784 --> 00:00:29.804
+So how fast and how accurately must the controller know the push?
+
+00:00:31.000 --> 00:00:37.208
+In short: holding is decided within tens of milliseconds, so the push estimate has to arrive in time.
+
+00:00:38.400 --> 00:00:47.723
+A pendulum model sets the initial rate: on the G1, each 10 ms of latency costs about 3.7 % of the holdable force.
+
+00:00:48.900 --> 00:00:52.568
+We give one fixed controller the true push force.
+
+00:00:52.568 --> 00:00:55.712
+On time, it held 10 of 12 pushes in place.
+
+00:00:55.712 --> 00:00:57.135
+20 ms late, only 3.
+
+00:00:58.400 --> 00:01:01.263
+Actuation delay draws on the same budget.
+
+00:01:01.263 --> 00:01:07.616
+Slow errors of 30 N were tolerated, but 20 N errors on the time scale of the push were not.
+
+00:01:08.800 --> 00:01:19.552
+The requirement selects an estimate: we measure the base acceleration with the pelvis IMU and resolve it through the model, instead of differentiating a reconstructed base velocity.
+
+00:01:20.733 --> 00:01:26.280
+Offline, it detected pushes after 32 ms, against 70 ms for momentum observers.
+
+00:01:26.280 --> 00:01:32.893
+In closed loop, hold-entry latency predicted the holdable force for three of four estimators.
+
+00:01:34.067 --> 00:01:43.953
+With signal paths designed by this requirement, our controller met the pre-registered recovery criterion against the stepping baseline:
+
+00:01:43.953 --> 00:01:47.101
+65 vs 62 of 80 runs, with 49 % fewer steps.
+
+00:01:48.300 --> 00:01:55.361
+With a 2 kg hand load and arm motion, it held 30 of 48 pushes in place, against one for the baseline.
+
+00:01:57.700 --> 00:02:06.916
+Under fast arm motion without a push, its spurious estimate stayed below 14.7 N, against up to 40 N for the centroidal estimate.
+
+00:02:08.133 --> 00:02:15.899
+And holding is cheaper: on holdable pushes, base displacement fell by 96 % and leg work by 69 %.
+
+00:02:17.067 --> 00:02:25.776
+On the real G1, our estimate followed a load cell with a median delay of 29 ms, against 57 ms for a momentum observer.
+
+00:02:25.776 --> 00:02:28.949
+Holding on the robot is still to be tested.
+
+00:02:30.133 --> 00:02:35.680
+Judge disturbance estimates by the recovery options they preserve, not by accuracy alone.
