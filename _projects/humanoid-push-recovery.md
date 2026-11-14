@@ -32,13 +32,13 @@ header:
 
 *Jeonghyeon Kim, Jaesang Kim, Shinsuk Park*
 
-<div class="hb-media" id="video">
+<div class="hb-media hb-wide" id="video">
   <video controls preload="metadata" playsinline poster="{{ '/assets/videos/humanoid-push-recovery/poster.jpg' | relative_url }}">
     <source src="{{ '/assets/videos/humanoid-push-recovery/hold-before-you-step.mp4' | relative_url }}" type="video/mp4">
     <track kind="subtitles" srclang="en" label="English" src="{{ '/assets/videos/humanoid-push-recovery/hold-before-you-step.en.vtt' | relative_url }}">
   </video>
 </div>
-<p class="hb-cap">Narrated overview (2.5 min). Robot scenes are logged runs on a simulated Unitree G1 (MuJoCo); the hardware results are estimator tests only.</p>
+<p class="hb-cap" style="text-align:center">Narrated overview (2.5 min). Robot scenes are logged runs on a simulated Unitree G1 (MuJoCo); the hardware results are estimator tests only.</p>
 
 <div class="hb-media hb-wide">
   <a href="{{ '/assets/images/projects/humanoid-push-recovery/overview.png' | relative_url }}"><img src="{{ '/assets/images/projects/humanoid-push-recovery/overview.png' | relative_url }}" alt="Overview: the same 70 N push makes the stepping baseline step while our controller holds; holdable force falls with the hold-start latency; the estimate uses the pelvis IMU and the 12 leg joints."></a>
