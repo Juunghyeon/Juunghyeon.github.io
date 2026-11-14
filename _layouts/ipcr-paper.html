@@ -1,0 +1,367 @@
+---
+layout: default
+---
+{%- assign A = '/assets/ipcr/' | relative_url -%}
+<style>
+.ipcr { --np:#d55e00; --ipcr:#0072b2; --yaw:#009e73; --ink:#1d1f22; --mute:#5f6368; --line:#e4e4e4; --soft:#f6f6f4; --card:#ffffff;
+  max-width: 1080px; margin: 0 auto; padding: 0 16px 64px; color: var(--ink); font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 17px; line-height: 1.62; }
+.ipcr * { box-sizing: border-box; }
+.ipcr a { color: var(--ipcr); text-decoration: none; }
+.ipcr a:hover { text-decoration: underline; }
+.ipcr p { margin: 0 0 1em; }
+.ipcr h2 { font-size: 1.55em; line-height: 1.25; margin: 2.6em 0 .5em; font-weight: 700; letter-spacing: -0.01em; border: 0; padding: 0; }
+.ipcr h3 { font-size: 1.12em; margin: 1.8em 0 .4em; font-weight: 700; }
+.ipcr .narrow { max-width: 760px; margin-left: auto; margin-right: auto; }
+.ipcr p.ipcr-tldr { margin: 44px auto 8px; }
+.ipcr .kicker { font-size: .78em; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); font-weight: 600; margin: 0 0 .4em; }
+
+/* hero */
+.ipcr-hero { text-align: center; padding: 28px 0 8px; }
+.ipcr-hero h1 { font-size: 2.35em; line-height: 1.15; margin: .2em auto .35em; max-width: 900px; font-weight: 800; letter-spacing: -0.02em; }
+.ipcr-hero h1 .sub { display: block; font-size: .5em; font-weight: 500; color: var(--mute); margin-top: .5em; letter-spacing: 0; }
+.ipcr-hero .authors { font-size: 1.08em; margin: .6em 0 .1em; }
+.ipcr-hero .affil { color: var(--mute); font-size: .92em; margin: 0; }
+.ipcr-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 1.1em 0 0; }
+.ipcr-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; font-size: .88em; font-weight: 600;
+  background: var(--ink); color: #fff !important; }
+.ipcr-badge.off { background: #ececea; color: #7a7a7a !important; cursor: default; }
+.ipcr-badge.off small { font-weight: 500; }
+
+/* replay */
+.ipcr-replay { position: relative; margin: 28px 0 8px; border-radius: 14px; background: linear-gradient(180deg, #fbfbfa 0%, #f1f0ec 100%);
+  border: 1px solid var(--line); overflow: hidden; }
+.ipcr-stage { position: relative; cursor: grab; touch-action: pan-y; }
+.ipcr-stage:active { cursor: grabbing; }
+.ipcr-gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+.ipcr-panels { display: grid; gap: 0; position: relative; }
+.ipcr-panels.n2 { grid-template-columns: 1fr 1fr; }
+.ipcr-panels.n3 { grid-template-columns: 1fr 1fr 1fr; }
+.ipcr-panel { position: relative; border-right: 1px solid rgba(0,0,0,.06); }
+.ipcr-panel:last-child { border-right: 0; }
+.ipcr-view { height: 400px; }
+.ipcr-panels.n3 .ipcr-view { height: 340px; }
+.ipcr-ptitle { position: absolute; left: 14px; top: 12px; right: 14px; font-weight: 700; font-size: .95em; line-height: 1.3; pointer-events: none; }
+.ipcr-ptitle small { display: block; font-weight: 500; color: var(--mute); font-size: .86em; }
+.ipcr-result { position: absolute; left: 14px; bottom: 12px; font-weight: 800; font-size: 1.5em; line-height: 1.1; pointer-events: none;
+  background: rgba(255,255,255,.85); padding: 6px 10px; border-radius: 8px; }
+.ipcr-result small { display: block; font-size: .5em; font-weight: 600; color: var(--mute); }
+.ipcr-readout { position: absolute; left: 14px; top: 58px; font-size: .88em; background: rgba(255,255,255,.88); padding: 5px 10px; border-radius: 8px; pointer-events: none; }
+.ipcr-inset { position: absolute; right: 12px; bottom: 12px; width: 150px; height: 150px; border-radius: 8px; border: 1px solid rgba(0,0,0,.08); pointer-events: none; }
+.ipcr-panels.n3 .ipcr-inset { width: 132px; height: 100px; }
+.ipcr-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-top: 1px solid var(--line); background: #fff; flex-wrap: wrap; font-size: .86em; }
+.ipcr-bar button { font: inherit; border: 1px solid #d6d6d6; background: #fff; border-radius: 7px; padding: 4px 10px; cursor: pointer; color: var(--ink); }
+.ipcr-bar button.on, .ipcr-bar button.ipcr-play { background: var(--ink); color: #fff; border-color: var(--ink); }
+.ipcr-bar input[type=range] { flex: 1 1 200px; accent-color: var(--ink); }
+.ipcr-clock { font-variant-numeric: tabular-nums; min-width: 78px; color: var(--mute); }
+.ipcr-phase { font-weight: 600; min-width: 150px; }
+.ipcr-loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--mute); font-size: .9em; pointer-events: none; }
+.ipcr-replay.ready .ipcr-loading { display: none; }
+.ipcr-replay.failed .ipcr-loading { display: grid; }
+.ipcr-cap { font-size: .86em; color: var(--mute); margin: 8px 2px 0; }
+.ipcr-tabs { display: flex; gap: 6px; justify-content: center; margin: 34px 0 -14px; }
+.ipcr-tabs button { font: inherit; font-size: .92em; font-weight: 600; border: 1px solid #d8d8d8; background: #fff; padding: 7px 16px; border-radius: 999px; cursor: pointer; color: var(--ink); }
+.ipcr-tabs button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+.ipcr-tabpane[hidden] { display: none; }
+
+/* tl;dr + stats */
+.ipcr-tldr { font-size: 1.22em; line-height: 1.5; text-align: center; max-width: 820px; margin: 44px auto 8px; font-weight: 500; }
+.ipcr-tldr b { font-weight: 800; }
+.ipcr-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 30px 0 0; }
+.ipcr-stat { background: var(--soft); border-radius: 12px; padding: 18px 18px 16px; }
+.ipcr-stat .n { font-size: 1.9em; font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+.ipcr-stat .n small { font-size: .5em; font-weight: 700; }
+.ipcr-stat .d { font-size: .84em; color: var(--mute); margin-top: 6px; line-height: 1.4; }
+
+/* widgets */
+.ipcr-two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.ipcr-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.ipcr-card h3 { margin-top: 0; }
+.ipcr-card svg { width: 100%; height: auto; display: block; }
+.ipcr-ctl { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 4px 12px; font-size: .86em; margin: 10px 0 6px; }
+.ipcr-ctl input { accent-color: var(--ink); width: 100%; }
+.ipcr-ctl span:last-child, .ipcr-ctl .v { font-variant-numeric: tabular-nums; font-weight: 700; min-width: 54px; text-align: right; }
+.ipcr-w-out { font-size: .9em; background: var(--soft); border-radius: 8px; padding: 10px 12px; margin: 8px 0 0; line-height: 1.45; }
+.ipcr svg .w-lab { font-size: 12.5px; fill: #333; font-family: inherit; }
+.ipcr svg .w-axis { font-size: 11.5px; fill: #8a8a8a; font-family: inherit; }
+.ipcr svg .c-tick { font-size: 11.5px; fill: #8a8a8a; font-family: inherit; }
+.ipcr svg .c-row { font-size: 13.5px; fill: #222; font-weight: 600; font-family: inherit; }
+.ipcr svg .c-sub { font-size: 11px; fill: #8a8a8a; font-family: inherit; }
+.ipcr svg .c-val { font-size: 12px; font-weight: 700; font-family: inherit; }
+.ipcr svg .c-title { font-size: 13px; fill: #555; font-weight: 600; font-family: inherit; }
+
+/* method */
+.ipcr-eq { background: var(--soft); border-radius: 12px; padding: 14px 18px; margin: 12px 0 18px; overflow-x: auto; }
+.ipcr-eq .lab { font-size: .8em; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mute); }
+.ipcr .ipcr-fig { display: block; margin: 22px 0 6px; }
+.ipcr-fig img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); background: #fff; }
+.ipcr .ipcr-fig figcaption { display: block; width: auto; margin-left: 0; margin-right: 0; font-size: .86em; color: var(--mute); margin-top: 8px; }
+
+/* 2x2 */
+.ipcr-grid2 { display: grid; grid-template-columns: 90px 1fr 1fr; gap: 10px; align-items: stretch; max-width: 560px; margin: 14px auto 6px; }
+.ipcr-grid2 .h { font-size: .82em; font-weight: 700; color: var(--mute); display: flex; align-items: center; justify-content: center; text-align: center; }
+.ipcr-cell { border-radius: 12px; padding: 14px 10px; text-align: center; background: #f3f3f2; }
+.ipcr-cell .v { font-size: 1.7em; font-weight: 800; line-height: 1.1; }
+.ipcr-cell .p { font-size: .78em; color: var(--mute); }
+.ipcr-cell .w { font-size: .74em; font-style: italic; color: #b07a00; margin-top: 4px; }
+.ipcr-cell.good { background: #e8f1f8; box-shadow: inset 0 0 0 2px var(--ipcr); }
+.ipcr-cell.good .v { color: var(--ipcr); }
+.ipcr-cell.bad .v { color: #c98a00; }
+.ipcr-cell.np .v { color: var(--np); }
+
+.ipcr-list { padding-left: 1.1em; }
+.ipcr-list li { margin: .35em 0; }
+.ipcr-limits { background: #fbf6ee; border-radius: 14px; padding: 18px 22px; }
+.ipcr-limits ul { margin: .4em 0 0; padding-left: 1.1em; }
+.ipcr-limits li { margin: .35em 0; }
+.ipcr pre.bib { background: #1d1f22; color: #e8e8e8; border-radius: 12px; padding: 16px 18px; font-size: .8em; line-height: 1.5; overflow-x: auto; }
+.ipcr-back { display: block; text-align: center; margin-top: 48px; font-size: .92em; }
+
+@media (max-width: 860px) {
+  .ipcr { font-size: 16px; }
+  .ipcr-hero h1 { font-size: 1.7em; }
+  .ipcr-stats { grid-template-columns: 1fr 1fr; }
+  .ipcr-two { grid-template-columns: 1fr; }
+  .ipcr-panels.n2, .ipcr-panels.n3 { grid-template-columns: 1fr; }
+  .ipcr-panel { border-right: 0; border-bottom: 1px solid rgba(0,0,0,.06); }
+  .ipcr-view, .ipcr-panels.n3 .ipcr-view { height: 300px; }
+  .ipcr-inset { width: 120px; height: 120px; }
+  .ipcr-panels.n3 .ipcr-inset { width: 120px; height: 90px; }
+}
+</style>
+
+<div id="main" role="main">
+<article class="ipcr" data-ipcr-assets="{{ A }}">
+
+<header class="ipcr-hero">
+  <p class="kicker">{{ page.status }} · IEEE Robotics and Automation Letters (submission)</p>
+  <h1>Feasible Is Not Faithful<span class="sub">Intent-Preserving Constraint Realization for Contact Tasks on Unknown Surfaces</span></h1>
+  <p class="authors"><b>Jeonghyeon Kim</b> &nbsp;·&nbsp; Shinsuk Park</p>
+  <p class="affil">School of Mechanical Engineering, Korea University</p>
+  <div class="ipcr-badges">
+    <span class="ipcr-badge off">Paper <small>(after submission)</small></span>
+    <span class="ipcr-badge off">Code <small>(after review)</small></span>
+    <a class="ipcr-badge" href="#replay">Replay</a>
+    <a class="ipcr-badge" href="#method">Method</a>
+    <a class="ipcr-badge" href="#results">Results</a>
+  </div>
+</header>
+
+<div class="ipcr-tabs" id="replay" role="tablist">
+  <button class="on" data-tab="pen" role="tab">Drawing on a tilted board</button>
+  <button data-tab="box" role="tab">Carrying a box past a board</button>
+</div>
+
+<div class="ipcr-tabpane" data-pane="pen">
+  <div class="ipcr-replay" data-cfg="pen">
+    <div class="ipcr-stage">
+      <canvas class="ipcr-gl"></canvas>
+      <div class="ipcr-panels n2">
+        <div class="ipcr-panel" data-run="NP" data-color="np">
+          <div class="ipcr-view"></div>
+          <div class="ipcr-ptitle" style="color:var(--np)">Nearest point<small>given the board's true normal</small></div>
+          <div class="ipcr-result" style="color:var(--np)">18.1 mm<small>figure shift, mean of 3 runs</small></div>
+          <canvas class="ipcr-inset"></canvas>
+        </div>
+        <div class="ipcr-panel" data-run="IPCR" data-color="ipcr">
+          <div class="ipcr-view"></div>
+          <div class="ipcr-ptitle" style="color:var(--ipcr)">IPCR (ours)<small>joint sensing only, no normal given</small></div>
+          <div class="ipcr-result" style="color:var(--ipcr)">0.52 mm<small>figure shift, mean of 3 runs</small></div>
+          <canvas class="ipcr-inset"></canvas>
+        </div>
+      </div>
+      <div class="ipcr-loading">loading replay…</div>
+    </div>
+    <div class="ipcr-bar">
+      <button class="ipcr-play">Pause</button>
+      <span class="ipcr-phase"></span>
+      <input class="ipcr-time" type="range" aria-label="time">
+      <span class="ipcr-clock"></span>
+      <button class="ipcr-speed" data-speed="4">4×</button><button class="ipcr-speed on" data-speed="8">8×</button><button class="ipcr-speed" data-speed="16">16×</button>
+      <button class="ipcr-reset">Reset view</button>
+    </div>
+  </div>
+  <p class="ipcr-cap">Replay of two logged simulation runs (Gazebo, 18.8° board unknown to both, 130 mm spring pen, 5 mm/s): every frame is the controller's logged joint configuration, rendered here in your browser. The dashed circle is where the task wants the figure, carried in depth onto the board. Both arms keep contact on 99–100 % of the figure; only the placement differs. Drag to orbit.</p>
+</div>
+
+<div class="ipcr-tabpane" data-pane="box" hidden>
+  <div class="ipcr-replay" data-cfg="box">
+    <div class="ipcr-stage">
+      <canvas class="ipcr-gl"></canvas>
+      <div class="ipcr-panels n3">
+        <div class="ipcr-panel" data-run="NP" data-color="np">
+          <div class="ipcr-view"></div>
+          <div class="ipcr-ptitle" style="color:var(--np)">Nearest point<small>given the true normal</small></div>
+          <div class="ipcr-readout"></div><canvas class="ipcr-inset"></canvas>
+        </div>
+        <div class="ipcr-panel" data-run="IPCR" data-color="ipcr">
+          <div class="ipcr-view"></div>
+          <div class="ipcr-ptitle" style="color:var(--ipcr)">IPCR, task “keep yaw”<small>yields sideways only</small></div>
+          <div class="ipcr-readout"></div><canvas class="ipcr-inset"></canvas>
+        </div>
+        <div class="ipcr-panel" data-run="YAW" data-color="yaw">
+          <div class="ipcr-view"></div>
+          <div class="ipcr-ptitle" style="color:var(--yaw)">IPCR, task “yaw free”<small>same controller, turns instead</small></div>
+          <div class="ipcr-readout"></div><canvas class="ipcr-inset"></canvas>
+        </div>
+      </div>
+      <div class="ipcr-loading">loading replay…</div>
+    </div>
+    <div class="ipcr-bar">
+      <button class="ipcr-play">Pause</button>
+      <span class="ipcr-phase"></span>
+      <input class="ipcr-time" type="range" aria-label="time">
+      <span class="ipcr-clock"></span>
+      <button class="ipcr-speed" data-speed="4">4×</button><button class="ipcr-speed on" data-speed="8">8×</button><button class="ipcr-speed" data-speed="16">16×</button>
+      <button class="ipcr-reset">Reset view</button>
+    </div>
+  </div>
+  <p class="ipcr-cap">Replay of three logged simulation runs: an unmodeled 250×200×150 mm, 1.5 kg box is carried 200 mm along a straight path, and a board tilted 20° intrudes 20 mm into it. The only difference between the two IPCR runs is the task specification; the readouts are computed from each run's log, and the coloured line on the table is the path of the box centre.</p>
+</div>
+
+<p class="ipcr-tldr">When a robot's contact surface is not where it thought, restoring contact is easy. <b>Which coordinates the correction is allowed to move</b> is the real decision, and the usual answer, the nearest feasible point, quietly gives away coordinates the task meant to keep.</p>
+
+<div class="ipcr-stats">
+  <div class="ipcr-stat"><div class="n" style="color:var(--ipcr)">0.38–0.52<small> mm</small></div><div class="d">IPCR figure shift on four tilted boards at 5 mm/s, 98–100 % contact</div></div>
+  <div class="ipcr-stat"><div class="n" style="color:var(--np)">10.6–18.1<small> mm</small></div><div class="d">nearest point with the <i>true</i> normal, same speed and coverage</div></div>
+  <div class="ipcr-stat"><div class="n">6.3<small> %</small></div><div class="d">largest error of the nearest-point drift predicted before the runs, new boards</div></div>
+  <div class="ipcr-stat"><div class="n">0<small> F/T sensors</small></div><div class="d">joint sensing only: no force sensor, surface model or probing phase</div></div>
+</div>
+
+<section class="narrow">
+<h2>The problem</h2>
+<p>Robot references come from nominal geometry, a CAD model or a taught plane, and the real surface differs. On contact, the reference is infeasible and the controller must move it somewhere. Many directions restore contact and regulate force equally well, yet they do not give the same result.</p>
+<p>Take a circle whose position is fixed in an external frame, say to line up with a later assembly step. A typical contact controller moves the commanded point to the <b style="color:var(--np)">nearest point</b> on the board and lets compliance along the normal take up the rest. Even when it is given the true normal, the circle lands up to 18 mm from its planned place, more than half its radius. The strokes finish, force is regulated and every tracking error is small, because errors are measured against the corrected point. <b>A contact report does not reveal it.</b></p>
+</section>
+
+<h2 class="narrow" id="method" style="max-width:760px">Two levels, two ways to lose intent</h2>
+<p class="narrow">The task names a <b>yield subspace</b> 𝒟, the directions in which motion may depart from the reference, and <b>preserved coordinates</b> \(y = Lx\) with \(LD = 0\). Drawing at a fixed position may yield in depth but keeps its frontal position; transport may yield sideways but keeps progress, height and possibly yaw. The nearest point is not wrong in this view: it is the right rule for a task with \(\mathcal{D}=\operatorname{span}(n)\), such as one defined on the surface.</p>
+
+<div class="ipcr-two">
+  <div class="ipcr-card" data-ipcr-widget="target">
+    <p class="kicker">Target level · try it</p>
+    <h3>Where should the corrected target go?</h3>
+    <svg></svg>
+    <div class="ipcr-ctl">
+      <span>board tilt θ</span><input type="range" name="theta" min="0" max="35" step="0.1" value="18.8"><span class="v v-theta"></span>
+      <span>depth e</span><input type="range" name="depth" min="5" max="40" step="1" value="30"><span class="v v-depth"></span>
+    </div>
+    <div class="ipcr-w-out"></div>
+  </div>
+  <div class="ipcr-card" data-ipcr-widget="exec">
+    <p class="kicker">Execution level · try it</p>
+    <h3>Where does the servo absorb what the estimate missed?</h3>
+    <svg></svg>
+    <div class="ipcr-ctl">
+      <span>absorption mix α</span><input type="range" name="alpha" min="0" max="1" step="0.01" value="1"><span class="v v-alpha"></span>
+      <span>residual ρ</span><input type="range" name="rho" min="0" max="20" step="1" value="10"><span class="v v-rho"></span>
+    </div>
+    <div class="ipcr-w-out"></div>
+  </div>
+</div>
+
+<section class="narrow">
+<h3>Target level</h3>
+<p>The correction that restores feasibility must lie in 𝒟. Given an estimated constraint \(\hat A x = \hat b\), there is exactly one such point:</p>
+<div class="ipcr-eq"><span class="lab">Theorem 1 · intent-preserving realization</span>
+$$x_D^\star = r + D(\hat A D)^{-1}(\hat b - \hat A r), \qquad \hat A x_D^\star = \hat b,\quad L x_D^\star = L r .$$</div>
+<p>An error in the surface estimate affects only whether \(x_D^\star\) is feasible, never \(Lx_D^\star\). Any other correction drifts by a principal-angle amount; for one plane violated by depth \(h\) the drift in the preserved coordinates is \(|h|\sin\theta\). This is a property of the rule, not of estimation error: it is there with the exact normal.</p>
+<div class="ipcr-eq"><span class="lab">Theorem 2 · principal-angle drift</span>
+$$\|x_E^\star - x_D^\star\|^2 = \sum_i (u_i^\top \bar e)^2 \tan^2\theta_i$$</div>
+
+<h3>Execution level</h3>
+<p>The servo then absorbs whatever residual \(\rho\) the imperfect estimate leaves. That absorption reaches the preserved coordinates by a computable law, and it vanishes for <i>every</i> residual if and only if the absorption direction lies in \(\ker L\):</p>
+<div class="ipcr-eq"><span class="lab">Theorem 3 · execution leak</span>
+$$\Delta(Lx) = G(\hat N)\,\rho, \qquad G(\hat N) = -L\hat N\,(A\hat N)^{-1}$$</div>
+<p>The leak is a transfer times a residual, so there are two protections: shrink the residual, or absorb where the transfer vanishes. Our controller does both. From joint sensing alone it re-anchors its surface belief at contact, and it absorbs along 𝒟, with the absorption direction set separately from the physical force direction.</p>
+</section>
+
+<figure class="ipcr-fig narrow">
+  <img src="{{ A }}img/fig02_concept.png" alt="IPCR at two levels: target and execution" loading="lazy">
+  <figcaption>Figure from the paper. (a) Target level: the nearest point drifts by |h| sin θ; the IPCR target corrects only along d. (b, c) Execution level: absorbing the residual along d keeps the preserved coordinates; along the estimated normal the same target leaks. (d) Compliance sets the absorption direction.</figcaption>
+</figure>
+
+<h2 class="narrow" id="results" style="max-width:760px">Results</h2>
+<p class="narrow">All results are from simulation (Gazebo and ROS 2 with a plant identified on the physical Dobot CR3A). Arms, metrics, decision rules and conditions were registered before each set of runs, and failed criteria are reported alongside the passes.</p>
+
+<section class="narrow">
+<h3>Same speed, same coverage, different placement</h3>
+<p>IPCR against the nearest point given the true normal, at 5 mm/s through both strokes on four boards. Both arms kept contact on 98–100 % of the figure, with no missing arc over 10°. Every registered criterion passed.</p>
+<div id="ipcr-chart-silent" class="ipcr-card"></div>
+<p class="ipcr-cap"><span style="color:var(--ipcr)">●</span> IPCR &nbsp; <span style="color:var(--np)">■</span> nearest point with the true normal. Per-run shifts were 0.23–0.94 mm and 10.5–18.2 mm, so averaging did not hide opposing errors. IPCR's shape error was also the smaller (0.9–1.1 mm vs 1.0–2.4 mm).</p>
+
+<h3>Against execution structures from the literature</h3>
+<p>Each rival runs on the same stack and pen with its most favorable sensing. IPCR has neither the true normal nor a force sensor.</p>
+<div id="ipcr-chart-compare" class="ipcr-card"></div>
+<p class="ipcr-cap">The two marks per row are the 8.5° and 15.6° boards (10 mm/s, 5 runs per cell). Motion-stiff compliance follows Shi et al. (2026) and ran in a later registered set; IPCR rerun on that set moved the figure 0.76 and 0.98 mm. On the role-reversal test, a task defined <i>on</i> the surface, the nearest point was the faithful rule (0.72–1.43 mm) and IPCR with a depth yield was not (10.6–39.1 mm): the right rule is whichever matches the task's yield subspace.</p>
+
+<h3>Is a task-aware target enough? No.</h3>
+<p>We crossed the target rule with the absorption direction, all with the true normal, and injected a residual by offsetting the believed plane by 10 mm. A task-aware target with normal absorption is the structure of the closest drawing systems. It matched IPCR when no residual was injected (0.28–0.69 mm), and leaked exactly as predicted once one was:</p>
+<div class="ipcr-grid2" aria-label="Leak under a 10 mm believed-plane offset, 15.6 degree board">
+  <div></div><div class="h">target along n<br>(nearest point)</div><div class="h">target along d<br>(task-aware)</div>
+  <div class="h">absorb<br>along d</div>
+  <div class="ipcr-cell bad"><div class="v">2.65</div><div class="p">predicted 2.69</div></div>
+  <div class="ipcr-cell good"><div class="v">0.35</div><div class="p">predicted 0 · IPCR</div></div>
+  <div class="h">absorb<br>along n</div>
+  <div class="ipcr-cell np"><div class="v">0.52</div><div class="p">predicted 0</div></div>
+  <div class="ipcr-cell bad"><div class="v">2.65</div><div class="p">predicted 2.69</div><div class="w">≈ closest prior drawing systems</div></div>
+</div>
+<p class="ipcr-cap" style="text-align:center">Leak of the figure (mm) under a 10 mm believed-plane offset, 15.6° board, mean of 4 runs (Table III of the paper, hold on). Across offsets of 2–20 mm the normal-absorption leak grew with slope 0.93 and 0.87 against the prediction, while IPCR's stayed at or below 0.65 mm.</p>
+
+<h3>The leakage law, measured</h3>
+<figure class="ipcr-fig" style="max-width:440px;margin-left:auto;margin-right:auto">
+  <img src="{{ A }}img/fig13_leak_robot.png" alt="Leakage law: measured vs predicted change of the preserved coordinates" loading="lazy">
+  <figcaption>72 registered runs on 3 walls under a ±15 mm residual: the change of the preserved coordinates follows G(N̂)ρ with slope 0.93 (r = 0.93), and falls from 3.0–4.3 mm with absorption along the normal (α = 1) to 0.12–0.69 mm along the yield direction (α = 0).</figcaption>
+</figure>
+
+<h3>Curved boards and a biased normal</h3>
+<p>Theorem 1 needs no planarity. With only a planar normal estimate, IPCR kept place and size on spheres of radius 150 and 250 mm and cylinders of 250 mm: shift 0.44–0.68 mm, scale 1.000–1.009. The nearest point given the true <i>local</i> normal moved the figure 15.5–21.9 mm on the spheres and the vertical cylinder. Rotating the normal estimate by ±3° moved the nearest-point figure by 8.2 mm and IPCR's by 0.27 mm, since IPCR's target does not use the normal for the preserved coordinates.</p>
+
+<h3>Same controller, different task</h3>
+<p>Changing only the task specification changed the realization as predicted. Over 108 runs (boards at 8.5°, 20° and 30°, friction 0 and 0.3, payloads 0.5–2.5 kg), the task “keep yaw” kept yaw within 1° in 54/54 runs and yielded a median 20.0 mm, the geometric requirement; “yaw free” turned in 54/54 runs (median −8.9°) and yielded less in 18/18 conditions. Against the nearest point with the true normal, IPCR's progress error stayed at its free-motion level (2.7–3.1 mm), while the nearest point added the amount predicted from geometry alone:</p>
+<div id="ipcr-chart-transport" class="ipcr-card" style="max-width:460px;margin:0 auto"></div>
+<p class="ipcr-cap" style="text-align:center">The 8.5° magnitude missed its registered criterion; at that tilt the metric is dominated by free-motion tracking.</p>
+</section>
+
+<section class="narrow">
+<h2>Limitations, stated plainly</h2>
+<div class="ipcr-limits">
+<ul>
+  <li><b>Speed costs coverage.</b> Holding the frontal motion exactly requires a depth velocity of up to v·tan θ. Our controller learns the slope late and corrects at a limited rate, so on steep boards at 10 mm/s it loses contact on part of the figure. Slowing down restores it. This is a limit of the implementation, not of the rule.</li>
+  <li><b>Force is regulated, not bounded.</b> Peaks above 30 N occurred, and IPCR's were no lower than the nearest point's.</li>
+  <li><b>Absorption matters only when a residual persists.</b> Residuals arising on their own were small on our boards; the difference between absorption directions was shown under injected offsets.</li>
+  <li><b>Scope.</b> The guarantee covers the task-selected coordinates only and presumes a correctly specified (𝒟, L). A curved surface's local attitude is not tracked. Hardware validation on the physical CR3A is in progress and will be reported with the paper.</li>
+</ul>
+</div>
+
+<h2>Citation</h2>
+<pre class="bib">@unpublished{kim2026ipcr,
+  title  = {Feasible Is Not Faithful: Intent-Preserving Constraint
+            Realization for Contact Tasks on Unknown Surfaces},
+  author = {Kim, Jeonghyeon and Park, Shinsuk},
+  note   = {Manuscript in preparation},
+  year   = {2026}
+}</pre>
+</section>
+
+<a class="ipcr-back" href="{{ '/projects/' | relative_url }}">&larr; All projects</a>
+</article>
+</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script>
+document.querySelectorAll('.ipcr-tabs button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('.ipcr-tabs button').forEach(function (x) { x.classList.toggle('on', x === b); });
+    document.querySelectorAll('.ipcr-tabpane').forEach(function (p) { p.hidden = p.dataset.pane !== b.dataset.tab; });
+    window.dispatchEvent(new Event('resize'));
+  });
+});
+</script>
+<script type="module" src="{{ A }}replay.js"></script>
+<script src="{{ A }}widgets.js"></script>
