@@ -25,9 +25,22 @@ A parasol that automatically reorients its canopy to track the sun and maximize 
 - Computed the canopy orientation needed to maximize shade from the sensor readings
 - Actuated the canopy angle with servo motors under Arduino control, mounted on a tripod base for standalone outdoor use
 
+![Control logic: check light sensors, then extend the actuator once every quadrant's sensor reports in shade](/assets/images/projects/solar-parasol/control-logic.png)
+*Closing logic: the canopy only extends once every photoresistor quadrant agrees the parasol is correctly oriented.*
+
+<video controls preload="metadata" style="width:100%; border-radius:4px;">
+  <source src="/assets/videos/solar-parasol/sim.mp4" type="video/mp4">
+</video>
+*Mechanism simulation: the four-panel canopy opening and closing before the physical build.*
+
 ## Results
 
 Demonstrated continuous shade tracking through the day on the physical prototype, winning the Bronze Award at the Creative Comprehensive Design Competition and the Design Award at Korea University's Capstone Design Fair.
+
+<video controls preload="metadata" style="width:100%; border-radius:4px;">
+  <source src="/assets/videos/solar-parasol/demo.mov" type="video/quicktime">
+</video>
+*Field test of the physical prototype.*
 
 ## Skills
 
