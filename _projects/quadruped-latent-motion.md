@@ -1,42 +1,34 @@
 ---
-title: "Transition-Stable Hierarchical Quadruped Control via Learned Latent Motion Representations"
+title: "Real-Time Perception for a CALM-Based Hierarchical Quadruped Controller"
 permalink: /projects/quadruped-latent-motion/
 date: 2026-01-01
 period: "2025 -- 2026"
-category: "Legged Robotics · Reinforcement Learning"
-status: "Working paper"
+category: "Legged Robotics · Perception"
 group: "research"
-role: "Co-author"
-skills: ["Python", "PyTorch", "Reinforcement Learning", "AprilTag", "ROS2"]
-summary: "Adapts CALM's latent motion representations to quadruped control for transition-stable locomotion and object interaction."
+role: "Contributor — Perception System"
+skills: ["Python", "OpenCV", "AprilTag", "ROS2"]
+summary: "Built the real-time dual-camera ball- and fiducial-tracking pipeline that fed task-relevant observations to a lab project adapting CALM's latent motion representations to quadruped object-interaction tasks."
 icon: "paw"
-links:
-  - label: "Video"
-    url: "https://www.youtube.com/watch?v=EZbM594T3c4"
 header:
   teaser: /assets/images/projects/quadruped-latent-motion/teaser.png
   image: # /assets/images/projects/quadruped-latent-motion/cover.jpg
 ---
 
-*Hyeyun Kim, Junyong Seo, **Jeonghyeon Kim**, Shinsuk Park*
-
 ## Abstract
 
-Adapts Conditional Adversarial Latent Models (CALM) — originally built for animating virtual characters — to quadruped control. A single latent-conditioned low-level controller is trained once from a reference motion dataset and shared across every task; task-specific high-level policies then pick latent codes to drive locomotion and object-interaction tasks (walk, move box, limbo, push button, kick) and the transitions between them. On a Unitree A1, the approach held up better under real-world sensing noise than end-to-end and hand-designed-command-space baselines, with smoother, more stable behavior right after each transition.
+Contributed the real-time perception system to a year-long lab project that adapted Conditional Adversarial Latent Models (CALM) — originally built for animating virtual characters — to quadruped control, so that high-level task policies (walk, move box, limbo, push button, kick) could act on live task-relevant observations rather than ground-truth simulation state. The wider project trained a single latent-conditioned low-level controller shared across tasks, with task-specific high-level policies picking latent codes; the project ultimately did not reach publication.
 
 ## Method
 
-- Low-level controller trained on a reference motion dataset (walking, crouched walking, foot positioning), conditioned on a unit-norm latent code regularized for a smooth, continuous latent manifold
-- Low-level controller kept fully task-agnostic and shared across all five tasks; high-level policies select latent codes from proprioceptive state and task-relevant goals (target, box, limbo gap, button, ball position)
-- AprilTag fiducial markers used for real-world task-observation estimation
-- Evaluated against AMP- and WTW-style baselines, in simulation and on hardware with injected observation noise, across five single tasks and three transitions (walk→move box, limbo→push button, limbo→kick)
+- Built a dual-camera perception system (fixed global view + onboard view) to track a ball and moving AprilTag fiducial markers in real time, for tasks where the target (box, limbo gap, button, ball) wasn't otherwise observable
+- Calibrated both cameras and transformed detections into a common coordinate frame, so target position stayed consistent as the robot moved and partial occlusion occurred
+- This real-world observation estimate stood in for the task-relevant goal positions that the high-level policies were trained on in simulation
+- Helped run the physical hardware trials on the Unitree A1, deploying the trained policies and the perception pipeline together on the real robot
 
-## Results
+## Status
 
-- Higher real-world success rate than both baselines, on single tasks and on transitions
-- Lower action smoothness, joint jerk, and gravity-vector-smoothness error right after a transition in nearly every case
-- One exception: limbo→kick, where the kick's impulsive leg strike inherently raises jerk and tilt — a locomotion-only baseline scored better on these metrics there *without* completing the task
+The broader CALM-adaptation project this fed into did not lead to a publication or further continuation under the first author.
 
 ## Skills
 
-`Python` `PyTorch` `Reinforcement Learning (PPO)` `ROS2` `AprilTag`
+`Python` `OpenCV` `AprilTag` `ROS2`

@@ -7,7 +7,7 @@ main:
     children:
       - title: "Intent-Preserving Manipulation (IPCR)"
         url: /projects/ipcr-manipulation/
-      - title: "Quadruped Latent Motion Control"
+      - title: "Quadruped Perception System"
         url: /projects/quadruped-latent-motion/
       - title: "Humanoid Push Recovery"
         url: /projects/humanoid-push-recovery/
