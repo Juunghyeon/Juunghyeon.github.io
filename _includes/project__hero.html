@@ -103,7 +103,7 @@
     </p>
   {% endif %}
 
-  {% if page.header.teaser %}
+  {% if page.header.teaser and page.hide_hero_teaser != true %}
     <div class="project-hero__banner">
       <img src="{{ page.header.teaser | relative_url }}" alt="{{ page.title }}">
     </div>
