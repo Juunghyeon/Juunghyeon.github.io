@@ -73,16 +73,6 @@ Built a monocular-camera obstacle-avoidance pipeline for the DOGZILLA quadruped,
 
 Won the President's Award (1st Place) at Korea University's Creative Challenger Program, and later presented the work at the KSPE 2025 Spring Conference.
 
-<video controls preload="metadata" style="width:100%; border-radius:4px;">
-  <source src="/assets/videos/ccp-quadruped/highlights.mp4" type="video/mp4">
-</video>
-*Highlight reel of the robot during development and testing.*
-
-<video controls preload="metadata" style="width:100%; border-radius:4px; margin-top:1.2em;">
-  <source src="/assets/videos/ccp-quadruped/test-clip.mp4" type="video/mp4">
-</video>
-*Raw clip from a lab test session.*
-
 ## Platform
 
 <div style="display:flex; align-items:center; gap:1.6em; flex-wrap:wrap; justify-content:center; margin:1.6em 0;">

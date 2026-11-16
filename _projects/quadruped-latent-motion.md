@@ -25,6 +25,16 @@ Contributed the real-time perception system to a year-long lab project that adap
 - This real-world observation estimate stood in for the task-relevant goal positions that the high-level policies were trained on in simulation
 - Helped run the physical hardware trials on the Unitree A1, deploying the trained policies and the perception pipeline together on the real robot
 
+<video controls preload="metadata" style="width:100%; border-radius:4px;">
+  <source src="/assets/videos/quadruped-latent-motion/highlights.mp4" type="video/mp4">
+</video>
+*Highlight reel from development and hardware testing.*
+
+<video controls preload="metadata" style="width:100%; border-radius:4px; margin-top:1.2em;">
+  <source src="/assets/videos/quadruped-latent-motion/test-clip.mp4" type="video/mp4">
+</video>
+*Raw clip from a lab test session.*
+
 ## Status
 
 The broader CALM-adaptation project this fed into did not lead to a publication or further continuation under the first author.
