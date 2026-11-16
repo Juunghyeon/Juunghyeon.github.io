@@ -48,6 +48,27 @@ function makeFloorTexture() {
   return tex;
 }
 
+function makeWorkshopFloorTexture() {
+  const c = document.createElement('canvas');
+  c.width = 256; c.height = 256;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = '#c9a876';
+  ctx.fillRect(0, 0, 256, 256);
+  ctx.strokeStyle = 'rgba(90,60,30,0.3)';
+  ctx.lineWidth = 2;
+  for (let y = 0; y <= 256; y += 32) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(256, y); ctx.stroke();
+  }
+  for (let i = 0; i < 300; i++) {
+    ctx.fillStyle = `rgba(70,45,20,${Math.random() * 0.08})`;
+    ctx.fillRect(Math.random() * 256, Math.random() * 256, 3, 1);
+  }
+  const tex = new THREE.CanvasTexture(c);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(6, 3);
+  return tex;
+}
+
 function makeHazardTexture() {
   const c = document.createElement('canvas');
   c.width = 128; c.height = 32;
@@ -701,6 +722,71 @@ function buildPegboard() {
   return g;
 }
 
+function buildSoccerBall(radius) {
+  const g = new THREE.Group();
+  const white = std(0xf4f4f0, { roughness: 0.55 });
+  const blackPatch = std(0x222222, { roughness: 0.6 });
+  const core = new THREE.Mesh(new THREE.SphereGeometry(radius, 18, 14), white);
+  g.add(core);
+  const pts = [
+    [0, 1, 0], [0.89, 0.45, 0], [0.28, 0.45, 0.85], [-0.72, 0.45, 0.52],
+    [-0.72, 0.45, -0.52], [0.28, 0.45, -0.85], [0, -1, 0]
+  ];
+  pts.forEach(([x, y, z]) => {
+    const len = Math.hypot(x, y, z) || 1;
+    const patch = new THREE.Mesh(new THREE.CircleGeometry(radius * 0.3, 5), blackPatch);
+    patch.position.set((x / len) * radius * 1.01, (y / len) * radius * 1.01, (z / len) * radius * 1.01);
+    patch.lookAt((x / len) * radius * 3, (y / len) * radius * 3, (z / len) * radius * 3);
+    g.add(patch);
+  });
+  return g;
+}
+
+function buildHobbyCorner() {
+  const g = new THREE.Group();
+  const rackMat = std(0x4a4d52, { metalness: 0.5, roughness: 0.4 });
+  const giMat = std(0xf2f0ea, { roughness: 0.85 });
+  const beltMat = std(0x1b3f8f, { roughness: 0.7 });
+
+  const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 1.7, 10), rackMat);
+  pole.position.y = 0.85; g.add(pole);
+  const baseRing = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.22, 0.03, 16), rackMat);
+  baseRing.position.y = 0.015; g.add(baseRing);
+  const peg = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.22, 8), rackMat);
+  peg.rotation.z = Math.PI / 2;
+  peg.position.set(0.1, 1.55, 0); g.add(peg);
+
+  const jacket = new THREE.Group();
+  jacket.position.set(0.1, 1.2, 0);
+  const torso = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.5, 0.08), giMat);
+  torso.position.y = -0.22;
+  jacket.add(torso);
+  const collar = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.14, 0.09), beltMat);
+  collar.position.y = 0.02;
+  jacket.add(collar);
+  [-1, 1].forEach((s) => {
+    const sleeve = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.4, 0.07), giMat);
+    sleeve.position.set(s * 0.23, -0.18, 0);
+    sleeve.rotation.z = s * 0.18;
+    jacket.add(sleeve);
+  });
+  const belt = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.06, 0.09), beltMat);
+  belt.position.y = -0.38;
+  jacket.add(belt);
+  [-0.07, 0.07].forEach((x) => {
+    const tail = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.22, 0.06), beltMat);
+    tail.position.set(x, -0.52, 0.02);
+    jacket.add(tail);
+  });
+  g.add(jacket);
+
+  const ball = buildSoccerBall(0.16);
+  ball.position.set(0.55, 0.16, 0.35);
+  g.add(ball);
+
+  return g;
+}
+
 // ---------- Room ----------
 const EXHIBITS = [
   { key: '/projects/ipcr-manipulation/', label: 'Manipulation', x: -6, z: -4, build: buildManipulatorArm, scale: 1.3 },
@@ -710,7 +796,16 @@ const EXHIBITS = [
   { key: '/projects/quadruped-latent-motion/', label: 'Quadruped Perception', x: -6, z: 0, build: buildQuadrupedSleek, scale: 1.3 },
   { key: '/projects/ccp-quadruped/', label: 'Quadruped (CCP)', x: -2, z: 0, build: buildQuadrupedChunky, scale: 1.3 },
   { key: '/projects/ladder-crossing/', label: 'Ladder Robot', x: 2, z: 0, build: buildLadderRig, scale: 1.3 },
-  { key: '/projects/solar-parasol/', label: 'Solar Parasol', x: 6, z: 0, build: buildParasol, scale: 1.3 }
+  { key: '/projects/solar-parasol/', label: 'Solar Parasol', x: 6, z: 0, build: buildParasol, scale: 1.3 },
+  {
+    label: 'Outside the Lab', x: 8, z: 4.6, build: buildHobbyCorner, scale: 1.3,
+    panel: {
+      title: 'Outside the Lab',
+      category: 'Soccer · Brazilian Jiu-Jitsu',
+      summary: "A few things I enjoy away from the lab — soccer most weekends, and Jiu-Jitsu competitions when I can make it out to one.",
+      url: '/outside-the-lab/'
+    }
+  }
 ];
 
 function init() {
@@ -718,10 +813,12 @@ function init() {
   scene.background = new THREE.Color(0xf4efe4);
   scene.fog = new THREE.Fog(0xf4efe4, 14, 30);
 
-  const UP = new THREE.Vector3(0, 1, 0);
-  const CAM_BACK = 3.6;
-  const CAM_HEIGHT = 2.0;
   const CAM_LOOK_HEIGHT = 1.05;
+  const CAM_DIST = 4.3;
+  const PITCH_MIN = 0.12;
+  const PITCH_MAX = 1.35;
+  let camYaw = 0;
+  let camPitch = 0.5;
   const camera = new THREE.PerspectiveCamera(55, container.clientWidth / container.clientHeight, 0.1, 100);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
@@ -743,12 +840,24 @@ function init() {
   dir.shadow.camera.bottom = -9;
   scene.add(dir);
 
-  // Floor
-  const floorMat = new THREE.MeshStandardMaterial({ map: makeFloorTexture(), roughness: 0.85, metalness: 0.05 });
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(20, 14), floorMat);
-  floor.rotation.x = -Math.PI / 2;
-  floor.receiveShadow = true;
-  scene.add(floor);
+  // Floor — split so the two zones read as naturally different spaces
+  const researchFloor = new THREE.Mesh(
+    new THREE.PlaneGeometry(20, 5),
+    new THREE.MeshStandardMaterial({ map: makeFloorTexture(), roughness: 0.85, metalness: 0.05 })
+  );
+  researchFloor.rotation.x = -Math.PI / 2;
+  researchFloor.position.set(0, 0, -4.5);
+  researchFloor.receiveShadow = true;
+  scene.add(researchFloor);
+
+  const workshopFloor = new THREE.Mesh(
+    new THREE.PlaneGeometry(20, 9),
+    new THREE.MeshStandardMaterial({ map: makeWorkshopFloorTexture(), roughness: 0.9 })
+  );
+  workshopFloor.rotation.x = -Math.PI / 2;
+  workshopFloor.position.set(0, 0, 2.5);
+  workshopFloor.receiveShadow = true;
+  scene.add(workshopFloor);
 
   // Hazard-stripe zone divider (Research / Coursework)
   const divider = new THREE.Mesh(
@@ -758,6 +867,15 @@ function init() {
   divider.rotation.x = -Math.PI / 2;
   divider.position.set(0, 0.015, -2);
   scene.add(divider);
+
+  const hobbyMat = new THREE.Mesh(
+    new THREE.CircleGeometry(1.7, 24),
+    new THREE.MeshStandardMaterial({ color: 0x2f6b5e, roughness: 0.95 })
+  );
+  hobbyMat.rotation.x = -Math.PI / 2;
+  hobbyMat.position.set(8, 0.012, 4.6);
+  hobbyMat.receiveShadow = true;
+  scene.add(hobbyMat);
 
   // Walls
   const wallMat = new THREE.MeshStandardMaterial({ color: 0xe6e9eb, roughness: 0.95 });
@@ -821,7 +939,7 @@ function init() {
     const label = makeLabelSprite(ex.label);
     label.position.set(ex.x, 1.9, ex.z);
     scene.add(label);
-    g.userData.exKey = ex.key;
+    g.userData.panel = ex.panel || PROJECTS[ex.key] || { title: ex.label };
     g.userData.exX = ex.x;
     g.userData.exZ = ex.z;
     exhibitMeshes.push(g);
@@ -833,47 +951,86 @@ function init() {
   avatar.group.rotation.y = Math.PI;
   scene.add(avatar.group);
 
-  const initialOffset = new THREE.Vector3(0, CAM_HEIGHT, -CAM_BACK).applyAxisAngle(UP, avatar.group.rotation.y);
-  camera.position.copy(avatar.group.position).add(initialOffset);
+  function computeCamPos() {
+    return new THREE.Vector3(
+      avatar.group.position.x + Math.sin(camYaw) * Math.cos(camPitch) * CAM_DIST,
+      avatar.group.position.y + Math.sin(camPitch) * CAM_DIST + CAM_LOOK_HEIGHT,
+      avatar.group.position.z + Math.cos(camYaw) * Math.cos(camPitch) * CAM_DIST
+    );
+  }
+  camera.position.copy(computeCamPos());
   camera.lookAt(avatar.group.position.x, avatar.group.position.y + CAM_LOOK_HEIGHT, avatar.group.position.z);
 
   let target = null;
-  let arrivedKey = null;
+  let arrivedPanel = null;
 
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
+  renderer.domElement.style.touchAction = 'none';
 
-  function onPointer(ev) {
+  function pointerXY(ev) {
+    if (ev.clientX !== undefined) return { x: ev.clientX, y: ev.clientY };
+    const t = ev.changedTouches && ev.changedTouches[0];
+    return t ? { x: t.clientX, y: t.clientY } : { x: 0, y: 0 };
+  }
+
+  let dragging = false;
+  let dragged = false;
+  let lastX = 0, lastY = 0;
+
+  function handleClick(ev) {
     const rect = renderer.domElement.getBoundingClientRect();
-    const cx = ev.clientX !== undefined ? ev.clientX : (ev.changedTouches && ev.changedTouches[0].clientX);
-    const cy = ev.clientY !== undefined ? ev.clientY : (ev.changedTouches && ev.changedTouches[0].clientY);
-    pointer.x = ((cx - rect.left) / rect.width) * 2 - 1;
-    pointer.y = -((cy - rect.top) / rect.height) * 2 + 1;
+    const p = pointerXY(ev);
+    pointer.x = ((p.x - rect.left) / rect.width) * 2 - 1;
+    pointer.y = -((p.y - rect.top) / rect.height) * 2 + 1;
     raycaster.setFromCamera(pointer, camera);
     const hits = raycaster.intersectObjects(exhibitMeshes, true);
     if (hits.length) {
       let obj = hits[0].object;
-      while (obj && !obj.userData.exKey) obj = obj.parent;
+      while (obj && !obj.userData.panel) obj = obj.parent;
       if (obj) {
         target = new THREE.Vector3(obj.userData.exX, 0, obj.userData.exZ + 1.4);
-        target.exKey = obj.userData.exKey;
+        target.panelData = obj.userData.panel;
         target.lookX = obj.userData.exX;
         target.lookZ = obj.userData.exZ;
-        arrivedKey = null;
+        arrivedPanel = null;
         hidePanel();
         if (hint) hint.classList.add('lab-hint--hidden');
       }
     }
   }
-  renderer.domElement.addEventListener('pointerdown', onPointer);
 
-  function showPanel(key) {
-    const data = PROJECTS[key];
+  renderer.domElement.addEventListener('pointerdown', (ev) => {
+    if (ev.button !== undefined && ev.button !== 0) return;
+    dragging = true;
+    dragged = false;
+    const p = pointerXY(ev);
+    lastX = p.x; lastY = p.y;
+  });
+  window.addEventListener('pointermove', (ev) => {
+    if (!dragging) return;
+    const p = pointerXY(ev);
+    const dx = p.x - lastX;
+    const dy = p.y - lastY;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) dragged = true;
+    if (dragged) {
+      camYaw -= dx * 0.006;
+      camPitch = THREE.MathUtils.clamp(camPitch - dy * 0.005, PITCH_MIN, PITCH_MAX);
+      lastX = p.x; lastY = p.y;
+    }
+  });
+  window.addEventListener('pointerup', (ev) => {
+    if (!dragging) return;
+    dragging = false;
+    if (!dragged) handleClick(ev);
+  });
+
+  function showPanel(data) {
     if (!data || !panel) return;
     panelCategory.textContent = data.category || '';
     panelTitle.textContent = data.title || '';
     panelSummary.textContent = data.summary || '';
-    panelLink.href = data.url;
+    panelLink.href = data.url || '#';
     panel.classList.add('lab-panel--open');
   }
   function hidePanel() {
@@ -910,18 +1067,17 @@ function init() {
       } else {
         const lookAngle = Math.atan2(target.lookX - pos.x, target.lookZ - pos.z);
         avatar.group.rotation.y = lerpAngle(avatar.group.rotation.y, lookAngle, 0.25);
-        if (arrivedKey !== target.exKey) {
-          arrivedKey = target.exKey;
-          showPanel(target.exKey);
+        if (arrivedPanel !== target.panelData) {
+          arrivedPanel = target.panelData;
+          showPanel(target.panelData);
         }
         target = null;
       }
     }
     avatar.update(dt, moving);
 
-    const backOffset = new THREE.Vector3(0, CAM_HEIGHT, -CAM_BACK).applyAxisAngle(UP, avatar.group.rotation.y);
-    const desiredCamPos = avatar.group.position.clone().add(backOffset);
-    camera.position.lerp(desiredCamPos, 0.08);
+    const desiredCamPos = computeCamPos();
+    camera.position.lerp(desiredCamPos, 0.12);
     camera.position.x = THREE.MathUtils.clamp(camera.position.x, -8.6, 9.6);
     camera.position.z = THREE.MathUtils.clamp(camera.position.z, -6.5, 7.5);
     camera.lookAt(avatar.group.position.x, avatar.group.position.y + CAM_LOOK_HEIGHT, avatar.group.position.z);
