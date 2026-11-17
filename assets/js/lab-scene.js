@@ -30,13 +30,13 @@ function makeFloorTexture() {
   const c = document.createElement('canvas');
   c.width = 256; c.height = 256;
   const ctx = c.getContext('2d');
-  ctx.fillStyle = '#c9cdd1';
+  ctx.fillStyle = '#303d49';
   ctx.fillRect(0, 0, 256, 256);
   for (let i = 0; i < 500; i++) {
     ctx.fillStyle = `rgba(0,0,0,${Math.random() * 0.035})`;
     ctx.fillRect(Math.random() * 256, Math.random() * 256, 2, 2);
   }
-  ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+  ctx.strokeStyle = 'rgba(5,12,20,0.65)';
   ctx.lineWidth = 2;
   for (let i = 0; i <= 256; i += 64) {
     ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, 256); ctx.stroke();
@@ -52,12 +52,16 @@ function makeWorkshopFloorTexture() {
   const c = document.createElement('canvas');
   c.width = 256; c.height = 256;
   const ctx = c.getContext('2d');
-  ctx.fillStyle = '#c9a876';
+  ctx.fillStyle = '#222b34';
   ctx.fillRect(0, 0, 256, 256);
-  ctx.strokeStyle = 'rgba(90,60,30,0.3)';
-  ctx.lineWidth = 2;
-  for (let y = 0; y <= 256; y += 32) {
-    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(256, y); ctx.stroke();
+  // Subtle alternating weave rather than wood planks; one reusable texture.
+  for (let y = 0; y < 256; y += 8) {
+    for (let x = 0; x < 256; x += 8) {
+      ctx.fillStyle = ((x + y) / 8) % 2 ? '#2a333c' : '#202933';
+      ctx.fillRect(x, y, 7, 7);
+      ctx.fillStyle = 'rgba(140,165,185,0.10)';
+      ctx.fillRect(x, y, 6, 1);
+    }
   }
   for (let i = 0; i < 300; i++) {
     ctx.fillStyle = `rgba(70,45,20,${Math.random() * 0.08})`;
@@ -75,7 +79,7 @@ function makeHazardTexture() {
   const ctx = c.getContext('2d');
   ctx.fillStyle = '#1a1a1a';
   ctx.fillRect(0, 0, 128, 32);
-  ctx.fillStyle = '#f2c230';
+  ctx.fillStyle = '#81cce3';
   for (let x = -32; x < 128; x += 32) {
     ctx.beginPath();
     ctx.moveTo(x, 32); ctx.lineTo(x + 16, 32); ctx.lineTo(x + 32, 0); ctx.lineTo(x + 16, 0);
@@ -639,7 +643,7 @@ function buildParasol() {
 // ---------- Lab dressing ----------
 function buildCeilingLight() {
   const g = new THREE.Group();
-  const housing = std(0xdedede, { metalness: 0.2, roughness: 0.6 });
+  const housing = std(0x253340, { metalness: 0.6, roughness: 0.4 });
   const panel = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.9, roughness: 0.9 });
   const frame = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.08, 0.5), housing);
   g.add(frame);
@@ -651,7 +655,7 @@ function buildCeilingLight() {
 
 function buildWorkbench() {
   const g = new THREE.Group();
-  const topMat = std(0xb9bec4, { metalness: 0.3, roughness: 0.5 });
+  const topMat = std(0x354957, { metalness: 0.55, roughness: 0.4 });
   const legMat = std(0x454b52, { metalness: 0.5, roughness: 0.4 });
   const screenMat = std(0x1a1d22, { metalness: 0.2, roughness: 0.6 });
   const glowMat = new THREE.MeshStandardMaterial({ color: 0x8fd3ff, emissive: 0x3a7bd5, emissiveIntensity: 0.6, side: THREE.DoubleSide });
@@ -787,6 +791,133 @@ function buildHobbyCorner() {
   return g;
 }
 
+// Static room dressing only; never registered as an interactive exhibit.
+function buildStudio(scene) {
+  const steel = std(0x263440, { metalness: 0.65, roughness: 0.42 });
+  const charcoal = std(0x111c28, { metalness: 0.35, roughness: 0.68 });
+  const warm = std(0x785440, { roughness: 0.75 });
+  const blue = new THREE.MeshBasicMaterial({ color: 0x8bdeff });
+  const amber = new THREE.MeshBasicMaterial({ color: 0xffba70 });
+  const white = new THREE.MeshBasicMaterial({ color: 0xd9efff });
+  function box(w, h, d, x, y, z, mat = steel, parent = scene) {
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+    mesh.position.set(x, y, z);
+    mesh.receiveShadow = true;
+    parent.add(mesh);
+    return mesh;
+  }
+  function graphic(title, subtitle, kind) {
+    const c = document.createElement('canvas'); c.width = 1024; c.height = 512;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#0c1b2b'; ctx.fillRect(0, 0, 1024, 512);
+    ctx.strokeStyle = '#1b3549'; ctx.lineWidth = 1;
+    for (let x = 0; x < 1024; x += 32) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 512); ctx.stroke(); }
+    for (let y = 0; y < 512; y += 32) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(1024, y); ctx.stroke(); }
+    ctx.fillStyle = kind === 'maker' ? '#ffba70' : '#a8e7ff';
+    ctx.font = '600 44px Arial'; ctx.fillText(title, 48, 75);
+    ctx.font = '20px Arial'; ctx.fillText(subtitle, 48, 113);
+    ctx.strokeStyle = kind === 'maker' ? '#c38c62' : '#568fad'; ctx.lineWidth = 3;
+    // Abstract linkage / trajectory study, intentionally not a claim of live telemetry.
+    for (let i = 0; i < 3; i++) {
+      const x = 190 + i * 310;
+      ctx.beginPath(); ctx.arc(x, 300, 90, 0, Math.PI * 2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x - 100, 410); ctx.lineTo(x, 300); ctx.lineTo(x + 60, 220); ctx.stroke();
+      ctx.strokeRect(x - 14, 286, 28, 28);
+    }
+    ctx.font = '17px monospace'; ctx.fillText('IDEA  /  BUILD  /  TEST  /  REPEAT', 48, 475);
+    const texture = new THREE.CanvasTexture(c); texture.colorSpace = THREE.SRGBColorSpace;
+    return new THREE.MeshBasicMaterial({ map: texture });
+  }
+  function display(w, h, x, y, z, material, rotation = 0) {
+    const g = new THREE.Group(); g.position.set(x, y, z); g.rotation.y = rotation; scene.add(g);
+    box(w + 0.16, h + 0.16, 0.10, 0, 0, 0, steel, g);
+    const screen = new THREE.Mesh(new THREE.PlaneGeometry(w, h), material);
+    screen.position.z = 0.058; g.add(screen);
+    box(w, 0.025, 0.025, 0, -h / 2 - 0.1, 0.06, blue, g);
+  }
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(20, 14),
+    std(0xffffff, { map: makeFloorTexture(), metalness: 0.35, roughness: 0.62 }));
+  floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+  const makerFloor = new THREE.Mesh(new THREE.PlaneGeometry(12, 5.8),
+    std(0xffffff, { map: makeWorkshopFloorTexture(), roughness: 0.8, metalness: 0.15 }));
+  makerFloor.rotation.x = -Math.PI / 2; makerFloor.position.set(3.5, 0.006, 1.5); scene.add(makerFloor);
+  box(20, 4.5, 0.12, 0, 2.25, -7, charcoal);
+  box(0.12, 4.5, 14, -10, 2.25, 0, charcoal);
+  // Brushed ribs, recessed wall panels and continuous architectural lighting.
+  for (let x = -9; x <= 9; x += 3) {
+    box(0.06, 4.4, 0.16, x, 2.2, -6.87);
+    box(0.025, 2.6, 0.035, x + 0.08, 2.5, -6.77, blue);
+  }
+  box(20, 0.06, 0.06, 0, 0.18, -6.8, blue);
+  box(20, 0.04, 0.08, 0, 4.3, -6.8, white);
+  box(0.06, 0.06, 14, -9.8, 0.18, 0, blue);
+  box(0.08, 0.04, 14, -9.8, 4.3, 0, white);
+  display(10, 2.3, 0.3, 2.95, -6.8,
+    graphic('RESEARCH / ROBOT INTELLIGENCE', 'PERCEPTION   +   CONTROL   +   LEARNING', 'research'));
+  display(2.8, 1.4, -9.8, 2.8, 0.6,
+    graphic('THE MAKER DESK', 'MECHANISMS / EARLY EXPLORATIONS', 'maker'), Math.PI / 2);
+  // Flush floor outlines identify research (ice blue) versus coursework (amber).
+  // The research quadruped remains in its original bay, connected by the blue spine.
+  EXHIBITS.slice(0, 8).forEach((ex, i) => {
+    const mat = i < 5 ? blue : amber;
+    [-1.45, 1.45].forEach(dx => box(0.025, 0.012, 2.35, ex.x + dx, 0.019, ex.z, mat));
+    [-1.18, 1.18].forEach(dz => box(2.92, 0.012, 0.025, ex.x, 0.019, ex.z + dz, mat));
+  });
+  box(0.035, 0.012, 6, -7.9, 0.02, -2, blue);
+  box(11, 0.012, 0.035, 2, 0.02, 1.55, amber);
+  // Side-wall desk: walnut accent, dual screens, keyboard and a compact PC tower.
+  box(0.9, 0.10, 3.2, -9.15, 0.9, 0.6, warm);
+  [-0.7, 1.9].forEach(z => box(0.65, 0.85, 0.12, -9.15, 0.43, z));
+  box(0.04, 0.025, 3.1, -8.68, 0.86, 0.6, amber);
+  const monitorMat = graphic('BUILD / TEST', 'ROBOTICS WORKSPACE', 'research');
+  [-0.15, 1.15].forEach(z => {
+    display(1.15, 0.63, -9.35, 1.45, z, monitorMat, Math.PI / 2);
+    box(0.08, 0.25, 0.08, -9.35, 1.07, z);
+  });
+  box(0.24, 0.025, 0.75, -8.95, 0.97, 0.5, charcoal);
+  box(0.4, 0.65, 0.5, -9.1, 0.34, 1.45, charcoal);
+  box(0.025, 0.5, 0.025, -8.89, 0.36, 1.6, blue);
+  // Gaming chair, kept against the wall and outside exhibit approach paths.
+  box(0.65, 0.12, 0.65, -8.05, 0.55, 0.55, charcoal);
+  const back = box(0.12, 0.85, 0.62, -7.75, 0.97, 0.55, charcoal); back.rotation.z = -0.12;
+  box(0.13, 0.46, 0.04, -7.82, 1.02, 0.29, blue);
+  box(0.13, 0.46, 0.04, -7.82, 1.02, 0.81, blue);
+  box(0.08, 0.45, 0.08, -8.05, 0.25, 0.55);
+  box(0.7, 0.06, 0.08, -8.05, 0.06, 0.55);
+  box(0.08, 0.06, 0.7, -8.05, 0.06, 0.55);
+  // Tool wall and a few loose components express a hands-on workshop.
+  const tools = buildPegboard(); tools.position.set(-9.82, 2.4, -4.4); tools.rotation.y = Math.PI / 2; scene.add(tools);
+  const bench = buildWorkbench(); bench.position.set(-9.25, 0, -4.4); bench.rotation.y = Math.PI / 2; scene.add(bench);
+  // A personal shelf near the existing sports corner; awards have no invented labels.
+  box(2.5, 0.1, 0.65, 7.8, 1.25, 6.1, warm);
+  box(2.5, 0.045, 0.06, 7.8, 1.17, 5.78, amber);
+  const gold = std(0xe3b65e, { metalness: 0.7, roughness: 0.3 });
+  [7.1, 7.8, 8.5].forEach((x, i) => {
+    box(0.28, 0.07, 0.26, x, 1.34, 6.1, charcoal);
+    const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.07, 0.24 + i * 0.05, 10, 1, true), gold);
+    cup.position.set(x, 1.6, 6.1); scene.add(cup);
+    box(0.045, 0.16, 0.045, x, 1.43, 6.1, gold);
+  });
+  [7.2, 7.7, 8.2].forEach(x => {
+    box(0.06, 0.45, 0.025, x, 0.91, 5.91, blue);
+    const medal = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 0.025, 12), gold);
+    medal.rotation.x = Math.PI / 2; medal.position.set(x, 0.65, 5.91); scene.add(medal);
+  });
+  scene.add(makeLabelSprite('UNDERGRAD').translateX(2).translateY(2.9).translateZ(1.1));
+  scene.add(makeLabelSprite('RESEARCH').translateX(-6).translateY(2.9).translateZ(-1.3));
+  scene.add(makeLabelSprite('KEEP MOVING').translateX(7.8).translateY(2.7).translateZ(6.1));
+  const key = new THREE.DirectionalLight(0xe3f2ff, 2.4); key.position.set(3, 9, 5);
+  key.castShadow = true; key.shadow.mapSize.set(1024, 1024);
+  Object.assign(key.shadow.camera, { left: -11, right: 11, top: 9, bottom: -9 });
+  key.shadow.normalBias = 0.035; scene.add(key);
+  scene.add(new THREE.HemisphereLight(0xb6d9ff, 0x30303c, 1.1));
+  const rim = new THREE.PointLight(0x65bdff, 65, 17, 2); rim.position.set(0, 3.5, -5.8); scene.add(rim);
+  const deskLight = new THREE.PointLight(0xffbd80, 28, 10, 2); deskLight.position.set(-7, 3, 2); scene.add(deskLight);
+  [-4, 0].forEach(z => {
+    const light = buildCeilingLight(); light.position.set(0, 4.3, z); scene.add(light);
+  });
+}
+
 // ---------- Room ----------
 const EXHIBITS = [
   { key: '/projects/ipcr-manipulation/', label: 'Manipulation', x: -6, z: -4, build: buildManipulatorArm, scale: 1.3 },
@@ -810,8 +941,8 @@ const EXHIBITS = [
 
 function init() {
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xf4efe4);
-  scene.fog = new THREE.Fog(0xf4efe4, 14, 30);
+  scene.background = new THREE.Color(0x0b1420);
+  scene.fog = new THREE.Fog(0x0b1420, 22, 46);
 
   const CAM_LOOK_HEIGHT = 1.05;
   const CAM_DIST = 4.3;
@@ -828,105 +959,7 @@ function init() {
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   container.appendChild(renderer.domElement);
 
-  const hemi = new THREE.HemisphereLight(0xffffff, 0xcbbfa3, 0.9);
-  scene.add(hemi);
-  const dir = new THREE.DirectionalLight(0xfff4e0, 1.1);
-  dir.position.set(6, 10, 6);
-  dir.castShadow = true;
-  dir.shadow.mapSize.set(1024, 1024);
-  dir.shadow.camera.left = -11;
-  dir.shadow.camera.right = 11;
-  dir.shadow.camera.top = 9;
-  dir.shadow.camera.bottom = -9;
-  scene.add(dir);
-
-  // Floor — split so the two zones read as naturally different spaces
-  const researchFloor = new THREE.Mesh(
-    new THREE.PlaneGeometry(20, 5),
-    new THREE.MeshStandardMaterial({ map: makeFloorTexture(), roughness: 0.85, metalness: 0.05 })
-  );
-  researchFloor.rotation.x = -Math.PI / 2;
-  researchFloor.position.set(0, 0, -4.5);
-  researchFloor.receiveShadow = true;
-  scene.add(researchFloor);
-
-  const workshopFloor = new THREE.Mesh(
-    new THREE.PlaneGeometry(20, 9),
-    new THREE.MeshStandardMaterial({ map: makeWorkshopFloorTexture(), roughness: 0.9 })
-  );
-  workshopFloor.rotation.x = -Math.PI / 2;
-  workshopFloor.position.set(0, 0, 2.5);
-  workshopFloor.receiveShadow = true;
-  scene.add(workshopFloor);
-
-  // Hazard-stripe zone divider (Research / Coursework)
-  const divider = new THREE.Mesh(
-    new THREE.PlaneGeometry(17, 0.35),
-    new THREE.MeshStandardMaterial({ map: makeHazardTexture(), roughness: 0.8 })
-  );
-  divider.rotation.x = -Math.PI / 2;
-  divider.position.set(0, 0.015, -2);
-  scene.add(divider);
-
-  const hobbyMat = new THREE.Mesh(
-    new THREE.CircleGeometry(1.7, 24),
-    new THREE.MeshStandardMaterial({ color: 0x2f6b5e, roughness: 0.95 })
-  );
-  hobbyMat.rotation.x = -Math.PI / 2;
-  hobbyMat.position.set(8, 0.012, 4.6);
-  hobbyMat.receiveShadow = true;
-  scene.add(hobbyMat);
-
-  // Walls
-  const wallMat = new THREE.MeshStandardMaterial({ color: 0xe6e9eb, roughness: 0.95 });
-  const backWall = new THREE.Mesh(new THREE.PlaneGeometry(20, 4.5), wallMat);
-  backWall.position.set(0, 2.25, -6.95);
-  backWall.receiveShadow = true;
-  scene.add(backWall);
-  const sideWall = new THREE.Mesh(new THREE.PlaneGeometry(14, 4.5), wallMat);
-  sideWall.position.set(-9.95, 2.25, 0);
-  sideWall.rotation.y = Math.PI / 2;
-  sideWall.receiveShadow = true;
-  scene.add(sideWall);
-
-  const baseboardMat = std(0x2a2d31, { roughness: 0.8 });
-  const baseBack = new THREE.Mesh(new THREE.BoxGeometry(20, 0.16, 0.05), baseboardMat);
-  baseBack.position.set(0, 0.08, -6.92);
-  scene.add(baseBack);
-  const baseSide = new THREE.Mesh(new THREE.BoxGeometry(14, 0.16, 0.05), baseboardMat);
-  baseSide.rotation.y = Math.PI / 2;
-  baseSide.position.set(-9.92, 0.08, 0);
-  scene.add(baseSide);
-
-  // Lab furniture along the side wall
-  const pegboard = buildPegboard();
-  pegboard.position.set(-9.9, 2.0, -4.5);
-  pegboard.rotation.y = Math.PI / 2;
-  enableShadows(pegboard);
-  scene.add(pegboard);
-
-  const workbench = buildWorkbench();
-  workbench.position.set(-9.3, 0, -1.2);
-  workbench.rotation.y = Math.PI / 2;
-  enableShadows(workbench);
-  scene.add(workbench);
-
-  const shelf = buildShelfUnit();
-  shelf.position.set(-9.3, 0, 2.6);
-  shelf.rotation.y = Math.PI / 2;
-  enableShadows(shelf);
-  scene.add(shelf);
-
-  [-6, -2, 2, 6].forEach((x) => {
-    [-4, 0].forEach((z) => {
-      const light = buildCeilingLight();
-      light.position.set(x, 4.3, z);
-      scene.add(light);
-    });
-  });
-
-  scene.add(makeLabelSprite('Research Lab').translateX(-7).translateY(2.8).translateZ(-6.6));
-  scene.add(makeLabelSprite('Workshop').translateX(-7).translateY(2.8).translateZ(0.4));
+  buildStudio(scene);
 
   // Exhibits
   const exhibitMeshes = [];
