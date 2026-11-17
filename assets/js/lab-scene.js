@@ -200,6 +200,16 @@ function createAvatar() {
   fringe.position.set(0, 0.8, 0.02);
   hips.add(fringe);
 
+  const faceTex = new THREE.TextureLoader().load('/assets/images/bio-photo.jpg');
+  if ('colorSpace' in faceTex) faceTex.colorSpace = THREE.SRGBColorSpace;
+  faceTex.wrapS = faceTex.wrapT = THREE.ClampToEdgeWrapping;
+  faceTex.offset.set(0.26, 0.3);
+  faceTex.repeat.set(0.48, 0.62);
+  const faceMat = new THREE.MeshStandardMaterial({ map: faceTex, roughness: 0.9, metalness: 0, side: THREE.DoubleSide });
+  const face = new THREE.Mesh(new THREE.PlaneGeometry(0.25, 0.32), faceMat);
+  face.position.set(0, 0.805, 0.165);
+  hips.add(face);
+
   function makeArm() {
     const pivot = new THREE.Group();
     const upper = new THREE.Mesh(new THREE.CapsuleGeometry(0.055, 0.24, 4, 12), shirtMat);
