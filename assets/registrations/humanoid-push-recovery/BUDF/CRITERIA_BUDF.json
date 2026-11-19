@@ -1,0 +1,19 @@
+{
+ "id": "BUDF: holdable force versus information latency - test of the LIP prediction F_max(L) = F_max(0) exp(-omega L)",
+ "registered": "2026-10-28, before any BUDF run. Derivation: LIP with the CoP at the centre until the hold starts at L and at the support edge e afterwards, constant force F for T; holding requires the DCM at T inside e, giving F <= m omega^2 e exp(omega T)/(exp(omega T) - 1) * exp(-omega L); the ratio between delays depends only on omega = sqrt(g/h), h = 0.684 m (PL1), omega = 3.787 1/s. Prior: the CoP-only model under-predicted absolute boundaries (PL1), so only ratios are tested. Dev evidence: BUD2 (lateral 70 N cliff between 10 and 20 ms)",
+ "arm": "final controller with the oracle (true push force, delayed by L) in the hold-first entry and decision; force-bound release disabled (RA_ARB_F/FX unset) so that only the capture prediction releases a step",
+ "conditions": {
+  "delays": "L in {0, 20, 40, 80} ms (oracle delay; entry adds a constant 2-tick rule, which cancels in the ratios)",
+  "directions": "y+ (lateral): F in {55, 60, ..., 90} N; x+ (fore-aft): F in {35, 40, ..., 70} N; 0.2 s impulse",
+  "noise (reported, no prediction)": "y+, L = 0, white noise 6 and 12 N per axis on the oracle",
+  "seeds": "1240-1242 (fresh)"
+ },
+ "boundary": "per direction and delay: force at which the fraction of zero-step holds crosses 0.5 (linear interpolation between neighbouring forces; if all forces held or none, the boundary is censored at the end of the range and the ratio is not tested)",
+ "predictions": {
+  "F1 monotone": "boundary non-increasing in L for both directions",
+  "F2 exponential ratio": "boundary(L)/boundary(0) within +-0.08 of exp(-omega L) = 0.927, 0.860, 0.739 for L = 20, 40, 80 ms, for every testable direction-delay pair",
+  "F3 better than linear-in-L null": "reported: sum of squared ratio errors of the exponential vs a best-fit straight line through (0, 1)"
+ },
+ "runs": "2 directions x 4 delays x 8 forces x 3 seeds = 192, plus 2 noise x 8 forces x 3 seeds = 48",
+ "no_threshold_changes_after_results": true
+}

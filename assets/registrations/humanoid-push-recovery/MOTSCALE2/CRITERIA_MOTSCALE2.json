@@ -1,0 +1,13 @@
+{
+ "id": "MOTSCALE2: registered follow-up to MOTSCALE part A - fore-aft force grid corrected",
+ "registered": "2026-11-12, after the MOTSCALE part-A fore-aft runs of seeds 1400-1401 were seen and before any MOTSCALE2 run.",
+ "reason": "Design error in CRITERIA_MOTSCALE.json: the fore-aft grid started at 25 N, which equals the hold-entry threshold (estimate > 25 N) of the evaluation configuration. At 25 N the hold layer does not engage and the baseline steps, so the lowest grid force is not held and the registered rule marks the boundary as censored, although pushes of 30-50 N are held. BUDF's fore-aft grid started at 35 N. MOTSCALE part A is reported under its own registered rules (D1 expected not met because of this censoring); this follow-up repeats only the fore-aft part with a corrected grid on new seeds. The lateral part (grid 40-90 N) is unaffected and is taken from MOTSCALE unchanged.",
+ "design": "as MOTSCALE part A (true push force delayed, evaluation configuration, conditions Q, L, M, LM, delays 0/20/40 ms), fore-aft x+ only, forces 30-70 N in 5 N steps, seeds 1403-1405 (new); 4 x 3 x 9 x 3 = 324 runs; tag msc",
+ "predictions": {
+  "D1x (primary)": "for L, M and LM: |F*(L)/F*(0) - exp(-omega L)| <= 0.08 at L = 20 and 40 ms (6 checks, met if all pass; censored counts as failed)",
+  "D2x (primary)": "|Delta_LM - (Delta_L + Delta_M)| <= 7.5 N, Delta_X = F*_Q(0) - F*_X(0)",
+  "combined statement": "the delay-ratio claim for both directions uses MOTSCALE lateral (D1 lateral checks) and MOTSCALE2 fore-aft (D1x)"
+ },
+ "unchanged": "boundary rule (budf_analyze.py: 50 % crossing, censored if the lowest force is below 50 % or no crossing), fall criterion CRITERIA_FC.json, tolerance 0.08, additivity tolerance 7.5 N",
+ "analysis": "motscale2_analyze.py (written before the runs)"
+}

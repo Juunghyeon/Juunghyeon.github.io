@@ -1,0 +1,14 @@
+{
+ "id": "EST2: follow-up of EST1b with a corrected latency definition - does the hold-entry latency measured in the push direction predict the enhanced momentum observer's holdable force?",
+ "registered": "2026-11-04, after EST1b (not met: enhanced MOB fore-aft 0.85 vs 0.96 predicted from its first, wrong-direction entry) and before any EST2 run. EST1b stays reported as not met; EST2 tests the latency law with a definition that excludes wrong-direction entries. The estimator, its parameters and the controller are unchanged.",
+ "arms": {"OR": "oracle, as EST1", "EM": "enhanced momentum observer, RA_EST_ALT=emo, as EST1b"},
+ "conditions": {"directions": "x+: {37.5, ..., 57.5} N; y+: {57.5, ..., 80} N; 0.2 s impulse", "seeds": "1352-1355 (fresh)"},
+ "measures": {
+  "boundary": "as EST1",
+  "directional entry latency": "per run: time from push onset to the first control tick that is in the hold mode AND whose fast estimate along the push direction is positive; dL_c = median over the arm's runs in that direction minus the same for OR",
+  "first-entry latency": "as EST1 (reported for comparison)"
+ },
+ "predictions": {"E2 directional latency predicts the boundary": "for EM in each direction: |boundary/boundary(OR) - exp(-omega dL_c)| <= 0.08"},
+ "runs": "2 arms x 19 forces x 4 seeds = 152",
+ "no_threshold_changes_after_results": true
+}

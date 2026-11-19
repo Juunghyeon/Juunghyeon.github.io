@@ -1,0 +1,26 @@
+{
+ "id": "MOTCI: our estimate vs the centroidal+IMU estimate (Fedsi 2026, RA_EST_ALT=cimu) in the final controller during the robot's own arm motion, with and without a push",
+ "registered": "2026-11-05 before any MOTCI run on the registered seeds. Purpose: the paper's arm-motion advantage over the centroidal estimate (ESTCMP2: false entries 6 vs 8 of 12, post-hoc paired peaks 11/12) is offline replay on logs of an earlier controller; it was never tested in closed loop. Dev evidence: one smoke run per arm (gesture + x+50 N, seed 1300) to check the pipeline: both recovered without a step. Nothing else was run.",
+ "arms": {
+  "OURS": "final controller LCMHF, exactly as HFFINAL/COST1 (run_motci.sh, OURS_E)",
+  "CI": "the same controller and flags with RA_EST_ALT=cimu (centroidal estimate with the IMU, without joint accelerations), as in EST1b"
+ },
+ "conditions": "ACCAD arm motions lift, swing, gesture, jab from t = 2 s (looped), each with no push, 0.2 s impulse x+50 N or y-50 N at 3 s; seeds 1370-1375 (new). 4 x 3 x 6 = 72 runs per arm, 144 in total.",
+ "metrics": {
+  "recovered": "failure is None",
+  "steps": "contact_steps.py over the whole run",
+  "held in place": "recovered and 0 contact steps",
+  "spurious estimate (no-push runs)": "peak over 2.0-6.0 s of the horizontal norm of d6 minus its mean over 1.0-1.9 s (before the motion), from ctrl_rows (N)",
+  "false hold entries (no-push runs)": "number of off->on transitions of dbg.est_on at t >= 2.0 s; a run is a false-entry run if it has at least one",
+  "costs (push runs)": "as COST1 over 2.9-6.0 s: net horizontal base displacement, peak foot force, leg work, on runs recovered by both"
+ },
+ "analysis": "paired on motion, cell and seed. One-sided Wilcoxon signed-rank for continuous metrics, exact one-sided McNemar for paired binary outcomes.",
+ "predictions": {
+  "M1 (primary, no-push, 24 pairs)": "peak spurious estimate OURS < CI, one-sided Wilcoxon p < 0.01",
+  "M2 (no-push, 24 pairs)": "false-entry runs OURS <= CI and steps OURS <= CI",
+  "M3 (primary closed loop, push during motion, 48 pairs)": "held in place OURS > CI, exact one-sided McNemar p < 0.05",
+  "M4 (push during motion, 48 pairs)": "recovered OURS >= CI - 2"
+ },
+ "reported": "per-motion table; steps and costs in push runs; peak spurious estimate per motion; whether the estimate advantage (M1) carries over to the closed loop (M3) is the question - M1 pass with M3 fail will be reported as 'quieter estimate, no closed-loop difference'",
+ "no_threshold_changes_after_results": true
+}

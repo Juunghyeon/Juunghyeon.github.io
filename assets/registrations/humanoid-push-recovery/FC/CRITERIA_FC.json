@@ -1,0 +1,19 @@
+{
+ "id": "FC: fall-criterion correction and re-scoring of every simulation experiment in the RA-L manuscript",
+ "registered": "2026-11-11, before any re-scored result exists. Only one reproduction run per experiment (original stops, suffix _rep) was run before this file; its outcome is not part of the decisions.",
+ "reason": "All runners inherited, from the first runner of the project, a stop 'pelvis tilt > 0.35 rad or pelvis height < 0.5 m' counted as a fall. The value has no documented source. Dev seeds 1300-1302 (lift motion + 50 N fore-aft push): the final controller hit the 0.35 rad stop 3/3 with both feet loaded and the DCM inside the support; with the stop at 0.6 rad the same runs recovered 3/3 without a step (pelvis peak 0.37 rad). The tilt stop is not neutral between strategies: an in-place hold may lean the trunk, a step keeps it upright. Push-recovery MPC papers state no numerical fall criterion; RL codebases for the G1 (unitree_rl_gym; HumanoidVerse/FALCON) end episodes on body-ground contact or on tilt limits of 0.8-1.0 rad, as training resets.",
+ "criterion": {
+  "fall": "first time t at which (i) a body other than the feet contacts the ground (existing runner check 'nonfoot_ground', unchanged), or (ii) the pelvis height is below 0.5 m (unchanged value, a collapse), or (iii) the pelvis tilt exceeds 1.0 rad (divergence stop only), or (iv) the controller raised an error (unchanged)",
+  "recovered": "no fall in the run and, at the end, standing: over the last 0.5 s of the run the mean pelvis height is above 0.6 m and the mean horizontal pelvis speed is below 0.1 m/s",
+  "held in place": "recovered without a step (unchanged)",
+  "steps": "steps counted until the fall time for failed runs, over the whole run otherwise (unchanged rule)",
+  "applies to": "every run of every experiment and every arm (ours, baselines, literature rules, FALCON), including runs that never reached the old stop (end-state condition)"
+ },
+ "procedure": {
+  "re-run": "only runs whose original outcome was 'physical_bounds' (old stop) can change by more than the end-state condition; they are re-run with the same runner, seed, cell and arm and permissive stops (tilt 1.2 rad, height 0.4 m), suffix _fc (run_fcall.sh MODE=fc). Runs that never reached the old stop are unaffected by the stop (deterministic simulation; checked by the _rep runs) and are re-scored from their logs",
+  "re-score": "fc_rescore.py applies the criterion above to the logs (plant.npz: pelvis height, tilt, velocity; summary.json: steps, nonfoot/controller failures) and writes re-scored summaries to runs_fc/; each experiment's registered analysis script is then run unchanged on runs_fc/",
+  "reproduction check": "each _rep run must reproduce its original failure type and stop time within 0.01 s; if an experiment fails the check, its re-scoring is reported as not reproducible and not used"
+ },
+ "sensitivity (reported, not a decision)": "outcome counts per experiment and arm for tilt stop in {0.6, 1.0, 1.2} rad x height stop in {0.4, 0.5} m x end-state speed in {0.05, 0.1, 0.2} m/s; the manuscript states the range",
+ "reporting": "the manuscript uses the corrected criterion for all numbers; the original-criterion numbers and decisions stay in the repository (existing *_results.json) and the change, its reason and the count of runs whose outcome changed, per experiment and arm, are stated in the paper. Registered decisions are re-evaluated with their original rules and thresholds on the re-scored outcomes; changed decisions are reported as changed"
+}

@@ -1,0 +1,25 @@
+{
+ "id": "MOTCI2: our estimate vs the centroidal+IMU estimate (RA_EST_ALT=cimu) in the final controller, near-boundary pushes during the robot's own arm motion",
+ "registered": "2026-11-05, before any MOTCI2 run. Follow-up of MOTCI (registered; M1 met, M2-M4 not met). Reasons for the follow-up, fixed before this test: (1) MOTCI's 50 N pushes were far from the in-place boundary under motion (fore-aft x+50 exceeds the 45 N motion bound -> both stepped; y-50 held by both), so the information could not change the hold decision; (2) MOTCI's recovery difference (38 vs 43) consisted of 5 tilt-bound events of ours in lift + x+50 (pelvis tilt at the 0.35 rad bound with both feet loaded, normal height and DCM; the ACCAD lift pitches the pelvis to ~0.29 rad in every arm, HFLAT2), real falls were 5 vs 5. Dev diagnosis used MOTCI logs and seeds 1300-1302 only (pelvis-weight and ankle-CoM-weight probes, not adopted). No run at the MOTCI2 magnitudes or seeds was made. Controller and arms are unchanged from MOTCI.",
+ "arms": {
+  "OURS": "final controller LCMHF, exactly as HFFINAL/COST1/MOTCI",
+  "CI": "the same controller with RA_EST_ALT=cimu"
+ },
+ "conditions": "ACCAD arm motions lift, swing, gesture, jab from t = 2 s (looped); 0.2 s impulse at 3 s of x+40, x-40, y+65 or y-65 N (near the in-place boundary under motion: 45 N fore-aft motion bound, 75 N lateral bound); seeds 1380-1385 (new). 4 x 4 x 6 = 96 runs per arm, 192 in total. Runner run_motci2.sh.",
+ "metrics": {
+  "recovered": "failure is None (the standard fall criterion, unchanged: pelvis tilt > 0.35 rad or pelvis height < 0.5 m)",
+  "steps": "contact_steps.py over the whole run",
+  "held in place": "recovered and 0 contact steps",
+  "tilt-bound event": "a failure with, at the failure instant, both foot normal forces > 50 N, pelvis height > 0.62 m and the controller DCM (last ctrl_rows xi) within 0.10 m of its stance reference (|xi| < 0.10 m per axis); reported separately, still counted as a failure in the primary outcomes",
+  "amendment": "15:37, before any MOTCI2 run: the DCM condition was added after checking the classifier on the 15 MOTCI failures (without it, a backward fall with DCM -0.22 m and both feet loaded was classed as tilt-bound). Original hash 7a7c6bc5.",
+  "costs": "as COST1 over 2.9-6.0 s on runs recovered by both"
+ },
+ "analysis": "paired on motion, cell and seed; exact one-sided McNemar for paired binary outcomes.",
+ "predictions": {
+  "P1 (primary)": "held in place OURS > CI, exact one-sided McNemar p < 0.05 (96 pairs)",
+  "P2": "total steps OURS <= 0.8 x CI",
+  "P3": "recovered OURS >= CI - 3 (standard criterion)"
+ },
+ "reported": "per-motion and per-cell table; tilt-bound events per arm; recovered without tilt-bound events; costs; if P1 fails the conclusion stays 'quieter estimate (MOTCI M1), no closed-loop hold advantage under own arm motion'",
+ "no_threshold_changes_after_results": true
+}

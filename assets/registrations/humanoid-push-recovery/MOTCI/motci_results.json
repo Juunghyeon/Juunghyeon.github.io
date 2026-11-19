@@ -1,0 +1,255 @@
+{
+ "decisions": {
+  "M1": {
+   "median_ours": 4.507130191805819,
+   "median_ci": 11.125375922505714,
+   "lower_in": 24,
+   "n": 24,
+   "p": 5.960464477539063e-08,
+   "met": true
+  },
+  "M2": {
+   "false_entry_runs": {
+    "OURS": 23,
+    "CI": 22
+   },
+   "steps": {
+    "OURS": 0,
+    "CI": 0
+   },
+   "met": false
+  },
+  "M3": {
+   "held": {
+    "OURS": 25,
+    "CI": 23
+   },
+   "b": 2,
+   "c": 0,
+   "p": 0.25,
+   "met": false
+  },
+  "M4": {
+   "recovered": {
+    "OURS": 38,
+    "CI": 43
+   },
+   "met": false
+  }
+ },
+ "push_steps": {
+  "OURS": 31,
+  "CI": 40
+ },
+ "push_costs": {
+  "displacement_m": {
+   "ours": 0.013418363460145228,
+   "ci": 0.031412571397366106,
+   "p_two": 0.5209127473499393
+  },
+  "peak_foot_force_N": {
+   "ours": 368.57781478190384,
+   "ci": 378.88585984347117,
+   "p_two": 0.8463444494118448
+  },
+  "leg_work_J": {
+   "ours": 34.01619636010542,
+   "ci": 42.014434666649144,
+   "p_two": 0.8580364451627247
+  }
+ },
+ "per_condition": {
+  "l0": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 2.326998511970575,
+    "entries": 22
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 8.677489359094313,
+    "entries": 18
+   }
+  },
+  "lx": {
+   "OURS": {
+    "rec": 1,
+    "held": 0,
+    "steps": 1,
+    "spur": 43.699574274928864,
+    "entries": 18
+   },
+   "CI": {
+    "rec": 4,
+    "held": 0,
+    "steps": 10,
+    "spur": 45.35186278992104,
+    "entries": 21
+   }
+  },
+  "ly": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 46.538112614378726,
+    "entries": 16
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 45.7418022543082,
+    "entries": 18
+   }
+  },
+  "s0": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 5.275271388610636,
+    "entries": 31
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 14.976173187482967,
+    "entries": 27
+   }
+  },
+  "sx": {
+   "OURS": {
+    "rec": 5,
+    "held": 0,
+    "steps": 11,
+    "spur": 23.52769228165205,
+    "entries": 39
+   },
+   "CI": {
+    "rec": 6,
+    "held": 0,
+    "steps": 9,
+    "spur": 21.0220907360956,
+    "entries": 44
+   }
+  },
+  "sy": {
+   "OURS": {
+    "rec": 2,
+    "held": 1,
+    "steps": 8,
+    "spur": 52.714046049584596,
+    "entries": 17
+   },
+   "CI": {
+    "rec": 4,
+    "held": 0,
+    "steps": 10,
+    "spur": 41.420683386089806,
+    "entries": 32
+   }
+  },
+  "g0": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 2.1410955099563047,
+    "entries": 5
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 4.878729115578333,
+    "entries": 4
+   }
+  },
+  "gx": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 44.04264049873858,
+    "entries": 12
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 44.07397391413649,
+    "entries": 11
+   }
+  },
+  "gy": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 46.84091474992708,
+    "entries": 11
+   },
+   "CI": {
+    "rec": 6,
+    "held": 5,
+    "steps": 1,
+    "spur": 50.31862621492917,
+    "entries": 10
+   }
+  },
+  "j0": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 4.73473752280573,
+    "entries": 25
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 12.687491887883583,
+    "entries": 31
+   }
+  },
+  "jx": {
+   "OURS": {
+    "rec": 6,
+    "held": 0,
+    "steps": 11,
+    "spur": 23.95808376976332,
+    "entries": 32
+   },
+   "CI": {
+    "rec": 5,
+    "held": 0,
+    "steps": 10,
+    "spur": 23.269136586069372,
+    "entries": 35
+   }
+  },
+  "jy": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 43.75054902917206,
+    "entries": 28
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "spur": 36.35751253597576,
+    "entries": 32
+   }
+  }
+ }
+}

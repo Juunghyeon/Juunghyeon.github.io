@@ -1,0 +1,562 @@
+{
+ "estimators": {
+  "SME": {
+   "theta_N": 25.0,
+   "noise_floor_N": 21.6,
+   "latency_ms": [
+    39.9999999999574,
+    39.9999999999574,
+    34.99999999995751,
+    34.99999999995751,
+    34.99999999995751,
+    34.99999999995751
+   ],
+   "latency_median_ms": 34.99999999995751,
+   "transient_q995_N": 1010.2,
+   "arm_false_runs": 12,
+   "arm": {
+    "jab_1111": {
+     "false": true,
+     "max_ratio": 8.53,
+     "max_N": 213.2
+    },
+    "swing_1111": {
+     "false": true,
+     "max_ratio": 8.76,
+     "max_N": 218.9
+    },
+    "lift_1111": {
+     "false": true,
+     "max_ratio": 2.04,
+     "max_N": 51.0
+    },
+    "gesture_1111": {
+     "false": true,
+     "max_ratio": 1.46,
+     "max_N": 36.6
+    },
+    "jab_1112": {
+     "false": true,
+     "max_ratio": 7.81,
+     "max_N": 195.2
+    },
+    "swing_1112": {
+     "false": true,
+     "max_ratio": 13.03,
+     "max_N": 325.6
+    },
+    "lift_1112": {
+     "false": true,
+     "max_ratio": 3.75,
+     "max_N": 93.7
+    },
+    "gesture_1112": {
+     "false": true,
+     "max_ratio": 1.22,
+     "max_N": 30.5
+    },
+    "jab_1113": {
+     "false": true,
+     "max_ratio": 8.79,
+     "max_N": 219.7
+    },
+    "swing_1113": {
+     "false": true,
+     "max_ratio": 13.77,
+     "max_N": 344.3
+    },
+    "lift_1113": {
+     "false": true,
+     "max_ratio": 2.69,
+     "max_N": 67.3
+    },
+    "gesture_1113": {
+     "false": true,
+     "max_ratio": 1.43,
+     "max_N": 35.8
+    }
+   }
+  },
+  "IMUSME": {
+   "theta_N": 25.0,
+   "noise_floor_N": 5.6,
+   "latency_ms": [
+    29.999999999957616,
+    29.999999999957616,
+    29.999999999957616,
+    29.999999999957616,
+    29.999999999957616,
+    29.999999999957616
+   ],
+   "latency_median_ms": 29.999999999957616,
+   "transient_q995_N": 176.2,
+   "arm_false_runs": 6,
+   "arm": {
+    "jab_1111": {
+     "false": true,
+     "max_ratio": 1.94,
+     "max_N": 48.4
+    },
+    "swing_1111": {
+     "false": true,
+     "max_ratio": 1.56,
+     "max_N": 39.1
+    },
+    "lift_1111": {
+     "false": false,
+     "max_ratio": 0.68,
+     "max_N": 17.1
+    },
+    "gesture_1111": {
+     "false": false,
+     "max_ratio": 0.25,
+     "max_N": 6.1
+    },
+    "jab_1112": {
+     "false": true,
+     "max_ratio": 1.82,
+     "max_N": 45.4
+    },
+    "swing_1112": {
+     "false": true,
+     "max_ratio": 2.53,
+     "max_N": 63.3
+    },
+    "lift_1112": {
+     "false": false,
+     "max_ratio": 0.91,
+     "max_N": 22.8
+    },
+    "gesture_1112": {
+     "false": false,
+     "max_ratio": 0.3,
+     "max_N": 7.5
+    },
+    "jab_1113": {
+     "false": true,
+     "max_ratio": 2.07,
+     "max_N": 51.8
+    },
+    "swing_1113": {
+     "false": true,
+     "max_ratio": 1.92,
+     "max_N": 48.0
+    },
+    "lift_1113": {
+     "false": false,
+     "max_ratio": 0.75,
+     "max_N": 18.8
+    },
+    "gesture_1113": {
+     "false": false,
+     "max_ratio": 0.29,
+     "max_N": 7.3
+    }
+   }
+  },
+  "MOB": {
+   "theta_N": 25.0,
+   "noise_floor_N": 6.1,
+   "latency_ms": [
+    54.99999999995708,
+    59.99999999995698,
+    69.99999999995677,
+    64.99999999995687,
+    79.99999999995654,
+    64.99999999995687
+   ],
+   "latency_median_ms": 64.99999999995687,
+   "transient_q995_N": 285.5,
+   "arm_false_runs": 6,
+   "arm": {
+    "jab_1111": {
+     "false": true,
+     "max_ratio": 1.93,
+     "max_N": 48.1
+    },
+    "swing_1111": {
+     "false": true,
+     "max_ratio": 2.65,
+     "max_N": 66.3
+    },
+    "lift_1111": {
+     "false": false,
+     "max_ratio": 0.52,
+     "max_N": 12.9
+    },
+    "gesture_1111": {
+     "false": false,
+     "max_ratio": 0.3,
+     "max_N": 7.4
+    },
+    "jab_1112": {
+     "false": true,
+     "max_ratio": 1.76,
+     "max_N": 43.9
+    },
+    "swing_1112": {
+     "false": true,
+     "max_ratio": 4.29,
+     "max_N": 107.3
+    },
+    "lift_1112": {
+     "false": false,
+     "max_ratio": 0.78,
+     "max_N": 19.5
+    },
+    "gesture_1112": {
+     "false": false,
+     "max_ratio": 0.32,
+     "max_N": 8.0
+    },
+    "jab_1113": {
+     "false": true,
+     "max_ratio": 2.02,
+     "max_N": 50.4
+    },
+    "swing_1113": {
+     "false": true,
+     "max_ratio": 3.43,
+     "max_N": 85.8
+    },
+    "lift_1113": {
+     "false": false,
+     "max_ratio": 0.62,
+     "max_N": 15.6
+    },
+    "gesture_1113": {
+     "false": false,
+     "max_ratio": 0.65,
+     "max_N": 16.2
+    }
+   }
+  },
+  "CIMU": {
+   "theta_N": 25.0,
+   "noise_floor_N": 3.0,
+   "latency_ms": [
+    29.999999999957616,
+    29.999999999957616,
+    29.999999999957616,
+    29.999999999957616,
+    29.999999999957616,
+    29.999999999957616
+   ],
+   "latency_median_ms": 29.999999999957616,
+   "transient_q995_N": 210.0,
+   "arm_false_runs": 8,
+   "arm": {
+    "jab_1111": {
+     "false": true,
+     "max_ratio": 2.16,
+     "max_N": 54.0
+    },
+    "swing_1111": {
+     "false": true,
+     "max_ratio": 1.7,
+     "max_N": 42.4
+    },
+    "lift_1111": {
+     "false": true,
+     "max_ratio": 1.01,
+     "max_N": 25.1
+    },
+    "gesture_1111": {
+     "false": false,
+     "max_ratio": 0.67,
+     "max_N": 16.8
+    },
+    "jab_1112": {
+     "false": true,
+     "max_ratio": 2.19,
+     "max_N": 54.7
+    },
+    "swing_1112": {
+     "false": true,
+     "max_ratio": 3.26,
+     "max_N": 81.4
+    },
+    "lift_1112": {
+     "false": true,
+     "max_ratio": 1.02,
+     "max_N": 25.5
+    },
+    "gesture_1112": {
+     "false": false,
+     "max_ratio": 0.64,
+     "max_N": 15.9
+    },
+    "jab_1113": {
+     "false": true,
+     "max_ratio": 2.13,
+     "max_N": 53.2
+    },
+    "swing_1113": {
+     "false": true,
+     "max_ratio": 1.77,
+     "max_N": 44.2
+    },
+    "lift_1113": {
+     "false": false,
+     "max_ratio": 0.98,
+     "max_N": 24.4
+    },
+    "gesture_1113": {
+     "false": false,
+     "max_ratio": 0.62,
+     "max_N": 15.6
+    }
+   }
+  },
+  "EMO": {
+   "theta_N": 25.0,
+   "noise_floor_N": 5.5,
+   "latency_ms": [
+    69.99999999995677,
+    59.99999999995698,
+    69.99999999995677,
+    64.99999999995687,
+    79.99999999995654,
+    64.99999999995687
+   ],
+   "latency_median_ms": 67.49999999995683,
+   "transient_q995_N": 323.3,
+   "arm_false_runs": 6,
+   "arm": {
+    "jab_1111": {
+     "false": true,
+     "max_ratio": 1.79,
+     "max_N": 44.7
+    },
+    "swing_1111": {
+     "false": true,
+     "max_ratio": 2.48,
+     "max_N": 62.1
+    },
+    "lift_1111": {
+     "false": false,
+     "max_ratio": 0.5,
+     "max_N": 12.4
+    },
+    "gesture_1111": {
+     "false": false,
+     "max_ratio": 0.31,
+     "max_N": 7.7
+    },
+    "jab_1112": {
+     "false": true,
+     "max_ratio": 1.62,
+     "max_N": 40.5
+    },
+    "swing_1112": {
+     "false": true,
+     "max_ratio": 4.02,
+     "max_N": 100.6
+    },
+    "lift_1112": {
+     "false": false,
+     "max_ratio": 0.77,
+     "max_N": 19.3
+    },
+    "gesture_1112": {
+     "false": false,
+     "max_ratio": 0.32,
+     "max_N": 8.0
+    },
+    "jab_1113": {
+     "false": true,
+     "max_ratio": 1.89,
+     "max_N": 47.1
+    },
+    "swing_1113": {
+     "false": true,
+     "max_ratio": 3.2,
+     "max_N": 80.1
+    },
+    "lift_1113": {
+     "false": false,
+     "max_ratio": 0.6,
+     "max_N": 15.1
+    },
+    "gesture_1113": {
+     "false": false,
+     "max_ratio": 0.61,
+     "max_N": 15.2
+    }
+   }
+  }
+ },
+ "closed_loop": {
+  "DB": {
+   "falls": 0,
+   "steps": 0,
+   "entries": 17,
+   "rows": [
+    {
+     "run": "jab_1111",
+     "fell": false,
+     "steps": 0,
+     "entries": 2
+    },
+    {
+     "run": "swing_1111",
+     "fell": false,
+     "steps": 0,
+     "entries": 4
+    },
+    {
+     "run": "lift_1111",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    },
+    {
+     "run": "gesture_1111",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    },
+    {
+     "run": "jab_1112",
+     "fell": false,
+     "steps": 0,
+     "entries": 2
+    },
+    {
+     "run": "swing_1112",
+     "fell": false,
+     "steps": 0,
+     "entries": 4
+    },
+    {
+     "run": "lift_1112",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    },
+    {
+     "run": "gesture_1112",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    },
+    {
+     "run": "jab_1113",
+     "fell": false,
+     "steps": 0,
+     "entries": 2
+    },
+    {
+     "run": "swing_1113",
+     "fell": false,
+     "steps": 0,
+     "entries": 3
+    },
+    {
+     "run": "lift_1113",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    },
+    {
+     "run": "gesture_1113",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    }
+   ]
+  },
+  "DBMOB": {
+   "falls": 0,
+   "steps": 0,
+   "entries": 19,
+   "rows": [
+    {
+     "run": "jab_1111",
+     "fell": false,
+     "steps": 0,
+     "entries": 2
+    },
+    {
+     "run": "swing_1111",
+     "fell": false,
+     "steps": 0,
+     "entries": 5
+    },
+    {
+     "run": "lift_1111",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    },
+    {
+     "run": "gesture_1111",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    },
+    {
+     "run": "jab_1112",
+     "fell": false,
+     "steps": 0,
+     "entries": 2
+    },
+    {
+     "run": "swing_1112",
+     "fell": false,
+     "steps": 0,
+     "entries": 3
+    },
+    {
+     "run": "lift_1112",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    },
+    {
+     "run": "gesture_1112",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    },
+    {
+     "run": "jab_1113",
+     "fell": false,
+     "steps": 0,
+     "entries": 2
+    },
+    {
+     "run": "swing_1113",
+     "fell": false,
+     "steps": 0,
+     "entries": 5
+    },
+    {
+     "run": "lift_1113",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    },
+    {
+     "run": "gesture_1113",
+     "fell": false,
+     "steps": 0,
+     "entries": 0
+    }
+   ]
+  }
+ },
+ "decisions": {
+  "A1": false,
+  "A2": {
+   "IMUSME": 6,
+   "CIMU": 8,
+   "MOB": 6,
+   "pass_": true
+  },
+  "D1": true,
+  "D2": true,
+  "C1": true
+ },
+ "EMO_r": 1584.893192461114
+}

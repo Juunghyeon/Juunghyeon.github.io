@@ -1,0 +1,35 @@
+{
+ "id": "COST1: cost of recovery of the final controller - what holding in place saves against stepping (stepping baseline, learned policy), including hand loads",
+ "registered": "2026-11-05, before any COST1 run on the registered seeds. Purpose: earlier cost results (HF8, HFMF, HFDF) were on earlier controller versions and against FALCON only; the paper needs them on the final controller and against the stepping baseline. Dev evidence: one smoke run each at x+50 N, seed 1300, used only to check the pipeline. Thresholds are taken from HF8 unchanged.",
+ "arms": {
+  "OURS": "final controller LCMHF, exactly as HFFINAL (run_hffinal.sh)",
+  "B11": "stepping baseline, as HFFINAL",
+  "FALCON": "original policy unchanged, as HFFINAL; push conditions only (no hand-load conditions)"
+ },
+ "conditions": {
+  "A holdable (10 conditions, primary)": "0.2 s impulse: x and y +-30 N, x and y +-50 N, xy +-50 N",
+  "B step-needed (4, reported)": "0.2 s impulse: x and y +-70 N",
+  "C variable load (8, OURS and B11)": "hand load 0.5, 1, 2 kg from 1 s with x+50 N or y-50 N at 3 s; load schedule 1:2, 4:0, 5.5:1 kg (pick, place, re-grasp) with x+50 N or y-50 N at 3 s and y-50 N at 7 s",
+  "seeds": "1360-1365 (new)"
+ },
+ "metrics": {
+  "window": "2.9-6.0 s for all costs, same as HF8; the load schedule's second push at 7 s is outside the window and counts only for recovery and steps",
+  "displacement": "horizontal base displacement between window ends (m)",
+  "peak foot force": "maximum foot normal force in the window (N)",
+  "leg work": "sum |tau v| dt over the 12 leg joints in the window (J)",
+  "heat proxy": "mean sum tau^2 over the 12 leg joints in the window (N^2 m^2), proportional to copper loss only for equal torque constants",
+  "steps": "contact_steps.py over the whole run, all arms",
+  "recovered": "failure is None",
+  "held in place": "recovered and 0 contact steps"
+ },
+ "analysis": "paired on condition and seed, costs on runs recovered by both arms; median paired reduction 1 - ours/other; one-sided Wilcoxon signed-rank unless stated. Recoveries of each arm are always reported next to the costs because costs are conditional on recovery by both.",
+ "predictions": {
+  "C1 vs B11, group A": "displacement reduction >= 50 %, peak foot force >= 15 %, leg work >= 25 %, each p < 0.01",
+  "C2 vs FALCON, group A": "the same three thresholds (HF8 D1-D3 on the final controller)",
+  "C3 variable load vs B11, group C": "recoveries OURS >= B11 - 2 of 48 and steps OURS <= 0.8 x B11; costs reported with the tests above",
+  "heat proxy (no prediction)": "reported with two-sided Wilcoxon in A, B and C; earlier results showed no reduction, so no energy claim beyond what is measured"
+ },
+ "reported": "group B costs and recoveries; per-condition table; quiet-stance heat proxy and leg work in 1.0-2.9 s per arm",
+ "runs": "A + B: 14 conditions x 6 seeds x 3 arms = 252; C: 8 x 6 x 2 = 96; total 348",
+ "no_threshold_changes_after_results": true
+}

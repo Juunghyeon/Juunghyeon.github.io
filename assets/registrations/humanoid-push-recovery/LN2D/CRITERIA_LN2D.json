@@ -1,0 +1,15 @@
+{
+ "id": "LN2D: in-place holding versus information latency and noise, varied independently on the same controller (final controller; the true push force, delayed by L and with white noise sigma per axis, replaces the estimate in the whole hold-first decision: entry, ankle target, release prediction and force bound)",
+ "registered": "2026-10-28, before any LN2D run. Motivation: external review (latency x noise map); BUD2 varied latency only and acted on the entry only",
+ "grid": "L in {0, 10, 20, 40} ms x sigma in {0, 5, 10, 20} N (16 conditions), plus the final controller with IMU-SME as reference",
+ "cells": "0.2 s pushes y +-70, x +-50, xy +-50 N (near the in-place boundary)",
+ "seeds": "1260-1261 (fresh)",
+ "runs": "16 x 6 cells x 2 seeds = 192 (+12 reference)",
+ "outcome": "zero-step hold = failure is None and no step; also held and steps",
+ "predictions": {
+  "N1 latency": "for each sigma, zero-step holds non-increasing in L (tolerance 1 between neighbours) and L=0 >= L=40 + 4",
+  "N2 noise": "for each L, zero-step holds non-increasing in sigma (tolerance 1 between neighbours)",
+  "reported": "the 4 x 4 map of zero-step holds, held runs and steps; the position of the IMU-SME reference relative to the map"
+ },
+ "no_threshold_changes_after_results": true
+}

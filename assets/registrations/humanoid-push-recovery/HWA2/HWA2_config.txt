@@ -1,0 +1,11 @@
+HWA2 configuration (= HWA1 configuration) (fixed 2026-11-19 before the first HWA1 recording; CRITERIA_HWA1.json)
+commit: 772bd49eb39232afb81188dc2ee5d6aacb16db79
+both arms, terminal 2:
+  source ../../sim2real/config/s21z15/nostep2.env      # nostep.env + RA_CORNER_SCALE=1.0,0.7 + RA2E_REBOUND=0.1,3,1.0,1.0
+  export DEPLOY_GUARD_KNEE=0.6 DEPLOY_GUARD_PUSH_EX=25,1.0
+  unset RA_HOLD_CPD RA_ANK_QP RA_ANKLE_SMOOTH RA_SWING_HMAX RA_ARB_UNLOAD RA_VSTEP_COM RA_VSTEP_DCM RA_VSTEP_TD_FZ DEPLOY_KW_JSON RA_EST_DELAY RA_REBOUND_D0 RA_REBOUND_STEP RA_TD_HOLD RA_TRANSFER_SKIP RA_VIOL_MED RA_SWING_HMAX_FWD RA_SS_HEIGHT_W RA_KNEE_CMD_MIN RA_STEP_KINCONF RA_POSTSTEP_KIN RA_D_MOM_CLIP RA_SHADOW_RULES
+ours:     taskset -c 0-15 python deploy_real.py --stage R2 --init_ctrl falcon --ho_bumpless 0.5 --ho_reref 1 --ho_min 5 --acc_cal 1 --r2_flags "RA_FF_LP_K=25,RA2E_BLANK=3,RA2E_N=2" --config ../../sim2real/config/g1/mpc_real_dex3.yaml
+ablation: the same + --theta_d 100000
+recorder: g1_sync_session.py --label hwa2_<ours|abl>_b<k>_<L|R>
+order: CRITERIA_HWA2 amount_and_order (ABBA)
+analysis: experiments/robust_holdability/hwa2_analyze.py (+ hwa1_analyze.py, hwl1_analyze.py, replay_sync.py)

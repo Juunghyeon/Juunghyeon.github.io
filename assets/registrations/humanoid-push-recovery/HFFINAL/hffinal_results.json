@@ -1,0 +1,352 @@
+{
+ "pairs": {
+  "B11": {
+   "n": 80,
+   "held": 65,
+   "held_other": 62,
+   "n10": 15,
+   "n01": 12,
+   "p_sup": 0.3505540192127228,
+   "p_inf": 0.7789658308029175,
+   "steps": 114,
+   "steps_other": 213,
+   "zero": 30,
+   "zero_other": 0,
+   "SUPERIOR": false,
+   "NONINFERIOR": true,
+   "FEWER_STEPS": true,
+   "INFERIOR": false
+  },
+  "R2": {
+   "n": 80,
+   "held": 65,
+   "held_other": 66,
+   "n10": 10,
+   "n01": 11,
+   "p_sup": 0.6681880950927734,
+   "p_inf": 0.5,
+   "steps": 114,
+   "steps_other": 163,
+   "zero": 30,
+   "zero_other": 13,
+   "SUPERIOR": false,
+   "NONINFERIOR": true,
+   "FEWER_STEPS": true,
+   "INFERIOR": false
+  },
+  "R3": {
+   "n": 80,
+   "held": 65,
+   "held_other": 52,
+   "n10": 21,
+   "n01": 8,
+   "p_sup": 0.01205977238714695,
+   "p_inf": 0.995934970676899,
+   "steps": 114,
+   "steps_other": 101,
+   "zero": 30,
+   "zero_other": 32,
+   "SUPERIOR": true,
+   "NONINFERIOR": true,
+   "FEWER_STEPS": false,
+   "INFERIOR": false
+  },
+  "CG": {
+   "n": 80,
+   "held": 65,
+   "held_other": 49,
+   "n10": 21,
+   "n01": 5,
+   "p_sup": 0.0012469589710235596,
+   "p_inf": 0.9997332394123077,
+   "steps": 114,
+   "steps_other": 135,
+   "zero": 30,
+   "zero_other": 32,
+   "SUPERIOR": true,
+   "NONINFERIOR": true,
+   "FEWER_STEPS": false,
+   "INFERIOR": false
+  },
+  "MOB": {
+   "n": 80,
+   "held": 65,
+   "held_other": 63,
+   "n10": 13,
+   "n01": 11,
+   "p_sup": 0.4194098711013794,
+   "p_inf": 0.7293719053268433,
+   "steps": 114,
+   "steps_other": 172,
+   "zero": 30,
+   "zero_other": 10,
+   "SUPERIOR": false,
+   "NONINFERIOR": true,
+   "FEWER_STEPS": true,
+   "INFERIOR": false
+  }
+ },
+ "groups": {
+  "single": {
+   "OURS": {
+    "n": 56,
+    "held": 50,
+    "zero": 30,
+    "steps": 45
+   },
+   "B11": {
+    "n": 56,
+    "held": 44,
+    "zero": 0,
+    "steps": 111
+   },
+   "R2": {
+    "n": 56,
+    "held": 46,
+    "zero": 13,
+    "steps": 95
+   },
+   "R3": {
+    "n": 56,
+    "held": 41,
+    "zero": 32,
+    "steps": 49
+   },
+   "CG": {
+    "n": 56,
+    "held": 43,
+    "zero": 32,
+    "steps": 58
+   },
+   "MOB": {
+    "n": 56,
+    "held": 45,
+    "zero": 10,
+    "steps": 103
+   },
+   "FALCON": {
+    "n": 56,
+    "held": 56,
+    "zero": 8,
+    "steps": 119
+   }
+  },
+  "successive": {
+   "OURS": {
+    "n": 24,
+    "held": 15,
+    "zero": 0,
+    "steps": 69
+   },
+   "B11": {
+    "n": 24,
+    "held": 18,
+    "zero": 0,
+    "steps": 102
+   },
+   "R2": {
+    "n": 24,
+    "held": 20,
+    "zero": 0,
+    "steps": 68
+   },
+   "R3": {
+    "n": 24,
+    "held": 11,
+    "zero": 0,
+    "steps": 52
+   },
+   "CG": {
+    "n": 24,
+    "held": 6,
+    "zero": 0,
+    "steps": 77
+   },
+   "MOB": {
+    "n": 24,
+    "held": 18,
+    "zero": 0,
+    "steps": 69
+   },
+   "FALCON": {
+    "n": 24,
+    "held": 24,
+    "zero": 0,
+    "steps": 79
+   }
+  },
+  "arm": {
+   "OURS": {
+    "n": 32,
+    "held": 26,
+    "zero": 20,
+    "steps": 22
+   },
+   "B11": {
+    "n": 32,
+    "held": 30,
+    "zero": 15,
+    "steps": 21
+   },
+   "R2": {
+    "n": 32,
+    "held": 30,
+    "zero": 16,
+    "steps": 27
+   },
+   "R3": {
+    "n": 32,
+    "held": 24,
+    "zero": 22,
+    "steps": 10
+   },
+   "CG": {
+    "n": 32,
+    "held": 24,
+    "zero": 23,
+    "steps": 8
+   },
+   "MOB": {
+    "n": 32,
+    "held": 27,
+    "zero": 16,
+    "steps": 26
+   },
+   "FALCON": {
+    "n": 0,
+    "held": 0,
+    "zero": 0,
+    "steps": 0
+   }
+  },
+  "load": {
+   "OURS": {
+    "n": 16,
+    "held": 16,
+    "zero": 8,
+    "steps": 8
+   },
+   "B11": {
+    "n": 16,
+    "held": 9,
+    "zero": 0,
+    "steps": 49
+   },
+   "R2": {
+    "n": 16,
+    "held": 16,
+    "zero": 8,
+    "steps": 8
+   },
+   "R3": {
+    "n": 16,
+    "held": 10,
+    "zero": 8,
+    "steps": 24
+   },
+   "CG": {
+    "n": 16,
+    "held": 15,
+    "zero": 8,
+    "steps": 14
+   },
+   "MOB": {
+    "n": 16,
+    "held": 16,
+    "zero": 1,
+    "steps": 22
+   },
+   "FALCON": {
+    "n": 0,
+    "held": 0,
+    "zero": 0,
+    "steps": 0
+   }
+  }
+ },
+ "conditions": {
+  "n": 48,
+  "held": 42,
+  "held_other": 39,
+  "n10": 9,
+  "n01": 6,
+  "p_sup": 0.303619384765625,
+  "p_inf": 0.84912109375,
+  "steps": 30,
+  "steps_other": 70,
+  "zero": 28,
+  "zero_other": 15,
+  "SUPERIOR": false,
+  "NONINFERIOR": true,
+  "FEWER_STEPS": true,
+  "INFERIOR": false
+ },
+ "tilt_bound": {
+  "OURS": 7,
+  "B11": 2,
+  "R2": 1,
+  "R3": 8,
+  "CG": 10,
+  "MOB": 6,
+  "FALCON": 0
+ },
+ "falcon": {
+  "contact_steps": 105,
+  "contact_steps_falcon": 198,
+  "wilcoxon_p": 3.4109851216516917e-09,
+  "zero": 30,
+  "zero_falcon": 8,
+  "b": 22,
+  "c": 0,
+  "mcnemar_p": 2.384185791015625e-07,
+  "held": 65,
+  "held_other": 80,
+  "n10": 0,
+  "n01": 15,
+  "p_sup": 1.0,
+  "p_inf": 3.0517578125e-05,
+  "by_magnitude": {
+   "le70": {
+    "n": 40,
+    "held_OURS": 40,
+    "zero_OURS": 30,
+    "steps_OURS": 10,
+    "held_FALCON": 40,
+    "zero_FALCON": 8,
+    "steps_FALCON": 62
+   },
+   "80": {
+    "n": 16,
+    "held_OURS": 10,
+    "zero_OURS": 0,
+    "steps_OURS": 32,
+    "held_FALCON": 16,
+    "zero_FALCON": 0,
+    "steps_FALCON": 57
+   },
+   "succ": {
+    "n": 24,
+    "held_OURS": 15,
+    "zero_OURS": 0,
+    "steps_OURS": 63,
+    "held_FALCON": 24,
+    "zero_FALCON": 0,
+    "steps_FALCON": 79
+   }
+  }
+ },
+ "decisions": {
+  "F1": true,
+  "F2": {
+   "R2": true,
+   "R3": true,
+   "CG": true,
+   "MOB": true
+  },
+  "F3": true,
+  "F4": {
+   "P1": false,
+   "P2": true
+  }
+ }
+}

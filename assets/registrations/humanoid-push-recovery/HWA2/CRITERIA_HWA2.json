@@ -1,0 +1,23 @@
+{
+ "id": "HWA2: SUSTAINED lateral pushes (~2 s) on the real G1, hold-layer ablation vs ours, steps disabled, same environment as HWA1",
+ "registered": "2026-11-19 ~17:10 local, robot PC, before any HWA2 recording. Motivation (disclosed, not evidence): in HWL1 / z20 several long pushes (1.4-3.9 s, 46-74 N) were held by ours; they were uncounted pushes of other tests, selected after the fact, and are not used here. HWA1 (short pushes) was analysed before this registration (A1/A2 met).",
+ "question": "Does the hold layer let the robot hold sustained (~2 s) lateral pushes that the same controller without it cannot?",
+ "arms": {
+  "ours": "deploy_real.py --stage R2 (no --steps), nostep2.env, exactly as HWA1_config.txt",
+  "ablation": "the same + --theta_d 100000"
+ },
+ "setup": "identical to HWA1 (HWA2_config.txt = HWA1_config.txt with the labels below): nostep2.env, DEPLOY_GUARD_KNEE=0.6, DEPLOY_GUARD_PUSH_EX=25,1.0, tilt guard 15 deg; shoulder height, horizontal, lateral, load cell on the stick.",
+ "pushes": "one block = one deploy run with exactly two pushes: push 1 aimed 40 N held ~2 s, push 2 aimed 60 N held ~2 s (count 'one-two' slowly), normal release, >= 5 s quiet between; a block ends after push 2 or after a failure. One side per block.",
+ "amount_and_order": "ONE session (no power cycle): 8 blocks per arm (16 blocks), order ABBA in pairs of sides: ours L, abl L, abl R, ours R, ours L, abl L, abl R, ours R, then the same with abl first (abl L, ours L, ours R, abl R, abl L, ours L, ours R, abl R). Up to 16 counted pushes per arm.",
+ "no_repeat_rule": "a block may be restarted ONLY before its first push (set-up error, announced before pushing); after the first push the block counts as recorded, whatever happens. No extra sessions or blocks are added because of the result.",
+ "counting": "load-cell plateau >= 30 N, duration (load cell > 8 N) 1.5-2.5 s, quiet rule (HWL1 amendment 2), lateral by the kinematic rule (HWL1 amendment 3); only the first two pushes of a block; decided without controller outputs.",
+ "outcome": "held = the HWA1 rule (no foot lift, tilt rise < 12 deg, knee >= 0.6 rad, no guard stop / DAMP / leaving RUN, within 3 s after the load cell falls below 8 N).",
+ "predictions": {
+  "H1 (primary)": "held proportion over all counted pushes, ours > ablation, one-sided Fisher exact, alpha 0.05",
+  "reported": "held counts per arm and level (40 / 60 N), plateau / duration / impulse per push, hold-first ticks per block (ablation must be 0)"
+ },
+ "limitations_stated_in_advance": "one session; hand pushes; the operator knows the arm (unblinded); n <= 16 per arm.",
+ "analysis": "experiments/robust_holdability/hwa2_analyze.py (robot PC, dry run on two relabelled HWA1 blocks: runs, 0 counted pushes as expected for short pushes, arm check 719 / 0 hold ticks), hashed with this file.",
+ "no_threshold_changes_after_results": true,
+ "amendment 1": "2026-11-19 ~17:15 local, robot PC, after the session and BEFORE the HWA2 analysis (QC only: config, hold ticks, push peaks / durations, block-ending guards). Experimenter's account: block hwa2_ours_b2_R first attempt (g1lc_20261119_165237, one 46 N push of 3.3 s, then the 15 deg tilt guard) fell because the robot touched the gantry structure; it is excluded and the repeat (165341) is the block. Disclosed: this is a restart after the first push, which the no-repeat rule did not foresee. g1lc_20261119_170546_hwa2_ours_b8_R is an empty logger start in the same deploy run as 170554 (no push). Protocol deviations, disclosed, handled by the registered counting rule unchanged (first two pushes >= 20 N of a block, counted only with plateau >= 30 N and 1.5-2.5 s): blocks had 2-7 pushes, durations 0.5-12 s, peaks to 94 N."
+}

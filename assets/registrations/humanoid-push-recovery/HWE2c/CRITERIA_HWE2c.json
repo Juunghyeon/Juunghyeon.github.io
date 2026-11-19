@@ -1,0 +1,24 @@
+{
+ "id": "HWE2c (dev PC draft 2026-11-19): spurious estimate under the robot's own arm motion at MATCHED estimator latency, no push",
+ "origin_disclosed": "The matched-latency hypothesis comes from a post hoc analysis of the registered HWE2 data (experiments/robust_holdability/RESULTS_HWE2_POSTHOC.md, 2026-11-14): at the registered bandwidth (K = 100 1/s) the registered prediction A1 was not met (ours 43.2 vs CIMU 39.9 N, 25/42, p 0.091; MOB 18.6 N); with the IMU-resolved estimates refiltered to the momentum observer's E1 delay (K' = 25 1/s, delay50 57.2 / 57.7 / 57.9 ms) the peaks were ours 16.6, MOB 18.6, CIMU 19.3 N. HWE2c tests this on NEW recordings. The HWE2 result stays reported as registered; HWE2c does not replace it.",
+ "setup": "identical to HWE2 after amendments 1-5: FALCON stands the robot, our controller in shadow (deploy_real.py --init_ctrl falcon --shadow ... --fs_upper xr), the arms driven by arm_replay_bridge.py with the same clip file motions/hwe2_arm_clips.npz, motions, speeds and options (gesture 0.79 --clip_s 6 --pitch_up 0.15 --roll_out 0.1, lift 0.36, jab 0.45, swing 1.0 --pitch_up 0.35 --roll_out 0.15), 3 s still before, ramps, 4 s still after each repetition. Load-cell stick resting on the floor (ground truth 0). Labels get the suffix _c.",
+ "amount": "two sessions; per motion and session one recording of 5 repetitions (40 repetitions). >= 20 included repetitions per comparison are required, otherwise inconclusive.",
+ "window_exclusions_metric": "unchanged from HWE2 amendment 4: pose window, exclusions (a foot lifts, or the load cell > 2 N in the window, decided without estimates), baseline = median of the 1 s before the window, metric = peak |xy estimate - baseline| inside the window.",
+ "estimators_and_settings_fixed_now": {
+  "ours (IMU-resolved, IMU-SME)": "first-order output filter K = 25 1/s (matched setting) and K = 100 1/s (registered setting); the K = 25 output is obtained by the same inversion-and-refilter of the K = 100 output as in the post hoc analysis (hwe2_posthoc_lib.py), or equivalently by running the estimator with K = 25",
+  "CIMU (centroidal + IMU, Fedsi 2026)": "same two settings, K = 25 and K = 100 1/s",
+  "MOB (momentum observer, all 29 joint torques)": "gain 30 1/s with the 0.1 s output filter (the registered setting; its E1 delay50 57.3 ms is the matching target)",
+  "EMO (enhanced observer)": "registered setting, reported only",
+  "why K = 25": "fixed from the HWE1 push data (independent of any arm-motion recording): K = 25 gives delay50 57.2 (ours) / 57.9 (CIMU) ms against 57.3-57.7 ms for MOB on the 71 HWE1 pushes"
+ },
+ "predictions": {
+  "B1 (primary)": "at matched latency (K = 25) the peak spurious estimate of ours is lower than that of MOB: paired one-sided Wilcoxon signed-rank test over all included repetitions",
+  "B2 (primary)": "at matched latency (K = 25) the peak spurious estimate of ours is lower than that of CIMU: paired one-sided Wilcoxon signed-rank test over all included repetitions",
+  "multiplicity": "Holm correction over B1 and B2, family-wise alpha 0.05",
+  "reported (not tested)": "the same comparisons at the registered K = 100; per-motion medians for all estimators and settings; number of repetitions above the 25 N hold-entry threshold per estimator and setting; the E1 delay50 of each setting re-measured on 10 short load-cell pushes per session (verification of the matching, not a decision)"
+ },
+ "analysis": "hw_arm_sync.py (as registered for HWE2) plus the refilter step of hwe2_posthoc_lib.py; both files hashed into CRITERIA_HWE2c.sha256 before the first counted recording, together with this file.",
+ "no_threshold_changes_after_results": true,
+ "manuscript_use": "If registered and run: the E2 paragraph reports HWE2 (registered bandwidth, A1 not met) and HWE2c (matched latency, B1/B2) side by side; the post hoc sentence is replaced by the HWE2c result whatever its outcome.",
+ "registered": "2026-11-19 ~12:00 local, robot PC, before any HWE2c recording (no arm-motion recording since HWE2b on 11-17). Registered unchanged from the dev draft. Labels: hwe2c_s<session>_arm_<motion>_sp<speed>[_pu.._ro..][_a/_b]_c (lift split 3 + 2 repetitions as in HWE2 session 2); delay pushes hwe2c_s<session>_push_c (10 short pushes, 25-50 N, 0.2-0.6 s). Session 2 after a robot power cycle (as HWE1/HWE2). Deploy command = the HWE2 session-2 FALCON shadow command (FALCON stands; estimates are replayed offline by hw_arm_sync.py)."
+}

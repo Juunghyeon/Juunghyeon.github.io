@@ -1,0 +1,294 @@
+{
+ "n": 96,
+ "decisions": {
+  "P1": {
+   "held": {
+    "OURS": 63,
+    "CI": 32
+   },
+   "b": 34,
+   "c": 3,
+   "p": 6.165646482259035e-08,
+   "met": true
+  },
+  "P2": {
+   "steps": {
+    "OURS": 62,
+    "CI": 153
+   },
+   "met": true
+  },
+  "P3": {
+   "recovered": {
+    "OURS": 85,
+    "CI": 67
+   },
+   "met": true
+  }
+ },
+ "totals": {
+  "rec": {
+   "OURS": 85,
+   "CI": 67
+  },
+  "held": {
+   "OURS": 63,
+   "CI": 32
+  },
+  "steps": {
+   "OURS": 62,
+   "CI": 153
+  },
+  "tb": {
+   "OURS": 0,
+   "CI": 0
+  }
+ },
+ "recovered_without_tiltbound": {
+  "OURS": 85,
+  "CI": 67
+ },
+ "costs": {
+  "displacement_m": {
+   "ours": 0.0070585177350852586,
+   "ci": 0.041567137605179584,
+   "p_two": 1.329563200988249e-05
+  },
+  "peak_foot_force_N": {
+   "ours": 289.8184454838955,
+   "ci": 352.4112558278508,
+   "p_two": 0.00013799875811998513
+  },
+  "leg_work_J": {
+   "ours": 22.682134502565404,
+   "ci": 37.162755296651376,
+   "p_two": 7.411079670049856e-05
+  }
+ },
+ "per_condition": {
+  "lxp": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   }
+  },
+  "lxm": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   }
+  },
+  "lyp": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 1,
+    "held": 0,
+    "steps": 21,
+    "tb": 0
+   }
+  },
+  "lym": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 0,
+    "held": 0,
+    "steps": 18,
+    "tb": 0
+   }
+  },
+  "sxp": {
+   "OURS": {
+    "rec": 6,
+    "held": 5,
+    "steps": 1,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 5,
+    "held": 0,
+    "steps": 9,
+    "tb": 0
+   }
+  },
+  "sxm": {
+   "OURS": {
+    "rec": 6,
+    "held": 4,
+    "steps": 2,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   }
+  },
+  "syp": {
+   "OURS": {
+    "rec": 2,
+    "held": 0,
+    "steps": 16,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 3,
+    "held": 0,
+    "steps": 18,
+    "tb": 0
+   }
+  },
+  "sym": {
+   "OURS": {
+    "rec": 2,
+    "held": 0,
+    "steps": 10,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 3,
+    "held": 0,
+    "steps": 14,
+    "tb": 0
+   }
+  },
+  "gxp": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   }
+  },
+  "gxm": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   }
+  },
+  "gyp": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 2,
+    "held": 0,
+    "steps": 14,
+    "tb": 0
+   }
+  },
+  "gym": {
+   "OURS": {
+    "rec": 6,
+    "held": 6,
+    "steps": 0,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 4,
+    "held": 1,
+    "steps": 28,
+    "tb": 0
+   }
+  },
+  "jxp": {
+   "OURS": {
+    "rec": 6,
+    "held": 1,
+    "steps": 6,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 6,
+    "held": 0,
+    "steps": 6,
+    "tb": 0
+   }
+  },
+  "jxm": {
+   "OURS": {
+    "rec": 6,
+    "held": 5,
+    "steps": 1,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 6,
+    "held": 0,
+    "steps": 6,
+    "tb": 0
+   }
+  },
+  "jyp": {
+   "OURS": {
+    "rec": 5,
+    "held": 0,
+    "steps": 14,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 3,
+    "held": 0,
+    "steps": 11,
+    "tb": 0
+   }
+  },
+  "jym": {
+   "OURS": {
+    "rec": 4,
+    "held": 0,
+    "steps": 12,
+    "tb": 0
+   },
+   "CI": {
+    "rec": 4,
+    "held": 1,
+    "steps": 8,
+    "tb": 0
+   }
+  }
+ }
+}

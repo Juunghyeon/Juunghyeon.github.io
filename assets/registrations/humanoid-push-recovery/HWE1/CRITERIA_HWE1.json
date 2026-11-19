@@ -1,0 +1,17 @@
+{
+ "id": "HWE1: estimator validation on the real G1 against a load-cell stick (replaces criteria_drafts/CRITERIA_HWE1_DRAFT.json)",
+ "registered": "2026-11-13, after the 11-13 pilot (4 recordings, 40 fast pushes, 10 slow presses; sim2real/HW_PAPER_DATA_PLAN.md 3-3f). The pilot is exploratory and excluded from every decision below; only new sessions count.",
+ "setup": "FALCON stands the robot (shadow: our controller R2 computed, never sent). Load cell ADS1256 7500 Hz on a hand-held horizontal stick, logged with the robot state on one monotonic clock (sim2real/tools/ads1256/g1_sync_session.py). Pelvis IMU. Estimators replayed offline on robot.npz (1 kHz lowstate) by replay_sync.py with the registered settings of the simulation comparisons (IMU-SME K=200, MOB, EMO, CIMU, SME); no re-tuning after any session.",
+ "sessions": "two sessions on different days or after a reboot. Each: (E0) 60 s untouched; (fast) one recording per direction (front, back, left, right), 8 firm pushes of 0.2-0.6 s at pelvis-chest height, aimed at 25-50 N, >= 5 s apart, next push >= 2 s after FALCON stands again; (slow) one recording per direction, 3-4 consecutive staircases 5-10-15-20 N (3 s each) up and down at pelvis height. Planned 64 fast pushes.",
+ "validity": "a recording is analysed only if the load-cell zero holds (|F| < 1.5 N in the zero window) and the load-cell onset to pelvis-IMU response lag is <= 20 ms at its first and last push (clock check).",
+ "inclusion": "decided by load cell and contact state only, never by an estimate: plateau 15-80 N, duration 0.15-1.5 s, load-cell 50 % crossing before the first foot lift. Push direction = mean change of all five estimators (compare_sync.py --dir mean). A delay50 not reached before the foot lift / push end is censored at that time; a pair is dropped only if both are undefined.",
+ "metric": "delay50 = time the estimate along the push direction reaches 50 % of its own plateau minus the time the load cell (10 ms mean) reaches 50 % of its plateau (gain-free). latency@25 N = 2 consecutive ticks above 25 N minus the load-cell 25 N crossing (manuscript definition).",
+ "predictions": {
+  "H1 (primary)": "delay50: MOB later than ours, paired one-sided Wilcoxon signed-rank over all included pushes of both sessions, alpha 0.01. Requires >= 30 pairs, otherwise inconclusive (pilot: 30 ms, 34/38, p 3e-7; bootstrap power ~1 at n 30).",
+  "H2": "delay50: EMO later than ours, same test, alpha 0.05.",
+  "H3": "latency@25 N: MOB later than ours, same test, alpha 0.05.",
+  "reported (not decisions)": "per-direction H1 statistics (planned 16 per direction); CIMU and SME delay50 against ours (pilot CIMU - ours 5.5 ms, p 5e-4); push RMS error and estimate/force ratio of each estimator (pilot: MOB - ours 1.3 N, p 0.16, so no error decision is registered); quiet noise (E0, xy RMS); the largest opposite-sign estimate within 50 ms of onset (EMO); slow presses: slope of estimate vs force, low-force dead band, residual after release, first vs later staircase. Expected from the pilot: equal quiet noise for all estimators (the manuscript's matched-latency noise advantage is not expected to transfer; reported as 'same noise, earlier detection') and under-reading of static loads 0.35-0.75 (Limitations)."
+ },
+ "analysis": "experiments/robust_holdability/replay_sync.py -> compare_sync.py --dir mean -> hwe1_analyze.py <runs> (written before the sessions; smoke-tested on the pilot only)",
+ "no_threshold_changes_after_results": true
+}

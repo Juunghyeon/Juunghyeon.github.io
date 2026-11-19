@@ -1,0 +1,41 @@
+{
+ "results": {
+  "x_OR": {
+   "boundary": 54.166666666666664,
+   "entry_dir_median_ms": 4.218847493575595e-11,
+   "entry_first_median_ms": 4.218847493575595e-11,
+   "n": 36
+  },
+  "x_EM": {
+   "boundary": 45.0,
+   "entry_dir_median_ms": 17.500000000042036,
+   "entry_first_median_ms": 10.000000000041975,
+   "n": 36
+  },
+  "y_OR": {
+   "boundary": 75.83333333333333,
+   "entry_dir_median_ms": 4.218847493575595e-11,
+   "entry_first_median_ms": 4.218847493575595e-11,
+   "n": 40
+  },
+  "y_EM": {
+   "boundary": 64.16666666666667,
+   "entry_dir_median_ms": 30.000000000041993,
+   "entry_first_median_ms": 30.000000000041993,
+   "n": 40
+  }
+ },
+ "decisions": {
+  "x": [
+   0.831,
+   0.936,
+   false
+  ],
+  "y": [
+   0.846,
+   0.893,
+   true
+  ],
+  "E2_all": false
+ }
+}

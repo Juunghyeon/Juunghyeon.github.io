@@ -1,0 +1,25 @@
+{
+ "id": "EST1: an estimator's holdable force is predicted by its hold-entry latency alone (latency budget of LAT2 applied to real estimates)",
+ "registered": "2026-11-04, before any EST1 run on the registered seeds. Hypothesis: by Prop. 1 and LAT2 the boundary depends on when the hold starts; an estimate that enters the hold dL later than the oracle should hold exp(-omega dL) of the oracle boundary, omega = 3.787 1/s, and its noise should not lower it further (LN2D/OU: noise up to 10-12 N tolerated). Dev evidence (seeds 1300-1302, 5 N steps, partial): oracle entry 0 ms; ours 10-15 ms, ratio 1.00 / 0.95 (pred 0.95 / 0.96); tuned MOB 30-40 ms, ratio 0.91 / 0.85 (pred 0.86 / 0.89), fore-aft / lateral.",
+ "arms": {
+  "OR": "final controller information paths (RA_FZMIN=0.1 RA_HOLD_REF=m RA_IMU_K=200 RA2E_N=1 RA_DEC_RAW=1 RA_FF_LP=0.5, stagger hull, motion FX 45) with the oracle push force (RA_ORACLE_EST=1, no delay) in the hold decision; capture-prediction release only (RA_ARB_F/FX unset)",
+  "SM": "same, with our IMU-resolved estimate (SmePI 100 0.3)",
+  "MB": "same, with the tuned momentum observer (MOBP, as in HFFINAL)"
+ },
+ "conditions": {
+  "directions": "x+ (fore-aft): F in {37.5, 40, ..., 57.5} N; y+ (lateral): F in {57.5, 60, ..., 80} N; 0.2 s impulse",
+  "seeds": "1344-1347 (fresh)"
+ },
+ "measures": {
+  "boundary": "per direction and arm: force at which the fraction of zero-step holds crosses 0.5 (linear interpolation; censored if all/none held); ratio = boundary / OR boundary in the same direction",
+  "entry latency": "per run: time from push onset to the first control tick with the hold mode on; dL = median over all runs of the arm in that direction minus the same median of OR"
+ },
+ "predictions": {
+  "E1 latency predicts the boundary": "for SM and MB in each direction: |ratio - exp(-omega dL)| <= 0.08",
+  "E2 ordering": "boundary(SM) > boundary(MB) in both directions",
+  "E3 (reported)": "median entry latency SM < MB in both directions"
+ },
+ "decision": "the claim 'an estimator's holdable force follows from its latency' is supported if E1 holds for all four estimator-direction pairs; E2 is the directional consequence",
+ "runs": "3 arms x (9 + 10) forces x 4 seeds = 228",
+ "no_threshold_changes_after_results": true
+}
