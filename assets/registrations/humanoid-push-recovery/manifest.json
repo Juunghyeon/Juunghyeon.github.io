@@ -355,11 +355,11 @@
   ],
   "hash_commit": "8408b30 2026-11-19T11:38:35+09:00",
   "withheld": [
-   "hwe2_arm_clips.npz"
+   "hwe2_arm_clips.npz",
+   "hwe2_posthoc_lib.py"
   ],
   "extra": [
    "hw_arm_sync.py",
-   "hwe2_posthoc_lib.py",
    "arm_replay_bridge.py"
   ],
   "unrecovered": []
