@@ -10,6 +10,17 @@ group: "research"
 summary: "A ROS2 architecture connecting simulation, an LLM, a UI, and a physical mobile manipulator, with edge-based data collection and automatic cloud sync that preserves the robot's real-time control cycle."
 skills: ["ROS2", "Python", "C++", "LLM Integration", "Multithreading"]
 icon: "network-wired"
+hero_accent: "Real-Time Architecture"
+nav_title: "Mobile Manipulator Architecture"
+links:
+  - label: "Abstract"
+    url: "#abstract"
+  - label: "Architecture"
+    url: "#architecture"
+  - label: "Method"
+    url: "#method"
+  - label: "Results"
+    url: "#results"
 header:
   teaser: # /assets/images/projects/mobile-manipulator-architecture/teaser.jpg
   image: # /assets/images/projects/mobile-manipulator-architecture/cover.jpg
@@ -17,7 +28,7 @@ header:
 
 <p class="pp-tldr">The hard part of an LLM-commanded robot was not the language model. It was <b>keeping modules that run at 1 kHz, 30 Hz and 12.5 Hz in one consistent state</b> without stalling the control loop.</p>
 
-<div class="pp-stats pp-wide" style="--n:3">
+<div class="pp-stats" style="--n:3">
   <div class="pp-stat hi"><div class="n">≤ 2<small> rounds</small></div><div class="d">of user feedback to reach an executable task plan</div></div>
   <div class="pp-stat hi"><div class="n">50<small> %+</small></div><div class="d">plan completeness on the first interaction, across tested scenarios</div></div>
   <div class="pp-stat"><div class="n">1<small> kHz</small></div><div class="d">motion-control cycle kept as the reference clock for every other stream</div></div>
@@ -47,7 +58,7 @@ Built the real-time integrated control platform connecting simulation, a large l
   <div class="pp-node"><div class="t">Mobile manipulator</div><div class="s">physical robot</div></div>
   <div class="pp-node"><div class="t">Edge logger</div><div class="s">auto cloud sync</div></div>
 </div>
-<p class="pp-cap center">Every module reads and writes one shared state aligned to the control clock.</p>
+<p class="pp-cap">Every module reads and writes one shared state aligned to the control clock.</p>
 
 ## Method
 

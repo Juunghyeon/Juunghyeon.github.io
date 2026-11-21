@@ -11,11 +11,17 @@ group: "coursework"
 skills: ["C++", "Python", "ROS2", "ORB-SLAM", "OpenCV"]
 summary: "Monocular ORB-SLAM depth estimation and UV-disparity segmentation for real-time obstacle avoidance on a quadruped, without a dedicated depth sensor."
 icon: "robot"
+hero_accent: "Obstacle Avoidance"
+nav_title: "Quadruped Obstacle Avoidance"
 links:
+  - label: "Abstract"
+    url: "#abstract"
   - label: "System"
     url: "#system"
   - label: "Method"
     url: "#method"
+  - label: "Results"
+    url: "#results"
   - label: "Platform"
     url: "#platform"
 header:
@@ -36,7 +42,7 @@ Built a monocular-camera obstacle-avoidance pipeline for the DOGZILLA quadruped,
   <div class="pp-link"><span>RGB-D over Wi-Fi &rarr;</span><span>&larr; control topics (ROS)</span></div>
   <div class="pp-node hi"><div class="t">Desktop</div><div class="s">off-board</div><span class="chip">ORB-SLAM3</span><span class="chip">UV-disparity</span><span class="chip">control topics</span></div>
 </div>
-<p class="pp-cap center">The Jetson Nano only relays camera frames; all SLAM and disparity processing runs off-board on a desktop, which sends control topics back over ROS.</p>
+<p class="pp-cap">The Jetson Nano only relays camera frames; all SLAM and disparity processing runs off-board on a desktop, which sends control topics back over ROS.</p>
 
 ## Method
 
@@ -83,4 +89,4 @@ Won the President's Award (1st Place) at Korea University's Creative Challenger 
     <li><img src="{{ '/assets/images/projects/ccp-quadruped/servo.png' | relative_url }}" alt=""><span><b>Servo motor ×12</b>360°, 5.7 kg·cm</span></li>
   </ul>
 </div>
-<p class="pp-cap center">DOGZILLA quadruped with a monocular RGB camera.</p>
+<p class="pp-cap">DOGZILLA quadruped with a monocular RGB camera.</p>

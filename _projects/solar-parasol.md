@@ -11,13 +11,16 @@ skills: ["Arduino", "AutoCAD", "C++"]
 summary: "A parasol that senses sun position and actuates its canopy to track the sun and maximize shade throughout the day."
 icon: "sun"
 hide_hero_teaser: true
+hero_accent: "Solar Tracking"
 links:
+  - label: "Abstract"
+    url: "#abstract"
+  - label: "Method"
+    url: "#method"
   - label: "Control logic"
     url: "#control-logic"
-  - label: "Simulation"
-    url: "#simulation"
-  - label: "Prototype"
-    url: "#prototype"
+  - label: "Results"
+    url: "#results"
 header:
   teaser: /assets/images/projects/solar-parasol/teaser.png
   image: # /assets/images/projects/solar-parasol/cover.jpg
@@ -37,7 +40,7 @@ A parasol that automatically reorients its canopy to track the sun and maximize 
 
 ### Control logic
 
-<figure class="pp-fig">
+<figure class="pp-fig card narrow">
 <svg viewBox="0 0 620 570" role="img" aria-label="Closing-logic flowchart">
   <defs>
     <marker id="sp-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">

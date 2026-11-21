@@ -1,27 +1,73 @@
----
-layout: default
----
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="{{ '/assets/css/project-page.css' | relative_url }}">
+<!doctype html>
+{%- comment -%}
+  Standalone project page, styled after the Hold Before You Step site
+  (juunghyeon.github.io/hold-before-you-step). Styles: assets/css/project-page.css.
 
-<div id="main" role="main">
-  <article class="pp" itemscope itemtype="https://schema.org/CreativeWork">
-    {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
-    {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
+  Everything before the first "## " heading is the hero area (TLDR, teaser
+  figure, stat row). Each "## " section is wrapped in its own full-width
+  <section>, alternating white / tinted, with a coloured heading bar.
+  An "## Abstract" section is centred like the paper page.
+{%- endcomment -%}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ page.title | strip_html }} {{ site.title_separator }} {{ site.title }}</title>
+  {% if page.summary %}<meta name="description" content="{{ page.summary | strip_html | escape }}">{% endif %}
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:title" content="{{ page.title | strip_html | escape }}">
+  {% if page.summary %}<meta property="og:description" content="{{ page.summary | strip_html | escape }}">{% endif %}
+  {% if page.header.teaser %}<meta property="og:image" content="{{ page.header.teaser | absolute_url }}">{% endif %}
+  <link rel="stylesheet" href="{{ '/assets/css/project-page.css' | relative_url }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+</head>
+<body>
 
-    {% include project__hero.html %}
+{%- if page.hero_title -%}
+  {%- assign hero_main = page.hero_title -%}
+  {%- assign hero_sub = page.hero_subtitle -%}
+{%- elsif page.title contains ": " -%}
+  {%- assign title_parts = page.title | split: ": " -%}
+  {%- assign hero_main = title_parts | first -%}
+  {%- assign hero_sub = page.title | remove_first: hero_main | remove_first: ": " -%}
+{%- else -%}
+  {%- assign hero_main = page.title -%}
+  {%- assign hero_sub = nil -%}
+{%- endif -%}
+{%- assign nav_title = page.nav_title | default: hero_main -%}
 
-    <div class="pp-body e-content" itemprop="text">
-      {{ content }}
-    </div>
+<nav class="pp-nav"><div>
+  <a class="home" href="{{ '/projects/' | relative_url }}" aria-label="All projects">&larr;</a>
+  <b>{{ nav_title }}</b>
+  <span>{{ page.nav_authors | default: page.role }}</span>
+  {% for link in page.links %}{% if link.url %}<a href="{{ link.url }}">{{ link.label }}</a>{% endif %}{% endfor %}
+</div></nav>
 
-    {% if page.skills %}
-      <div class="pp-skills" aria-label="Skills">
-        {% for skill in page.skills %}<span>{{ skill }}</span>{% endfor %}
-      </div>
-    {% endif %}
+<main class="pp">
+  {% include project__hero.html hero_main=hero_main hero_sub=hero_sub %}
 
-    <a class="pp-back" href="{{ '/projects/' | relative_url }}">&larr; All projects</a>
-  </article>
-</div>
+  {%- assign chunks = content | split: '<h2' -%}
+  <div class="pp-wrap pp-lead">{{ chunks[0] }}</div>
+
+  {%- assign bars = "#7fae52,#2f8f80,#e08a3c,#d0608e,#4a78b0" | split: "," -%}
+  {%- assign n = 0 -%}
+  {%- for chunk in chunks offset: 1 -%}
+    {%- assign bar_index = n | modulo: 5 -%}
+    {%- assign tint = n | modulo: 2 -%}
+    {%- assign head = chunk | slice: 0, 20 -%}
+    {%- if head contains 'id="abstract"' -%}
+      <section class="pp-sec abs"><div class="pp-wrap"><h2{{ chunk }}</div></section>
+    {%- else -%}
+      <section class="pp-sec{% if tint == 1 %} tint{% endif %}" style="--bar:{{ bars[bar_index] }}"><div class="pp-wrap"><h2{{ chunk }}</div></section>
+      {%- assign n = n | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+</main>
+
+<footer class="pp-foot"><div class="pp-wrap">
+  {% if page.skills %}<div class="pp-skills">{% for skill in page.skills %}<span>{{ skill }}</span>{% endfor %}</div>{% endif %}
+  <p><a href="{{ '/projects/' | relative_url }}">&larr; All projects</a> &nbsp;·&nbsp; <a href="{{ '/' | relative_url }}">{{ site.title }}</a></p>
+</div></footer>
+
+</body>
+</html>

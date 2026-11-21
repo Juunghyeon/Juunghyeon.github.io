@@ -10,21 +10,27 @@ skills: ["Python", "OpenCV", "AprilTag", "ROS2"]
 summary: "Built the real-time dual-camera ball- and fiducial-tracking pipeline that fed task-relevant observations to a lab project adapting CALM's latent motion representations to quadruped object-interaction tasks."
 icon: "paw"
 hide_hero_teaser: true
+hero_accent: "Real-Time Perception"
+nav_title: "CALM Quadruped Perception"
 links:
   - label: "Video"
     url: "#video"
+  - label: "Abstract"
+    url: "#abstract"
   - label: "Method"
     url: "#method"
+  - label: "Status"
+    url: "#status"
 header:
   teaser: /assets/images/projects/quadruped-latent-motion/teaser.png
   image: # /assets/images/projects/quadruped-latent-motion/cover.jpg
 ---
 
-<figure class="pp-fig pp-wide" id="video">
+<figure class="pp-fig" id="video">
   <video controls preload="metadata" playsinline>
     <source src="{{ '/assets/videos/quadruped-latent-motion/highlights.mp4' | relative_url }}" type="video/mp4">
   </video>
-  <figcaption class="center">Highlight reel from development and hardware testing on the Unitree A1.</figcaption>
+  <figcaption>Highlight reel from development and hardware testing on the Unitree A1.</figcaption>
 </figure>
 
 <p class="pp-tldr">High-level policies trained on ground-truth simulation state need the same observations on the real robot. <b>A dual-camera tracking pipeline</b> supplied them: ball and fiducial positions in one common frame, in real time.</p>

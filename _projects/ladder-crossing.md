@@ -9,6 +9,14 @@ group: "coursework"
 skills: ["Arduino", "Creo", "NX", "C++"]
 summary: "A tendon-driven, 3D-printed robot that climbs a horizontal ladder by gripping rungs and shifting its center of mass."
 icon: "gears"
+hero_accent: "Ladder-Crossing"
+links:
+  - label: "Abstract"
+    url: "#abstract"
+  - label: "Method"
+    url: "#method"
+  - label: "Results"
+    url: "#results"
 header:
   teaser: /assets/images/projects/ladder-crossing/assembly-top.jpg
   image: # /assets/images/projects/ladder-crossing/cover.jpg
@@ -27,7 +35,7 @@ Led a five-person team to design and build a robot that climbs a horizontal ladd
 - **Link length vs. rung pitch.** A mismatch between link length and the gap between fishing-line anchor points forced a geometry revision, verified with a kinematic link simulation before the final print.
 - **Drive.** Step motors for body/base locomotion and servo motors for arm actuation, coordinated by an Arduino.
 
-<figure class="pp-fig">
+<figure class="pp-fig frame">
   <img src="{{ '/assets/images/projects/ladder-crossing/mechanism-cad.png' | relative_url }}" alt="Rack-and-pinion gripper arm, modeled in NX">
   <figcaption>The gripper-arm mechanism on its drive rail, modeled in Siemens NX before the final 3D-printed revision.</figcaption>
 </figure>

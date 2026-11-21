@@ -14,8 +14,12 @@ summary: "Tunes a simulator's wheel-friction and suspension parameters to real r
 skills: ["Python", "Isaac Sim", "Isaac Lab", "PPO", "ROS2"]
 icon: "route"
 hide_hero_teaser: true
+hero_accent: "Sim-to-Real Accuracy"
+nav_title: "Sim-to-Real Dynamics Tuning"
+nav_authors: "H. Ju, J. Kim, S. Park"
 links:
-  - label: "Paper (coming soon)"
+  - label: "Abstract"
+    url: "#abstract"
   - label: "Method"
     url: "#method"
   - label: "Results"
@@ -25,14 +29,14 @@ header:
   image: # /assets/images/projects/mapless-navigation-sim2real/cover.jpg
 ---
 
-<figure class="pp-fig">
+<figure class="pp-fig frame">
   <img src="{{ '/assets/images/projects/mapless-navigation-sim2real/real-vs-sim.png' | relative_url }}" alt="The real mobile robot next to its Isaac Sim model, with the wheel and suspension highlighted">
   <figcaption>Wheel-ground friction and suspension of the Isaac Sim model are tuned until its wheel torque and angular-velocity response matches the real robot's (Fig. 1 of the paper).</figcaption>
 </figure>
 
 <p class="pp-tldr">A navigation policy trained in simulation drives differently on the real robot. <b>Tuning the simulator's wheel and suspension dynamics to real response data</b> brought the real trajectories measurably closer to the simulated ones, confirmed by two independent ways of measuring the real path.</p>
 
-<div class="pp-stats pp-wide">
+<div class="pp-stats">
   <div class="pp-stat hi"><div class="n">17.9<small> %</small></div><div class="d">lower DTW-aligned position RMSE (LiDAR estimate, both targets)</div></div>
   <div class="pp-stat hi"><div class="n">17.5<small> %</small></div><div class="d">lower normalized DTW, i.e. closer path shape</div></div>
   <div class="pp-stat hi"><div class="n">24.3<small> %</small></div><div class="d">lower heading RMSE</div></div>
@@ -54,11 +58,11 @@ Reinforcement learning policies for LiDAR-based mapless navigation are trained i
 ## Results
 
 <div class="pp-row">
-  <figure class="pp-fig">
+  <figure class="pp-fig frame">
     <img src="{{ '/assets/images/projects/mapless-navigation-sim2real/trajectory-base.png' | relative_url }}" alt="Real and simulated trajectories for the policy trained without dynamics tuning">
     <figcaption>Without dynamics tuning</figcaption>
   </figure>
-  <figure class="pp-fig">
+  <figure class="pp-fig frame">
     <img src="{{ '/assets/images/projects/mapless-navigation-sim2real/trajectory-tuned.png' | relative_url }}" alt="Real and simulated trajectories for the policy trained with dynamics tuning">
     <figcaption>With dynamics tuning</figcaption>
   </figure>
