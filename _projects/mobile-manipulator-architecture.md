@@ -6,6 +6,7 @@ period: "Mar.2025 -- Aug.2026"
 category: "Systems Integration · Mobile Manipulation"
 status: "Ongoing"
 role: "System Architect"
+team: "Industry-academia project with MOVENSYS"
 group: "graduate"
 summary: "A ROS2 architecture connecting simulation, an LLM, a UI, and a physical mobile manipulator, with edge-based data collection and automatic cloud sync that preserves the robot's real-time control cycle."
 skills: ["ROS2", "Python", "C++", "LLM Integration", "Multithreading"]
@@ -19,6 +20,8 @@ links:
     url: "#architecture"
   - label: "Method"
     url: "#method"
+  - label: "My role"
+    url: "#my-role"
   - label: "Results"
     url: "#results"
 header:
@@ -36,7 +39,7 @@ header:
 
 ## Abstract
 
-Built the real-time integrated control platform connecting simulation, a large language model, a user interface, and a physical mobile manipulator for natural-language-commanded robot task planning. The central challenge wasn't the generative AI itself, but synchronizing modules that update at very different rates — motion control at 1 kHz, LiDAR at 12.5 Hz, RGB-D at 30 Hz — into one consistent shared state without flooding the system with redundant communication.
+An industry-academia project with MOVENSYS to build a real-time integrated control platform connecting simulation, a large language model, a user interface, and a physical mobile manipulator for natural-language-commanded robot task planning. The central challenge wasn't the generative AI itself, but synchronizing modules that update at very different rates — motion control at 1 kHz, LiDAR at 12.5 Hz, RGB-D at 30 Hz — into one consistent shared state without flooding the system with redundant communication.
 
 ## Architecture
 
@@ -66,6 +69,15 @@ Built the real-time integrated control platform connecting simulation, a large l
 - **No blocking.** Multi-buffering and a multithreaded structure let each sensor's acquisition, preprocessing and storage run in parallel without blocking the control loop.
 - **One bus.** A ROS2 communication architecture connects the simulator, LLM, UI and physical robot through this shared, synchronized state.
 - **Data collection.** Edge-based logging with automatic cloud synchronization that preserves the robot's real-time control cycle.
+
+## My role
+
+The project was a team effort. My part:
+
+- Designed the overall system framework with AI use in mind, and the robot communication structure tying the modules together.
+- Set up edge computing and the structure for collecting robot data for AI use.
+- Time-synchronized sensor and motor data and stored the synchronized streams.
+- Ran the measurements on the physical robot, and presented progress at project meetings several times.
 
 ## Results
 

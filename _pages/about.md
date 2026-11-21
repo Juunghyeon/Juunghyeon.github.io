@@ -79,7 +79,7 @@ author_profile: false
     <img src="/assets/images/bio-photo.jpg" alt="Kim Jeonghyeon">
   </div>
   <div class="about-intro__text">
-    I'm an M.S. student in Mechanical Engineering at <a href="https://www.korea.ac.kr/">Korea University</a>, where I work in the Human-Machine Systems Lab under Prof. Shinsuk Park on Dynamics Modeling and Whole-Body Control for legged and humanoid robots. I believe good control doesn't come from building a more complex model, but from designing a model at the level that fits the purpose &mdash; I'm currently developing a Balance Descriptor that lets a humanoid policy explicitly reason about its own changing dynamics. I received my B.S. in Mechanical Engineering from <a href="https://www.korea.ac.kr/">Korea University</a> in 2025.
+    I'm an M.S. student in Mechanical Engineering at <a href="https://www.korea.ac.kr/">Korea University</a>, where I work in the Human-Machine Systems Lab under Prof. Shinsuk Park. My research asks one question: when a robot's model is wrong, which errors actually matter for its task? I study it on hardware, with a humanoid that holds a push in place before deciding to step (<a href="/projects/humanoid-push-recovery/">Unitree G1</a>) and a manipulator that keeps a drawing in place on a tilted surface it cannot see (<a href="/projects/ipcr-manipulation/">Dobot CR3A</a>). I believe good control doesn't come from building a more complex model, but from designing a model at the level that fits the purpose. I received my B.S. in Mechanical Engineering from <a href="https://www.korea.ac.kr/">Korea University</a> in 2025.
   </div>
 </div>
 
@@ -96,9 +96,10 @@ author_profile: false
 
 ## Research Interests
 
-- Dynamics Modeling for robots with complex physical interactions
-- Whole-Body Control, bridging model-based, optimization, and learning-based methods
-- Generalizable control principles across mobile manipulators, legged robots, and humanoids
+- **Control-oriented dynamics modeling.** Deciding, from task performance and limited hardware data, which physical effects a controller must model explicitly and which it can treat as uncertainty
+- **Physical models and learning together.** Using learning where physics alone falls short, and reading what the learned correction says about the model
+- **Where modeling is hardest.** Contact-rich manipulation, legged and humanoid robots, and new robot structures with no standard model
+- **Hardware–control co-design.** Letting what limits a task show where a change in the body could help
 
 ---
 
@@ -116,7 +117,7 @@ Mar. 2023 – Sep. 2023
 
 *Team Leader · 5-person team · Korea University*
 
-Led the mechanical design and control of a robot that climbs a horizontal ladder by gripping successive rungs and shifting its center of mass. [Project page →](/projects/ladder-crossing/)
+Led the mechanical design and control of a robot that climbs a horizontal ladder by gripping successive rungs and shifting its center of mass; the team built on my mechanism concept. The first design kept swinging from its grip and missing the next rung, which is where my research question started. [Project page →](/projects/ladder-crossing/)
 
 **Solar Tracking Parasol**
 Sep. 2023 – Nov. 2023
@@ -153,8 +154,9 @@ Spring 2025
 
 ## Skills
 
-**Robotics & Simulation** — ROS2 &middot; Gazebo &middot; Isaac Sim / Isaac Lab &middot; URDF / XACRO
-**Programming** — Python &middot; C++ &middot; CMake
-**Learning & Control** — PyTorch &middot; Reinforcement Learning (PPO) &middot; Inverse Dynamics
+**Hardware** — Unitree G1 &middot; Dobot CR3A &middot; EtherCAT-based arm (ENI/ESI configuration) &middot; mobile manipulator
+**Robotics & Simulation** — ROS2 &middot; Pinocchio &middot; MuJoCo &middot; Isaac Sim / Isaac Lab &middot; Gazebo &middot; URDF / XACRO
+**Programming** — Python &middot; C++ &middot; CMake &middot; MATLAB
+**Learning & Control** — Model Predictive Control &middot; CasADi / CVXPY &middot; PyTorch &middot; Reinforcement Learning (PPO)
 **Computer Vision** — OpenCV &middot; AprilTag
 **Tools** — Linux (Ubuntu) &middot; Git / GitHub

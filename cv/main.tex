@@ -74,21 +74,24 @@
 
 \entry{Korea University}{M.S. in Mechanical Engineering}{Seoul, Republic of Korea}{Mar. 2025 -- Aug. 2027 (Expected)}
 \detail{Advisor: Prof. Shinsuk Park}
-\detail{GPA: 4.25/4.5 \enspace$\cdot$\enspace Research interests: control-oriented dynamics modeling and whole-body control}
+\detail{GPA: 4.25/4.5 \enspace$\cdot$\enspace Research interests: deciding which physical effects a controller must model, for contact-rich and legged robots}
 
 \entry{Korea University}{B.S. in Mechanical Engineering}{Seoul, Republic of Korea}{Mar. 2019 -- Feb. 2025}
 \detail{GPA: 3.91/4.5}
 
 \section{Research Experience}
 
-\researchentry{Balance-Aware Whole-Body Control for Humanoid Standing Manipulation}{Mar. 2025 -- Present}
-\detail{Formulated a \textbf{Balance Demand Descriptor (BDD)} based on centroidal dynamics to represent balance demands induced by upper-body motion, payloads, and external interaction. Integrated BDD into a reinforcement-learning locomotion policy to distinguish demands manageable within the current stance from those requiring corrective stepping.}
+\researchentry{Push Recovery for a Force-Sensorless Humanoid (Unitree G1)}{Mar. 2025 -- Present}
+\detail{Studied when a humanoid must step after a push. After about a year using an estimated waist wrench in reinforcement learning without being able to tell why the policies failed, moved to MPC to analyze the effects of noise and delay directly. Showed in simulation that each additional 10\,ms of delay cuts the push force held without stepping by about 3.7\%, consistent with a pendulum model. Built a disturbance estimator from pelvis-IMU measurements and a floating-base model, and separated the signal paths: a fast, unfiltered estimate for the hold decision, filtered commands for actuation. In 80 pre-registered push trials against a stepping baseline: 65 vs.\ 62 recoveries, 49\% fewer steps, 30 vs.\ 0 pushes held in place. Led the G1 hardware experiments, including per-joint torque calibration: the estimate lagged a load cell by 29\,ms (median) vs.\ 57\,ms for a momentum observer, and with steps disabled the median largest lateral push held per block was 69\,N with the hold layer vs.\ 0\,N without.}
+
+\researchentry{Intent-Preserving Contact Control on Unknown Surfaces (Dobot CR3A)}{Sep. 2025 -- Present}
+\detail{Formulated contact correction as a choice of which task coordinates may yield and which must be preserved, with nearest-point correction as a special case. Built a controller that uses joint sensing only (no F/T sensor) and tested it on a physical Dobot CR3A with a spring pen. On boards tilted 8.7--16.9$^\circ$ at angles unknown to the controller, the drawn figure moved 0.38--0.49\,mm, against 11.3--25.2\,mm for nearest-point correction given the measured surface normal; the nearest-point drift matched its prediction to within 2\%.}
+
+\researchentry{Real-Time Data Platform for a Generative-AI Mobile Manipulator}{Mar. 2025 -- Aug. 2026}
+\detail{Industry--academia project with MOVENSYS. Designed the overall system framework and the ROS~2 communication structure connecting simulation, an LLM, a user interface, and a physical mobile manipulator. Set up edge computing and time-synchronized collection and storage of sensor and motor data for AI use without interrupting the real-time control cycle; ran measurements on the physical robot and presented progress at project meetings.}
 
 \researchentry{Visual Perception for Quadrupedal Object Interaction}{Mar. 2025 -- Nov. 2025}
 \detail{Developed a dual-camera perception system to track a ball and moving ArUco markers from fixed global and onboard views. Calibrated the cameras and transformed observations into a common coordinate frame to maintain target localization during robot motion and partial occlusion.}
-
-\researchentry{Real-Time Architecture for a Generative-AI-Based Mobile Manipulator}{Mar. 2025 -- Aug. 2026}
-\detail{Developed a ROS~2 communication architecture connecting simulation, an LLM, a user interface, and a physical mobile manipulator. Implemented edge-based robot data collection with automatic cloud synchronization while preserving the robot's real-time control cycle.}
 
 \section{Publications \& Manuscripts}
 
@@ -102,18 +105,16 @@
 \textit{Conference Presentations}
 \pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Obstacle Detection Using ORB-SLAM and UV-Disparity with a Low-Cost Quadruped Robot,'' \textit{KSPE 2025 Spring Conference}, Jeju, Republic of Korea, May 2025.}
 
-\newpage
-
 \section{Engineering Design Projects}
 
 \project{Quadruped Robot Obstacle Avoidance}{Mar. 2024 -- Jan. 2025}
-Led the development of an autonomous obstacle detection and avoidance system for the DOGZILLA quadruped robot. Integrated ORB-SLAM with UV-disparity-based obstacle detection, earning the President's Award in the Korea University Creative Challenger Program.\\[1.0ex]
+Led a four-person team developing autonomous obstacle detection and avoidance for the DOGZILLA quadruped robot. Integrated ORB-SLAM with UV-disparity-based obstacle detection, earning the President's Award in the Korea University Creative Challenger Program; presented at the KSPE 2025 Spring Conference.\\[1.0ex]
 
 \project{Ladder-Crossing Robot}{Mar. 2023 -- Sep. 2023}
-Designed and prototyped a mobile robot capable of traversing ladder-like structures. Developed the crossing mechanism and Arduino-based motion control, earning a Bronze Award at the Creative Comprehensive Design Competition.\\[1.0ex]
+Led a five-person team building a robot that crosses a horizontal ladder rung by rung; the team built on my mechanism concept. The first two-gripper design swung from its remaining grip and missed the next rung; a three-gripper redesign, slower motion, and a pause for the sway to settle got it across. Developed the crossing mechanism and Arduino-based motion control.\\[1.0ex]
 
 \project{Solar-Tracking Parasol}{Sep. 2023 -- Nov. 2023}
-Designed a linkage mechanism and tracking controller that automatically adjusts the parasol's orientation with changes in incident-light direction, receiving the Design Award at the Korea University Capstone Design Fair.
+Designed a linkage mechanism and tracking controller that automatically adjusts the parasol's orientation with changes in incident-light direction, receiving the Bronze Award at the Creative Comprehensive Design Competition and the Design Award at the Korea University Capstone Design Fair.
 
 \section{Honors and Awards}
 
@@ -132,13 +133,18 @@ Designed a linkage mechanism and tracking controller that automatically adjusts 
   Kinematics of Mechanisms & Spring 2025
 \end{tabularx}
 
+\section{Military Service}
+
+\project{Mandatory Military Service, Republic of Korea}{2020 -- 2022}
+
 \section{Technical Skills}
 
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
 Programming & Python, C/C++, MATLAB \\
-Robotics & ROS 2, Pinocchio, URDF/XACRO \\
+Robotics & ROS 2, EtherCAT (ENI/ESI configuration), Pinocchio, URDF/XACRO \\
+Hardware & Unitree G1, Dobot CR3A, EtherCAT-based arm, mobile manipulator \\
 Simulation & Isaac Gym, Isaac Sim, MuJoCo, Gazebo \\
-Learning \& Optimization & PyTorch, reinforcement learning, CVXPY, CasADi, trajectory optimization \\
+Learning \& Optimization & PyTorch, reinforcement learning, model predictive control, CVXPY, CasADi, trajectory optimization \\
 Perception & OpenCV, ORB-SLAM \\
 Engineering Tools & Git, SolidWorks, Creo, NX, Arduino \\
 Operating Systems & Linux/Ubuntu

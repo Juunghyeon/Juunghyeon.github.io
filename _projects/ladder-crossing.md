@@ -15,6 +15,8 @@ links:
     url: "#abstract"
   - label: "Method"
     url: "#method"
+  - label: "The swing problem"
+    url: "#the-swing-problem"
   - label: "Results"
     url: "#results"
 header:
@@ -26,7 +28,7 @@ header:
 
 ## Abstract
 
-Led a five-person team to design and build a robot that climbs a horizontal ladder by gripping successive rungs and shifting its center of mass forward, without falling. The arm joints are tendon-driven by fishing line rather than rigid linkages — simple to 3D-print, but prone to slack once a joint's return force is too slow. Iterated through three physical prototypes to resolve that and two other structural issues before arriving at the final design.
+Led a five-person team to design and build a robot that climbs a horizontal ladder by gripping successive rungs and shifting its center of mass forward, without falling; the team built on my mechanism concept. The arm joints are tendon-driven by fishing line rather than rigid linkages — simple to 3D-print, but prone to slack once a joint's return force is too slow. Iterated through three physical prototypes to resolve that and two other structural issues before arriving at the final design.
 
 ## Method
 
@@ -39,6 +41,20 @@ Led a five-person team to design and build a robot that climbs a horizontal ladd
   <img src="{{ '/assets/images/projects/ladder-crossing/mechanism-cad.png' | relative_url }}" alt="Rack-and-pinion gripper arm, modeled in NX">
   <figcaption>The gripper-arm mechanism on its drive rail, modeled in Siemens NX before the final 3D-printed revision.</figcaption>
 </figure>
+
+## The swing problem
+
+I had assumed that a well-designed mechanism was enough: once the motors were powered, the robot would move as planned. It didn't. The first design used two grippers, and each time the robot let go of a rung it hung from the remaining one, swung with its own inertia, and missed the next rung.
+
+We got it across by changing three things:
+
+- **A third gripper** in place of two.
+- **Slower motion** throughout the crossing.
+- **Waiting for the sway to settle** before reaching for the next rung.
+
+<div class="pp-limits" markdown="1">
+It worked, but we had worked around the problem rather than solved it. The robot never knew how its own body was moving or where the next rung was. That is the question I took into graduate research: what does a robot need to know about its body and its surroundings to control itself?
+</div>
 
 ## Results
 

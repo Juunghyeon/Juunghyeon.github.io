@@ -2,7 +2,7 @@
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[margin=1.45cm]{geometry}
+\usepackage[margin=1.3cm]{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{titlesec}
@@ -63,7 +63,7 @@
   }\\[0.7ex]
   \begin{minipage}{0.95\textwidth}
     \small\centering
-    Robotics researcher focused on \textbf{control-oriented dynamics modeling} and \textbf{whole-body control} for legged and humanoid robots, with experience in reinforcement learning, robot perception, and real-time ROS~2 systems.
+    Robotics researcher asking \textbf{which modeling errors actually matter for a robot's task}, studied on hardware through humanoid push recovery and contact-rich manipulation, with experience in MPC, reinforcement learning, robot perception, and real-time ROS~2 systems.
   \end{minipage}
 \end{center}
 \vspace{-1.0ex}
@@ -75,11 +75,17 @@
 
 \section{Research Experience}
 
-\researchentry{Balance-Aware Whole-Body Control for Humanoid Standing Manipulation}{Mar. 2025 -- Present}
+\researchentry{Push Recovery for a Force-Sensorless Humanoid (Unitree G1)}{Mar. 2025 -- Present}
 {\small\textit{Human-Machine Systems Lab, Korea University}}
 \compactlist
-  \item Developed a physics-informed \textbf{Balance Demand Descriptor (BDD)} from centroidal dynamics to encode the direction and magnitude of lower-body balance demand induced by upper-body motion, payloads, and external interaction.
-  \item Integrated BDD into a reinforcement-learning locomotion policy to promote stance-consistent mitigation and direction-appropriate corrective stepping under continuous upper-body demand.
+  \item Showed that each extra 10\,ms of disturbance delay cuts the push force held without stepping by about 3.7\%; built a pelvis-IMU estimator so the hold decision uses a fast estimate: 30 of 80 pushes held in place vs.\ 0 for a stepping baseline.
+  \item Led G1 hardware experiments: 29\,ms vs.\ 57\,ms lag behind a load cell (momentum observer); 69\,N vs.\ 0\,N median lateral push held with steps disabled.
+\finishcompactlist
+
+\researchentry{Intent-Preserving Contact Control on Unknown Surfaces (Dobot CR3A)}{Sep. 2025 -- Present}
+{\small\textit{Human-Machine Systems Lab, Korea University}}
+\compactlist
+  \item Joint-sensing-only controller that chooses which task coordinates may yield to contact: 0.38--0.49\,mm figure drift on tilted boards unknown to the controller, vs.\ 11.3--25.2\,mm for nearest-point correction given the measured normal.
 \finishcompactlist
 
 \researchentry{Visual Perception for Quadrupedal Object Interaction}{Mar. 2025 -- Nov. 2025}
@@ -88,16 +94,10 @@
   \item Built a ROS~2 dual-camera system to track a ball and moving ArUco markers across fixed global and onboard views, transforming observations into a common coordinate frame for robust target localization.
 \finishcompactlist
 
-\researchentry{Real-Time Architecture for a Generative-AI-Based Mobile Manipulator}{Mar. 2025 -- Aug. 2026}
-{\small\textit{Human-Machine Systems Lab, Korea University}}
+\researchentry{Real-Time Data Platform for a Generative-AI Mobile Manipulator}{Mar. 2025 -- Aug. 2026}
+{\small\textit{Industry--academia project with MOVENSYS, Human-Machine Systems Lab, Korea University}}
 \compactlist
-  \item Designed a ROS~2 architecture connecting simulation, an LLM, a user interface, and a physical robot; implemented edge-based data collection and cloud synchronization without interrupting the real-time control cycle.
-\finishcompactlist
-
-\researchentry{Quadruped Robot Obstacle Avoidance}{Mar. 2024 -- Feb. 2025}
-{\small\textit{Undergraduate Researcher, Human-Machine Systems Lab, Korea University}}
-\compactlist
-  \item Developed an ORB-SLAM- and UV-disparity-based quadruped navigation pipeline for localization, obstacle detection, and avoidance; presented the work at the KSPE 2025 Spring Conference.
+  \item Designed the system framework and ROS~2 communication structure connecting simulation, an LLM, a UI, and a physical robot; set up edge computing and time-synchronized sensor/motor data logging without interrupting the real-time control cycle.
 \finishcompactlist
 
 \section{Selected Publications \& Manuscripts}
@@ -111,7 +111,7 @@
 
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
 Programming & Python, C/C++, MATLAB \\
-Robotics \& Learning & ROS~2, PyTorch, reinforcement learning, Pinocchio, URDF/XACRO \\
+Robotics \& Learning & ROS~2, EtherCAT, PyTorch, RL, MPC, Pinocchio, URDF/XACRO \\
 Simulation \& Optimization & Isaac Gym, Isaac Sim, MuJoCo, Gazebo, CVXPY, CasADi \\
 Perception \& Development & OpenCV, ORB-SLAM, Git, Linux/Ubuntu
 \end{tabularx}

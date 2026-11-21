@@ -106,7 +106,7 @@ analytics:
 author:
   name             : "Kim Jeonghyeon"
   avatar           : "/assets/images/bio-photo.jpg"
-  bio              : "M.S. Student, Mechanical Engineering<br>Korea University<br>Humanoid Robotics · Whole-Body Control"
+  bio              : "M.S. Student, Mechanical Engineering<br>Korea University<br>Dynamics Modeling · Humanoid & Contact Control"
   location         : "Republic of Korea"
   email            : "ahdtld54@korea.ac.kr"
   links:

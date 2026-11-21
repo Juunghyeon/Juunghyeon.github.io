@@ -16,10 +16,10 @@ A few things I enjoy when I'm away from the lab.
 
 ## Soccer
 
-I've been playing soccer for as long as I can remember — still my favorite way to spend a weekend.
+I've been playing soccer for as long as I can remember, including through university, where I served as team captain. It's still my favorite way to spend a weekend. Before soccer took over, I played volleyball in regional tournaments in elementary and middle school.
 
 ## Jiu-Jitsu
 
-I train Brazilian Jiu-Jitsu and try to make it out to competitions when I can.
+I've trained Brazilian Jiu-Jitsu for about two years, and recently took first place at a competition. Each session we spar in five-minute rounds with changing partners, and after every round we tell each other what worked, what could be better, and a technique someone picked up at another gym. That exchange is my favorite part. I spent a long time on the bottom, tapping and struggling until I learned how to get out; now I help white belts almost every time I train, seriously and as an equal, while keeping them safe.
 
 {% include gallery id="gallery_jiujitsu" %}
