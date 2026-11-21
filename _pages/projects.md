@@ -84,13 +84,23 @@ author_profile: true
 </style>
 
 {% assign thumb_gradients = "135deg, #33475f, #1b2733|135deg, #3f6b58, #1e3327|135deg, #6b4f33, #33230f|135deg, #5b3f6b, #2a1a33" | split: "|" %}
-{% assign research_projects = site.projects | where: "group", "research" | sort: "date" | reverse %}
-{% assign coursework_projects = site.projects | where: "group", "coursework" | sort: "date" | reverse %}
 
-<h2 class="pub-section-title">Research</h2>
-<p class="pub-section-blurb">Ongoing graduate research in dynamics modeling and whole-body control, advised by Prof. Shinsuk Park.</p>
+{%- comment -%} One entry per section: group | heading | blurb {%- endcomment -%}
+{% capture project_sections %}
+research|Research|Papers from my graduate research in dynamics modeling and whole-body control, advised by Prof. Shinsuk Park.
+graduate|Graduate Projects|Lab projects from funded research tasks in Prof. Shinsuk Park's lab, alongside the papers above.
+coursework|Earlier Projects|Undergraduate coursework and competition projects in mechanism design and robot perception.
+{% endcapture %}
+
+{% assign section_lines = project_sections | strip | newline_to_br | split: "<br />" %}
+{% for line in section_lines %}
+{% assign parts = line | strip | split: "|" %}
+{% assign group_projects = site.projects | where: "group", parts[0] | sort: "date" | reverse %}
+{% if group_projects.size > 0 %}
+<h2 class="pub-section-title">{{ parts[1] }}</h2>
+<p class="pub-section-blurb">{{ parts[2] }}</p>
 <div class="pub-list" markdown="0">
-{% for project in research_projects %}
+{% for project in group_projects %}
   {% assign gradient_index = forloop.index0 | modulo: 4 %}
   {% assign gradient = thumb_gradients[gradient_index] %}
   <div class="pub-row">
@@ -111,28 +121,5 @@ author_profile: true
   </div>
 {% endfor %}
 </div>
-
-<h2 class="pub-section-title">Earlier Projects</h2>
-<p class="pub-section-blurb">Undergraduate coursework and competition projects in mechanism design and robot perception.</p>
-<div class="pub-list" markdown="0">
-{% for project in coursework_projects %}
-  {% assign gradient_index = forloop.index0 | modulo: 4 %}
-  {% assign gradient = thumb_gradients[gradient_index] %}
-  <div class="pub-row">
-    <a class="pub-row__thumb" href="{{ project.url | relative_url }}" style="background: linear-gradient({{ gradient }});">
-      {% if project.header.teaser %}
-        <img src="{{ project.header.teaser | relative_url }}" alt="">
-      {% else %}
-        <i class="fas fa-{{ project.icon | default: "diagram-project" }}" aria-hidden="true"></i>
-      {% endif %}
-    </a>
-    <div class="pub-row__body">
-      <a class="pub-row__title" href="{{ project.url | relative_url }}">{{ project.title }}</a>
-      <p class="pub-row__meta">{{ project.period }}{% if project.category %} &middot; {{ project.category }}{% endif %}{% if project.status %} &middot; {{ project.status }}{% if project.venue %}, {{ project.venue }}{% endif %}{% endif %}</p>
-      {% if project.award %}<p class="pub-row__award"><i class="fas fa-award" aria-hidden="true"></i> {{ project.award }}</p>{% endif %}
-      {% if project.summary %}<p class="pub-row__summary">{{ project.summary }}</p>{% endif %}
-      {% if project.role %}<p class="pub-row__role">Role: {{ project.role }}{% if project.team %}, {{ project.team }}{% endif %}</p>{% endif %}
-    </div>
-  </div>
+{% endif %}
 {% endfor %}
-</div>

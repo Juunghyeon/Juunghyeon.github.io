@@ -4,7 +4,7 @@ permalink: /projects/quadruped-latent-motion/
 date: 2026-01-01
 period: "2025 -- 2026"
 category: "Legged Robotics · Perception"
-group: "research"
+group: "graduate"
 role: "Contributor — Perception System"
 skills: ["Python", "OpenCV", "AprilTag", "ROS2"]
 summary: "Built the real-time dual-camera ball- and fiducial-tracking pipeline that fed task-relevant observations to a lab project adapting CALM's latent motion representations to quadruped object-interaction tasks."

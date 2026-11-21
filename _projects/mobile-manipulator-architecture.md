@@ -6,7 +6,7 @@ period: "Mar.2025 -- Aug.2026"
 category: "Systems Integration · Mobile Manipulation"
 status: "Ongoing"
 role: "System Architect"
-group: "research"
+group: "graduate"
 summary: "A ROS2 architecture connecting simulation, an LLM, a UI, and a physical mobile manipulator, with edge-based data collection and automatic cloud sync that preserves the robot's real-time control cycle."
 skills: ["ROS2", "Python", "C++", "LLM Integration", "Multithreading"]
 icon: "network-wired"
