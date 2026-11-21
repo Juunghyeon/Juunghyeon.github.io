@@ -45,7 +45,7 @@
 {%- endif -%}
 
 {%- assign pgroup = site.data.project_groups | where: "key", page.group | first -%}
-<header class="pp-hero pp-wrap">
+<header class="pp-hero pp-wrap" id="top">
   <p class="pp-kicker">{% if pgroup %}<span class="grp">{{ pgroup.page_label }}</span>{% endif %}{% if pgroup and kicker %} &middot; {% endif %}{{ kicker }}</p>
   <h1{% if hero_sub == nil and include.hero_main.size > 48 %} class="long"{% endif %}>{{ hero_main }}</h1>
   {% if hero_sub %}<p class="pp-sub">{{ hero_sub }}</p>{% endif %}

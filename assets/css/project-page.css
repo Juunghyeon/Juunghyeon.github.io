@@ -136,6 +136,21 @@ a:hover { text-decoration: underline; }
 .pp-parts li img { width: 52px; height: 52px; object-fit: contain; flex: none; }
 .pp-parts li b { display: block; color: var(--ink); }
 
+/* ---------- left contents rail (wide screens), like the paper sites ---------- */
+.pp-toc { display: none; }
+@media (min-width: 1360px) {
+  .pp-toc { display: block; position: fixed; left: 0; top: 0; bottom: 0; width: 210px; padding: 72px 14px 20px 18px; z-index: 6; overflow-y: auto; }
+  .pp-toc > div { display: flex; flex-direction: column; gap: 2px; font-size: 13.5px; }
+  .pp-toc .t { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--mute); margin: 0 0 8px 10px; text-transform: uppercase; }
+  .pp-toc a { color: var(--body); font-weight: 500; padding: 5px 10px; border-radius: 8px; border-left: 3px solid transparent; line-height: 1.35; }
+  .pp-toc a.sub { padding-left: 22px; font-size: 13px; }
+  .pp-toc a:hover { background: var(--tint); text-decoration: none; }
+  .pp-toc a.on { color: var(--ink); background: var(--accent-soft); border-left-color: var(--accent); font-weight: 600; }
+  .pp-nav, main.pp, .pp-foot { margin-left: 210px; }
+  .pp-nav div a:not(.home) { display: none; }
+}
+.pp-hero { scroll-margin-top: 60px; }
+
 /* ---------- footer ---------- */
 .pp-foot { border-top: 1px solid var(--rule); padding: 26px 0 60px; font-size: 13px; color: var(--mute); }
 .pp-foot p { margin: 14px 0 0; }

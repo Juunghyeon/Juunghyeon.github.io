@@ -46,6 +46,17 @@
   {% for link in page.links %}{% if link.url %}<a href="{{ link.url }}">{{ link.label }}</a>{% endif %}{% endfor %}
 </div></nav>
 
+{%- comment -%}
+  Left "Contents" rail (wide screens only, like the paper sites): built from
+  page.links; h3 sub-sections are added under their section by the script
+  at the bottom, and the current section is highlighted while scrolling.
+{%- endcomment -%}
+{% if page.links %}<aside class="pp-toc" aria-label="Contents"><div>
+  <div class="t">Contents</div>
+  <a href="#top">Overview</a>
+  {% for link in page.links %}{% if link.url contains '#' %}<a href="{{ link.url }}">{{ link.label }}</a>{% endif %}{% endfor %}
+</div></aside>{% endif %}
+
 <main class="pp">
   {% include project__hero.html hero_main=hero_main hero_sub=hero_sub %}
 
@@ -70,5 +81,36 @@
   <p><a href="{{ '/projects/' | relative_url }}">&larr; All projects</a> &nbsp;·&nbsp; <a href="{{ '/' | relative_url }}">{{ site.title }}</a></p>
 </div></footer>
 
+<script>
+(function () {
+  var box = document.querySelector('.pp-toc > div');
+  if (!box) return;
+  var target = function (a) { var h = a.getAttribute('href'); return h.charAt(0) === '#' ? document.getElementById(h.slice(1)) : null; };
+  var seen = {};
+  var links = Array.prototype.slice.call(box.querySelectorAll('a'));
+  links.forEach(function (a) { seen[a.getAttribute('href')] = 1; var t = target(a); if (t && t.tagName === 'H3') a.classList.add('sub'); });
+  links.forEach(function (a) {
+    var t = target(a); if (!t || t.tagName !== 'H2') return;
+    var sec = t.closest('section'); if (!sec) return;
+    var after = a;
+    Array.prototype.forEach.call(sec.querySelectorAll('h3[id]'), function (h) {
+      if (seen['#' + h.id]) return;
+      var s = document.createElement('a'); s.href = '#' + h.id; s.className = 'sub'; s.textContent = h.textContent;
+      after.parentNode.insertBefore(s, after.nextSibling); after = s; seen['#' + h.id] = 1;
+    });
+  });
+  var all = Array.prototype.slice.call(box.querySelectorAll('a')).filter(function (a) { return target(a); });
+  all.sort(function (a, b) { return target(a).compareDocumentPosition(target(b)) & 4 ? -1 : 1; });
+  all.forEach(function (a) { box.appendChild(a); });
+  var spy = function () {
+    var y = window.innerHeight * 0.35, cur = all[0];
+    all.forEach(function (a) { var t = target(a); if (t && t.getBoundingClientRect().top < y) cur = a; });
+    all.forEach(function (a) { a.classList.toggle('on', a === cur); });
+  };
+  window.addEventListener('scroll', spy, { passive: true });
+  window.addEventListener('resize', spy);
+  spy();
+})();
+</script>
 </body>
 </html>
