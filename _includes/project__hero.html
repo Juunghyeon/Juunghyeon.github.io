@@ -1,111 +1,72 @@
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+{%- comment -%}
+  Paper-style project header (styles in assets/css/project-page.css).
 
-.project-page, .project-page a {
-  font-family: 'Lato', Verdana, Helvetica, sans-serif;
-}
-.project-page a {
-  color: #1772d0;
-  text-decoration: none;
-}
-.project-page a:hover,
-.project-page a:focus {
-  color: #f09228;
-}
-.project-page .page__content {
-  max-width: 680px;
-  margin: 0 auto;
-  font-size: 1em;
-  line-height: 1.6;
-}
-.project-page .page__content h2 {
-  font-weight: 700;
-  font-size: 1.05em;
-  margin-top: 2em;
-  margin-bottom: 0.6em;
-}
-.project-page .page__content hr {
-  display: none;
-}
+  Front matter it reads:
+    title         "Main: Subtitle" is split into a bold title and a grey subtitle,
+                  unless hero_title / hero_subtitle are given.
+    status, venue research pages: kicker = "status · venue"; otherwise kicker = category
+    authors       markdown, e.g. "**Jeonghyeon Kim**, Shinsuk Park"
+    affiliation
+    period, category, role, team   -> one grey meta line
+    award
+    links         [{label, url}] -> pill buttons
+    header.teaser banner image, unless hide_hero_teaser: true
+{%- endcomment -%}
 
-.project-hero {
-  max-width: 680px;
-  margin: 0 auto 2em;
-  text-align: center;
-}
-.project-hero__title {
-  font-weight: 400;
-  font-size: 1.6em;
-  line-height: 1.4;
-  margin: 0 0 0.6em;
-}
-.project-hero__meta {
-  font-size: 0.85em;
-  opacity: 0.7;
-  margin: 0 0 0.3em;
-}
-.project-hero__award {
-  font-size: 0.85em;
-  opacity: 0.85;
-  margin: 0 0 0.3em;
-}
-.project-hero__links {
-  font-size: 0.9em;
-  margin: 0.7em 0 0;
-}
-.project-hero__links a {
-  margin: 0 0.4em;
-}
-.project-hero__banner {
-  margin: 1.6em auto 0;
-  max-width: 560px;
-}
-.project-hero__banner img {
-  width: 100%;
-  border-radius: 4px;
-  display: block;
-}
+{%- if page.hero_title -%}
+  {%- assign hero_main = page.hero_title -%}
+  {%- assign hero_sub = page.hero_subtitle -%}
+{%- elsif page.title contains ": " -%}
+  {%- assign title_parts = page.title | split: ": " -%}
+  {%- assign hero_main = title_parts | first -%}
+  {%- assign hero_sub = page.title | remove_first: hero_main | remove_first: ": " -%}
+{%- else -%}
+  {%- assign hero_main = page.title -%}
+  {%- assign hero_sub = nil -%}
+{%- endif -%}
 
-.project-back-link {
-  display: block;
-  text-align: center;
-  margin-top: 3em;
-  font-size: 0.9em;
-}
-</style>
+{%- if page.status -%}
+  {%- assign kicker = page.status -%}
+  {%- if page.venue -%}{%- assign kicker = kicker | append: " &middot; " | append: page.venue -%}{%- endif -%}
+  {%- assign meta_category = page.category -%}
+{%- else -%}
+  {%- assign kicker = page.category -%}
+  {%- assign meta_category = nil -%}
+{%- endif -%}
 
-<div class="project-hero">
-  <h1 class="project-hero__title">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>
+{%- assign meta = "" -%}
+{%- if page.role -%}
+  {%- assign meta = page.role -%}
+  {%- if page.team -%}{%- assign meta = meta | append: ", " | append: page.team -%}{%- endif -%}
+{%- endif -%}
+{%- if meta_category -%}
+  {%- if meta != "" -%}{%- assign meta = meta | append: " &middot; " -%}{%- endif -%}
+  {%- assign meta = meta | append: meta_category -%}
+{%- endif -%}
+{%- if page.period -%}
+  {%- if meta != "" -%}{%- assign meta = meta | append: " &middot; " -%}{%- endif -%}
+  {%- assign meta = meta | append: page.period -%}
+{%- endif -%}
 
-  {%- assign meta_line = "" -%}
-  {%- if page.period -%}{% assign meta_line = meta_line | append: page.period %}{%- endif -%}
-  {%- if page.category -%}
-    {%- if meta_line != "" -%}{% assign meta_line = meta_line | append: " &middot; " %}{%- endif -%}
-    {%- assign meta_line = meta_line | append: page.category -%}
-  {%- endif -%}
-  {%- if page.role -%}
-    {%- assign role_str = page.role -%}
-    {%- if page.team -%}{% assign role_str = role_str | append: ", " | append: page.team %}{%- endif -%}
-    {%- if meta_line != "" -%}{% assign meta_line = meta_line | append: " &middot; " %}{%- endif -%}
-    {%- assign meta_line = meta_line | append: role_str -%}
-  {%- endif -%}
-  {%- if page.status -%}
-    {%- if meta_line != "" -%}{% assign meta_line = meta_line | append: " &middot; " %}{%- endif -%}
-    {%- assign meta_line = meta_line | append: page.status -%}
-  {%- endif -%}
-  {%- if meta_line != "" -%}<p class="project-hero__meta">{{ meta_line }}</p>{%- endif -%}
+<header class="pp-hero">
+  {% if kicker %}<p class="pp-kicker">{{ kicker }}</p>{% endif %}
+  <h1{% if hero_sub == nil and hero_main.size > 60 %} class="long"{% endif %}>{{ hero_main }}{% if hero_sub %}<span class="sub">{{ hero_sub }}</span>{% endif %}</h1>
 
-  {% if page.award %}<p class="project-hero__award">{{ page.award }}</p>{% endif %}
+  {% if page.authors %}<p class="pp-authors">{{ page.authors | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p>{% endif %}
+  {% if page.affiliation %}<p class="pp-affil">{{ page.affiliation }}</p>{% endif %}
+  {% if meta != "" %}<p class="pp-meta">{{ meta }}</p>{% endif %}
+
+  {% if page.award %}<p class="pp-award"><i class="fas fa-award" aria-hidden="true"></i><span>{{ page.award }}</span></p>{% endif %}
 
   {% if page.links %}
-    <p class="project-hero__links">
-      {% for link in page.links %}<a href="{{ link.url }}">{{ link.label }}</a>{% unless forloop.last %} / {% endunless %}{% endfor %}
-    </p>
+    <div class="pp-badges">
+      {% for link in page.links %}
+        {% if link.url %}<a class="pp-badge" href="{{ link.url }}">{{ link.label }}</a>{% else %}<span class="pp-badge off">{{ link.label }}</span>{% endif %}
+      {% endfor %}
+    </div>
   {% endif %}
 
   {% if page.header.teaser and page.hide_hero_teaser != true %}
-    <div class="project-hero__banner">
-      <img src="{{ page.header.teaser | relative_url }}" alt="{{ page.title }}">
-    </div>
+    <div class="pp-banner"><img src="{{ page.header.teaser | relative_url }}" alt="{{ hero_main | strip_html }}"></div>
   {% endif %}
-</div>
+</header>

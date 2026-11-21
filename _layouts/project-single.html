@@ -1,20 +1,27 @@
 ---
 layout: default
 ---
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="{{ '/assets/css/project-page.css' | relative_url }}">
 
 <div id="main" role="main">
-  <article class="page project-page" itemscope itemtype="https://schema.org/CreativeWork">
+  <article class="pp" itemscope itemtype="https://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
 
-    <div class="page__inner-wrap">
-      {% include project__hero.html %}
+    {% include project__hero.html %}
 
-      <section class="page__content e-content" itemprop="text">
-        {{ content }}
-      </section>
-
-      <a class="project-back-link" href="{{ '/projects/' | relative_url }}">&larr; All Projects</a>
+    <div class="pp-body e-content" itemprop="text">
+      {{ content }}
     </div>
+
+    {% if page.skills %}
+      <div class="pp-skills" aria-label="Skills">
+        {% for skill in page.skills %}<span>{{ skill }}</span>{% endfor %}
+      </div>
+    {% endif %}
+
+    <a class="pp-back" href="{{ '/projects/' | relative_url }}">&larr; All projects</a>
   </article>
 </div>

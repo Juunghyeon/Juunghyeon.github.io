@@ -9,10 +9,25 @@ role: "Contributor — Perception System"
 skills: ["Python", "OpenCV", "AprilTag", "ROS2"]
 summary: "Built the real-time dual-camera ball- and fiducial-tracking pipeline that fed task-relevant observations to a lab project adapting CALM's latent motion representations to quadruped object-interaction tasks."
 icon: "paw"
+hide_hero_teaser: true
+links:
+  - label: "Video"
+    url: "#video"
+  - label: "Method"
+    url: "#method"
 header:
   teaser: /assets/images/projects/quadruped-latent-motion/teaser.png
   image: # /assets/images/projects/quadruped-latent-motion/cover.jpg
 ---
+
+<figure class="pp-fig pp-wide" id="video">
+  <video controls preload="metadata" playsinline>
+    <source src="{{ '/assets/videos/quadruped-latent-motion/highlights.mp4' | relative_url }}" type="video/mp4">
+  </video>
+  <figcaption class="center">Highlight reel from development and hardware testing on the Unitree A1.</figcaption>
+</figure>
+
+<p class="pp-tldr">High-level policies trained on ground-truth simulation state need the same observations on the real robot. <b>A dual-camera tracking pipeline</b> supplied them: ball and fiducial positions in one common frame, in real time.</p>
 
 ## Abstract
 
@@ -20,25 +35,20 @@ Contributed the real-time perception system to a year-long lab project that adap
 
 ## Method
 
-- Built a dual-camera perception system (fixed global view + onboard view) to track a ball and moving AprilTag fiducial markers in real time, for tasks where the target (box, limbo gap, button, ball) wasn't otherwise observable
-- Calibrated both cameras and transformed detections into a common coordinate frame, so target position stayed consistent as the robot moved and partial occlusion occurred
-- This real-world observation estimate stood in for the task-relevant goal positions that the high-level policies were trained on in simulation
-- Helped run the physical hardware trials on the Unitree A1, deploying the trained policies and the perception pipeline together on the real robot
+- **Two views.** A fixed global camera and an onboard camera track a ball and moving AprilTag fiducial markers in real time, for tasks where the target (box, limbo gap, button, ball) is not otherwise observable.
+- **One frame.** Both cameras are calibrated and their detections transformed into a common coordinate frame, so target positions stay consistent as the robot moves and under partial occlusion.
+- **Sim-to-real observations.** This real-world estimate stands in for the task-relevant goal positions the high-level policies were trained on in simulation.
+- **Hardware trials.** Helped run the physical trials on the Unitree A1, deploying the trained policies and the perception pipeline together on the real robot.
 
-<video controls preload="metadata" style="width:100%; border-radius:4px;">
-  <source src="/assets/videos/quadruped-latent-motion/highlights.mp4" type="video/mp4">
-</video>
-*Highlight reel from development and hardware testing.*
-
-<video controls preload="metadata" style="width:100%; border-radius:4px; margin-top:1.2em;">
-  <source src="/assets/videos/quadruped-latent-motion/test-clip.mp4" type="video/mp4">
-</video>
-*Raw clip from a lab test session.*
+<figure class="pp-fig">
+  <video controls preload="metadata" playsinline>
+    <source src="{{ '/assets/videos/quadruped-latent-motion/test-clip.mp4' | relative_url }}" type="video/mp4">
+  </video>
+  <figcaption>Raw clip from a lab test session.</figcaption>
+</figure>
 
 ## Status
 
+<div class="pp-limits" markdown="1">
 The broader CALM-adaptation project this fed into did not lead to a publication or further continuation under the first author.
-
-## Skills
-
-`Python` `OpenCV` `AprilTag` `ROS2`
+</div>

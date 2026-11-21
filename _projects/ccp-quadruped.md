@@ -11,63 +11,62 @@ group: "coursework"
 skills: ["C++", "Python", "ROS2", "ORB-SLAM", "OpenCV"]
 summary: "Monocular ORB-SLAM depth estimation and UV-disparity segmentation for real-time obstacle avoidance on a quadruped, without a dedicated depth sensor."
 icon: "robot"
+links:
+  - label: "System"
+    url: "#system"
+  - label: "Method"
+    url: "#method"
+  - label: "Platform"
+    url: "#platform"
 header:
   teaser: /assets/images/projects/ccp-quadruped/teaser.jpg
   image: # /assets/images/projects/ccp-quadruped/cover.jpg
 ---
 
+<p class="pp-tldr">Obstacle avoidance on a small quadruped <b>from a single camera</b>: ORB-SLAM recovers depth, and U/V-disparity maps separate obstacles from the ground, with no LiDAR or stereo rig on board.</p>
+
 ## Abstract
 
 Built a monocular-camera obstacle-avoidance pipeline for the DOGZILLA quadruped, estimating scene depth with ORB-SLAM and segmenting obstacles from U/V-disparity maps — enabling real-time autonomous navigation in unstructured environments without a dedicated depth sensor (LiDAR or stereo). Led the four-person RoboStride team through Korea University's Creative Challenger Program.
 
-<div style="display:flex; align-items:center; justify-content:center; gap:1em; flex-wrap:wrap; margin:1.6em 0; font-size:0.92em;">
-  <div style="border:2px solid #333; border-radius:14px; padding:1em 1.3em; text-align:center; min-width:150px;">
-    <strong>Jetson Nano</strong><br>
-    <span style="font-size:0.82em; opacity:0.7;">onboard</span>
-  </div>
-  <div style="text-align:center; font-size:0.8em; line-height:1.7; color:#555; min-width:160px;">
-    <div>RGB-D / Realsense-ros →</div>
-    <div>← Control Topic / ROS</div>
-  </div>
-  <div style="border:2px solid #333; border-radius:14px; padding:1em 1.3em; text-align:center; min-width:180px;">
-    <strong>Desktop</strong><br>
-    <span style="font-size:0.82em; opacity:0.7;">off-board</span><br>
-    <span style="display:inline-block; margin-top:0.6em; border:2px solid #777; border-radius:50%; padding:0.9em 1.1em; line-height:1.4;">ORB-SLAM3<br>UV_disparity</span><br>
-    <span style="display:inline-block; margin:0.3em 0;">↓</span><br>
-    <span style="border:2px solid #777; border-radius:30px; padding:0.35em 0.9em; display:inline-block;">Control Topics</span>
-  </div>
+## System
+
+<div class="pp-flow">
+  <div class="pp-node"><div class="t">Jetson Nano</div><div class="s">onboard</div><span class="chip">camera relay</span></div>
+  <div class="pp-link"><span>RGB-D over Wi-Fi &rarr;</span><span>&larr; control topics (ROS)</span></div>
+  <div class="pp-node hi"><div class="t">Desktop</div><div class="s">off-board</div><span class="chip">ORB-SLAM3</span><span class="chip">UV-disparity</span><span class="chip">control topics</span></div>
 </div>
-*Onboard, the Jetson Nano only relays RGB-D over Wi-Fi; all SLAM and disparity processing runs off-board on a desktop, which sends control topics back over ROS.*
+<p class="pp-cap center">The Jetson Nano only relays camera frames; all SLAM and disparity processing runs off-board on a desktop, which sends control topics back over ROS.</p>
 
 ## Method
 
-- Estimated scene depth from a single RGB feed with monocular ORB-SLAM, extracting sparse 3D point clouds for obstacle localization
-- Built U-disparity and V-disparity maps from the estimated depth to segment obstacles from the ground plane by disparity peaks
-- Fed detections into the robot's navigation controller to trigger real-time avoidance maneuvers
+- **Depth from one camera.** Monocular ORB-SLAM estimates scene depth from a single RGB feed and extracts sparse 3D point clouds for obstacle localization.
+- **Ground vs. obstacle.** U- and V-disparity maps built from the estimated depth separate obstacles from the ground plane by their disparity peaks.
+- **Avoidance.** Detections feed the robot's navigation controller, which triggers avoidance maneuvers in real time.
 
-<div style="display:flex; gap:1.2em; justify-content:center; flex-wrap:wrap; align-items:flex-end; margin:1.6em 0;">
-  <figure style="margin:0; text-align:center;">
-    <img src="/assets/images/projects/ccp-quadruped/v-disparity.jpg" alt="V-disparity map" style="max-width:220px; border:1px solid #ccc; border-radius:4px;">
-    <figcaption style="font-size:0.8em; opacity:0.7; margin-top:0.4em;">V-disparity map</figcaption>
+<div class="pp-row">
+  <figure class="pp-fig">
+    <img src="{{ '/assets/images/projects/ccp-quadruped/camera.png' | relative_url }}" alt="V-disparity map">
+    <figcaption>V-disparity map</figcaption>
   </figure>
-  <figure style="margin:0; text-align:center;">
-    <img src="/assets/images/projects/ccp-quadruped/ground-mask.png" alt="Ground mask from disparity and depth" style="max-width:360px; border:1px solid #ccc; border-radius:4px;">
-    <figcaption style="font-size:0.8em; opacity:0.7; margin-top:0.4em;">Ground mask (disparity + depth)</figcaption>
+  <figure class="pp-fig">
+    <img src="{{ '/assets/images/projects/ccp-quadruped/ground-mask.png' | relative_url }}" alt="Ground mask from disparity and depth">
+    <figcaption>Ground mask (disparity + depth)</figcaption>
   </figure>
 </div>
-*The V-disparity map's dominant line marks the ground plane; deviations from it flag obstacles (green/gray regions in the mask).*
+<p class="pp-cap">The dominant line in the V-disparity map marks the ground plane; deviations from it flag obstacles (green/gray regions in the mask).</p>
 
-<div style="display:flex; gap:1.2em; justify-content:center; flex-wrap:wrap; align-items:flex-start; margin:1.6em 0;">
-  <figure style="margin:0; text-align:center;">
-    <img src="/assets/images/projects/ccp-quadruped/tracking-rgb.png" alt="Tracked ORB feature points and the raw RGB frame" style="max-width:190px; border:1px solid #ccc; border-radius:4px;">
-    <figcaption style="font-size:0.8em; opacity:0.7; margin-top:0.4em;">Feature tracking (top) / RGB frame (bottom)</figcaption>
+<div class="pp-row r12">
+  <figure class="pp-fig">
+    <img src="{{ '/assets/images/projects/ccp-quadruped/tracking-rgb.png' | relative_url }}" alt="Tracked ORB feature points and the raw RGB frame">
+    <figcaption>Feature tracking / RGB frame</figcaption>
   </figure>
-  <figure style="margin:0; text-align:center;">
-    <img src="/assets/images/projects/ccp-quadruped/point-cloud.png" alt="3D point cloud and camera trajectory" style="max-width:420px; border:1px solid #ccc; border-radius:4px;">
-    <figcaption style="font-size:0.8em; opacity:0.7; margin-top:0.4em;">3D point cloud and camera trajectory</figcaption>
+  <figure class="pp-fig">
+    <img src="{{ '/assets/images/projects/ccp-quadruped/point-cloud.png' | relative_url }}" alt="3D point cloud and camera trajectory">
+    <figcaption>3D point cloud and camera trajectory</figcaption>
   </figure>
 </div>
-*ORB feature points tracked across frames (left) build the 3D point cloud and camera trajectory (right) used for localization.*
+<p class="pp-cap">ORB feature points tracked across frames (left) build the 3D point cloud and camera trajectory (right) used for localization.</p>
 
 ## Results
 
@@ -75,18 +74,13 @@ Won the President's Award (1st Place) at Korea University's Creative Challenger 
 
 ## Platform
 
-<div style="display:flex; align-items:center; gap:1.6em; flex-wrap:wrap; justify-content:center; margin:1.6em 0;">
-  <img src="/assets/images/projects/ccp-quadruped/robot-cutout.png" alt="DOGZILLA quadruped" style="max-width:200px;">
-  <div style="display:grid; grid-template-columns:repeat(2, minmax(110px,1fr)); gap:1.2em 1.6em; font-size:0.8em; text-align:center;">
-    <figure style="margin:0;"><img src="/assets/images/projects/ccp-quadruped/camera.png" alt="Realsense D435" style="max-height:55px;"><figcaption>RGB-D Camera<br>Realsense D435</figcaption></figure>
-    <figure style="margin:0;"><img src="/assets/images/projects/ccp-quadruped/jetson.png" alt="Jetson Nano" style="max-height:55px;"><figcaption>On-board PC<br>Jetson Nano, 4GB</figcaption></figure>
-    <figure style="margin:0;"><img src="/assets/images/projects/ccp-quadruped/battery.png" alt="Li-Po battery pack" style="max-height:55px;"><figcaption>Li-Po Battery<br>8.4V, 18650mAh</figcaption></figure>
-    <figure style="margin:0;"><img src="/assets/images/projects/ccp-quadruped/servo.png" alt="Servo motor" style="max-height:55px;"><figcaption>Servo Motor ×12<br>360°, 5.7kg·cm</figcaption></figure>
-  </div>
+<div class="pp-parts">
+  <img src="{{ '/assets/images/projects/ccp-quadruped/robot-cutout.png' | relative_url }}" alt="DOGZILLA quadruped">
+  <ul>
+    <li><img src="{{ '/assets/images/projects/ccp-quadruped/v-disparity.jpg' | relative_url }}" alt=""><span><b>RGB-D camera</b>Realsense D435</span></li>
+    <li><img src="{{ '/assets/images/projects/ccp-quadruped/jetson.png' | relative_url }}" alt=""><span><b>On-board PC</b>Jetson Nano, 4 GB</span></li>
+    <li><img src="{{ '/assets/images/projects/ccp-quadruped/battery.png' | relative_url }}" alt=""><span><b>Li-Po battery</b>8.4 V, 18650 mAh</span></li>
+    <li><img src="{{ '/assets/images/projects/ccp-quadruped/servo.png' | relative_url }}" alt=""><span><b>Servo motor ×12</b>360°, 5.7 kg·cm</span></li>
+  </ul>
 </div>
-
-DOGZILLA quadruped · monocular RGB camera
-
-## Skills
-
-`C++` `Python` `ROS2` `ORB-SLAM` `OpenCV`
+<p class="pp-cap center">DOGZILLA quadruped with a monocular RGB camera.</p>

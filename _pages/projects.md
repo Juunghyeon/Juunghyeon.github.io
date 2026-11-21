@@ -103,7 +103,7 @@ author_profile: true
     </a>
     <div class="pub-row__body">
       <a class="pub-row__title" href="{{ project.url | relative_url }}">{{ project.title }}</a>
-      <p class="pub-row__meta">{{ project.period }}{% if project.category %} &middot; {{ project.category }}{% endif %}{% if project.status %} &middot; {{ project.status }}{% endif %}</p>
+      <p class="pub-row__meta">{{ project.period }}{% if project.category %} &middot; {{ project.category }}{% endif %}{% if project.status %} &middot; {{ project.status }}{% if project.venue %}, {{ project.venue }}{% endif %}{% endif %}</p>
       {% if project.award %}<p class="pub-row__award"><i class="fas fa-award" aria-hidden="true"></i> {{ project.award }}</p>{% endif %}
       {% if project.summary %}<p class="pub-row__summary">{{ project.summary }}</p>{% endif %}
       {% if project.role %}<p class="pub-row__role">Role: {{ project.role }}{% if project.team %}, {{ project.team }}{% endif %}</p>{% endif %}
@@ -128,7 +128,7 @@ author_profile: true
     </a>
     <div class="pub-row__body">
       <a class="pub-row__title" href="{{ project.url | relative_url }}">{{ project.title }}</a>
-      <p class="pub-row__meta">{{ project.period }}{% if project.category %} &middot; {{ project.category }}{% endif %}{% if project.status %} &middot; {{ project.status }}{% endif %}</p>
+      <p class="pub-row__meta">{{ project.period }}{% if project.category %} &middot; {{ project.category }}{% endif %}{% if project.status %} &middot; {{ project.status }}{% if project.venue %}, {{ project.venue }}{% endif %}{% endif %}</p>
       {% if project.award %}<p class="pub-row__award"><i class="fas fa-award" aria-hidden="true"></i> {{ project.award }}</p>{% endif %}
       {% if project.summary %}<p class="pub-row__summary">{{ project.summary }}</p>{% endif %}
       {% if project.role %}<p class="pub-row__role">Role: {{ project.role }}{% if project.team %}, {{ project.team }}{% endif %}</p>{% endif %}
