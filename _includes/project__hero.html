@@ -3,6 +3,7 @@
   Receives hero_main / hero_sub from the layout (split from the title).
 
   Front matter it reads:
+    group         picks the accent colour and tag from _data/project_groups.yml
     hero_accent   one word or phrase of the title shown in the accent colour
     authors       markdown, e.g. "**Jeonghyeon Kim**, Shinsuk Park"
     affiliation
@@ -43,8 +44,9 @@
   {%- assign meta = meta | append: page.period -%}
 {%- endif -%}
 
+{%- assign pgroup = site.data.project_groups | where: "key", page.group | first -%}
 <header class="pp-hero pp-wrap">
-  {% if kicker %}<p class="pp-kicker">{{ kicker }}</p>{% endif %}
+  <p class="pp-kicker">{% if pgroup %}<span class="grp">{{ pgroup.page_label }}</span>{% endif %}{% if pgroup and kicker %} &middot; {% endif %}{{ kicker }}</p>
   <h1{% if hero_sub == nil and include.hero_main.size > 48 %} class="long"{% endif %}>{{ hero_main }}</h1>
   {% if hero_sub %}<p class="pp-sub">{{ hero_sub }}</p>{% endif %}
 

@@ -5,7 +5,9 @@
 
   Everything before the first "## " heading is the hero area (TLDR, teaser
   figure, stat row). Each "## " section is wrapped in its own full-width
-  <section>, alternating white / tinted, with a coloured heading bar.
+  <section>, alternating white / tinted, with a heading bar in the accent
+  colour. The accent (title phrase, TLDR label, heading bars, kicker) comes
+  from the page's group in _data/project_groups.yml.
   An "## Abstract" section is centred like the paper page.
 {%- endcomment -%}
 <html lang="en">
@@ -21,7 +23,8 @@
   <link rel="stylesheet" href="{{ '/assets/css/project-page.css' | relative_url }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 </head>
-<body>
+{%- assign pgroup = site.data.project_groups | where: "key", page.group | first -%}
+<body{% if pgroup %} style="--accent:{{ pgroup.color }};--accent-soft:{{ pgroup.soft }};--accent-line:{{ pgroup.line }}"{% endif %}>
 
 {%- if page.hero_title -%}
   {%- assign hero_main = page.hero_title -%}
@@ -49,16 +52,14 @@
   {%- assign chunks = content | split: '<h2' -%}
   <div class="pp-wrap pp-lead">{{ chunks[0] }}</div>
 
-  {%- assign bars = "#7fae52,#2f8f80,#e08a3c,#d0608e,#4a78b0" | split: "," -%}
   {%- assign n = 0 -%}
   {%- for chunk in chunks offset: 1 -%}
-    {%- assign bar_index = n | modulo: 5 -%}
     {%- assign tint = n | modulo: 2 -%}
     {%- assign head = chunk | slice: 0, 20 -%}
     {%- if head contains 'id="abstract"' -%}
       <section class="pp-sec abs"><div class="pp-wrap"><h2{{ chunk }}</div></section>
     {%- else -%}
-      <section class="pp-sec{% if tint == 1 %} tint{% endif %}" style="--bar:{{ bars[bar_index] }}"><div class="pp-wrap"><h2{{ chunk }}</div></section>
+      <section class="pp-sec{% if tint == 1 %} tint{% endif %}"><div class="pp-wrap"><h2{{ chunk }}</div></section>
       {%- assign n = n | plus: 1 -%}
     {%- endif -%}
   {%- endfor -%}

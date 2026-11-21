@@ -13,12 +13,15 @@ author_profile: true
   max-width: 720px;
   margin: 1.2em 0 2em;
 }
+.pub-section {
+  --sec: #2f8f80;
+}
 .pub-list a {
-  color: #1772d0;
+  color: var(--sec);
   text-decoration: none;
 }
 .pub-list a:hover {
-  color: #f09228;
+  text-decoration: underline;
 }
 .pub-row {
   display: flex;
@@ -26,7 +29,11 @@ author_profile: true
   align-items: flex-start;
   padding: 1.4em 0;
 }
+.pub-row + .pub-row {
+  border-top: 1px solid #eceff3;
+}
 .pub-row__thumb {
+  position: relative;
   flex: 0 0 160px;
   width: 160px;
   height: 120px;
@@ -43,7 +50,17 @@ author_profile: true
   height: 100%;
   object-fit: cover;
 }
-.pub-row__title {
+.pub-row__thumb::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--sec);
+}
+.pub-list .pub-row__title {
+  color: var(--sec);
   font-weight: 700;
   font-size: 1.05em;
   line-height: 1.35;
@@ -55,7 +72,7 @@ author_profile: true
 }
 .pub-row__award {
   font-size: 0.85em;
-  color: #9a6b12;
+  color: #6b5a3a;
   margin: 0.3em 0 0;
 }
 .pub-row__summary {
@@ -73,7 +90,13 @@ author_profile: true
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-weight: 700;
   font-size: 1.2em;
-  margin: 1.6em 0 0.2em;
+  margin: 1.6em 0 0.3em;
+  padding-left: 0.6em;
+  border-left: 5px solid var(--sec);
+  border-bottom: 0;
+}
+.pub-section-blurb {
+  padding-left: calc(0.6em + 5px);
 }
 .pub-section-blurb {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
@@ -83,28 +106,18 @@ author_profile: true
 }
 </style>
 
-{% assign thumb_gradients = "135deg, #33475f, #1b2733|135deg, #3f6b58, #1e3327|135deg, #6b4f33, #33230f|135deg, #5b3f6b, #2a1a33" | split: "|" %}
 
-{%- comment -%} One entry per section: group | heading | blurb {%- endcomment -%}
-{% capture project_sections %}
-research|Research|Papers from my graduate research in dynamics modeling and whole-body control, advised by Prof. Shinsuk Park.
-graduate|Graduate Projects|Lab projects from funded research tasks in Prof. Shinsuk Park's lab, alongside the papers above.
-coursework|Earlier Projects|Undergraduate coursework and competition projects in mechanism design and robot perception.
-{% endcapture %}
-
-{% assign section_lines = project_sections | strip | newline_to_br | split: "<br />" %}
-{% for line in section_lines %}
-{% assign parts = line | strip | split: "|" %}
-{% assign group_projects = site.projects | where: "group", parts[0] | sort: "date" | reverse %}
+{%- comment -%} Sections, colours and blurbs live in _data/project_groups.yml. {%- endcomment -%}
+{% for section in site.data.project_groups %}
+{% assign group_projects = site.projects | where: "group", section.key | sort: "date" | reverse %}
 {% if group_projects.size > 0 %}
-<h2 class="pub-section-title">{{ parts[1] }}</h2>
-<p class="pub-section-blurb">{{ parts[2] }}</p>
-<div class="pub-list" markdown="0">
+<div class="pub-section" style="--sec: {{ section.color }};" markdown="0">
+<h2 class="pub-section-title">{{ section.label }}</h2>
+<p class="pub-section-blurb">{{ section.blurb }}</p>
+<div class="pub-list">
 {% for project in group_projects %}
-  {% assign gradient_index = forloop.index0 | modulo: 4 %}
-  {% assign gradient = thumb_gradients[gradient_index] %}
   <div class="pub-row">
-    <a class="pub-row__thumb" href="{{ project.url | relative_url }}" style="background: linear-gradient({{ gradient }});">
+    <a class="pub-row__thumb" href="{{ project.url | relative_url }}" style="background: linear-gradient(135deg, {{ section.color }}, #1b2733);">
       {% if project.header.teaser %}
         <img src="{{ project.header.teaser | relative_url }}" alt="">
       {% else %}
@@ -120,6 +133,7 @@ coursework|Earlier Projects|Undergraduate coursework and competition projects in
     </div>
   </div>
 {% endfor %}
+</div>
 </div>
 {% endif %}
 {% endfor %}

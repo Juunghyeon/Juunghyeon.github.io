@@ -1,0 +1,30 @@
+# Sections of the Projects page, in display order.
+# `key` matches the `group:` front matter of each file in _projects/.
+# `page_label` is the small tag shown above the title on the project page.
+# `color` is the section's accent: used for the section heading and project
+# titles on /projects/, and as the accent colour inside each project page.
+# `soft` / `line` are light tints of the same colour for backgrounds and borders.
+
+- key: research
+  label: Research
+  page_label: Research
+  blurb: "Papers from my graduate research in dynamics modeling and whole-body control, advised by Prof. Shinsuk Park."
+  color: "#2f8f80"
+  soft: "#eef7f5"
+  line: "#cfe7e2"
+
+- key: graduate
+  label: Graduate Projects
+  page_label: Graduate Project
+  blurb: "Lab projects from funded research tasks in Prof. Shinsuk Park's lab, alongside the papers above."
+  color: "#3f6fb0"
+  soft: "#eef3fa"
+  line: "#cddbef"
+
+- key: coursework
+  label: Earlier Projects
+  page_label: Undergraduate Project
+  blurb: "Undergraduate coursework and competition projects in mechanism design and robot perception."
+  color: "#b8641f"
+  soft: "#fbf2e9"
+  line: "#efd9c3"
