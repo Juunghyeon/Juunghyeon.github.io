@@ -9,7 +9,7 @@ status: "Manuscript in Preparation"
 role: "First Author"
 award: "Master's Research Encouragement Grant, National Research Foundation of Korea (2025)"
 skills: ["Python", "NMPC", "Contact Mechanics", "ROS2", "Gazebo"]
-summary: "A control framework where the task specifies what to preserve under unknown contact — in simulation on tilted boards, it kept a drawn figure within 0.52 mm versus 10.6–18.1 mm for the nearest-point rule given the true normal."
+summary: "A control framework where the task specifies what to preserve under unknown contact — on a real Dobot CR3A drawing on tilted boards, it kept the figure within 0.38–0.48 mm versus 11.3–25.2 mm for the nearest-point rule given the true normal."
 icon: "hand-paper"
 group: "research"
 header:
