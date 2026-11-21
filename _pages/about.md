@@ -110,7 +110,7 @@ Mar. 2024 – Jan. 2025
 
 *Team Leader · RoboStride · Korea University*
 
-Led a four-person team building an ORB-SLAM and UV-disparity based obstacle-avoidance pipeline for a quadruped robot. Won the President's Award; the work was later presented at the KSPE 2025 Spring Conference. [Project page →](/projects/ccp-quadruped/)
+Led a four-person team building an ORB-SLAM and UV-disparity based obstacle-avoidance pipeline for a quadruped robot. Won the President's Award; the work was later presented as a poster at the KSPE 2025 Spring Conference. [Project page →](/projects/ccp-quadruped/)
 
 **Ladder-Crossing Robot**
 Mar. 2023 – Sep. 2023

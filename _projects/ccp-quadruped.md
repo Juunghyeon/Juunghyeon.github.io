@@ -22,6 +22,8 @@ links:
     url: "#method"
   - label: "Results"
     url: "#results"
+  - label: "Poster"
+    url: "#poster"
   - label: "Platform"
     url: "#platform"
 header:
@@ -76,7 +78,16 @@ Built a monocular-camera obstacle-avoidance pipeline for the DOGZILLA quadruped,
 
 ## Results
 
-Won the President's Award (1st Place) at Korea University's Creative Challenger Program, and later presented the work at the KSPE 2025 Spring Conference.
+Won the President's Award (1st Place) at Korea University's Creative Challenger Program, and later presented the work as a poster at the KSPE 2025 Spring Conference (see [Poster](#poster)).
+
+## Poster
+
+**Jeonghyeon Kim** and Shinsuk Park, "Obstacle Detection for a Quadruped Robot Using ORB-SLAM and UV-disparity," poster, *Korean Society for Precision Engineering (KSPE) 2025 Spring Conference*, Jeju, Republic of Korea, May 14–16, 2025.
+
+<figure class="pp-fig" style="max-width:440px;margin-left:auto;margin-right:auto">
+  <img src="{{ '/assets/images/projects/ccp-quadruped/kspe-poster.jpg' | relative_url }}" alt="Presenting the poster at the KSPE 2025 Spring Conference">
+  <figcaption>Presenting the poster (25SPP03-011) at the KSPE 2025 Spring Conference.</figcaption>
+</figure>
 
 ## Platform
 
