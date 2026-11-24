@@ -1,88 +1,78 @@
-\documentclass[a4paper,11pt]{article}
+\documentclass[letterpaper,10pt]{article}
 
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{charter}
-\usepackage[margin=1.65cm]{geometry}
-\usepackage[hidelinks]{hyperref}
+\usepackage{caladea}
+\usepackage[top=0.56in,bottom=0.56in,left=0.53in,right=0.53in]{geometry}
+\usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{titlesec}
-\usepackage{xcolor}
 \usepackage{tabularx}
 \usepackage{microtype}
-\usepackage{fancyhdr}
+\usepackage[colorlinks=true,urlcolor=linkblue]{hyperref}
 
-\definecolor{rule}{HTML}{6B8CAE}
-
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
+\definecolor{ruleblue}{HTML}{476989}
+\definecolor{linkblue}{HTML}{254F75}
+\pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
-\hyphenpenalty=10000
-\exhyphenpenalty=10000
+\raggedbottom
 \urlstyle{same}
 
 \titleformat{\section}
-  {\large\scshape\bfseries}
-  {}{0pt}{}
-  [\vspace{-0.6ex}{\color{rule}\titlerule[0.6pt]}]
-\titlespacing*{\section}{0pt}{1.9ex}{1ex}
+  {\fontsize{12.5}{14.5}\selectfont\bfseries}
+  {}{0pt}{\MakeUppercase}
+  [\vspace{1pt}{\color{ruleblue}\titlerule[0.55pt]}]
+\titlespacing*{\section}{0pt}{13pt}{6pt}
+
+\newcommand{\datedline}[2]{%
+  \par\noindent
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X@{\hspace{1em}}r@{}}
+    #1 & {\small #2}
+  \end{tabularx}\par\nopagebreak
+}
 
 \newcommand{\entry}[4]{%
-  \begin{tabularx}{\textwidth}{@{}Xr@{}}
-    \textbf{#1} & \textit{#4} \\
-    \textit{#2} & #3
-  \end{tabularx}\vspace{0.15ex}
+  \datedline{\textbf{#1}, #3}{#4}%
+  #2\par\nopagebreak
 }
 
-\newcommand{\project}[2]{%
-  \begin{tabularx}{\textwidth}{@{}Xr@{}}
-    \textbf{#1} & \textit{#2}
-  \end{tabularx}\vspace{0.1ex}
-}
+\newcommand{\project}[2]{\datedline{{\fontsize{10.5}{12}\selectfont\bfseries #1}}{#2}}
 
 \newcommand{\researchentry}[2]{%
-  \textbf{#1}\par
-  \begin{tabularx}{\textwidth}{@{}Xr@{}}
-    \textit{Human-Machine Systems Lab, Korea University} & \textit{#2}
-  \end{tabularx}\vspace{0.1ex}
+  \project{#1}{#2}%
+  Human-Machine Systems Lab, Korea University\par\nopagebreak
 }
 
-\newcommand{\detail}[1]{%
-  \par\vspace{0.1ex}#1\par\vspace{0.45ex}
-}
-
-\newcommand{\note}[1]{%
-  \par\vspace{0.05ex}{\small #1\par}\vspace{0.3ex}
-}
+\newcommand{\detail}[1]{#1\par}
+\newcommand{\note}[1]{{\small\itshape #1\par}\smallskip}
 
 \newcommand{\compactlist}{%
-  \begin{itemize}[leftmargin=1.3em,itemsep=0.12ex,topsep=0.22ex,parsep=0pt,partopsep=0pt]
+  \begin{itemize}[leftmargin=1.55em,itemsep=0.4pt,topsep=2pt,parsep=0pt,partopsep=0pt]
 }
-\newcommand{\finishcompactlist}{\end{itemize}\vspace{0.3ex}}
+\newcommand{\finishcompactlist}{\end{itemize}\addvspace{5pt}}
 
-\newcommand{\pubentry}[1]{%
-  \par\hangindent=1.35em\hangafter=1 #1\par\vspace{0.45ex}
-}
+\newcommand{\pubentry}[1]{\item #1}
+\newcommand{\contactseparator}{\enspace\textbar\enspace}
 
 \begin{document}
 
-\begin{center}
-  {\fontsize{26}{30}\selectfont\bfseries Jeonghyeon Kim}\\[0.6ex]
-  {\small M.S. Student in Mechanical Engineering, Korea University}\\[0.55ex]
+{\centering
+  {\fontsize{33}{37}\selectfont\bfseries Jeonghyeon Kim\par}
+  \vspace{3pt}
+  {\small M.S. Student in Mechanical Engineering, Korea University\par}
+  \vspace{2pt}
   {\small
     \href{mailto:ahdtld54@korea.ac.kr}{ahdtld54@korea.ac.kr}
-    \enspace$\cdot$\enspace
+    \contactseparator
     \href{https://github.com/Juunghyeon}{github.com/Juunghyeon}
-    \enspace$\cdot$\enspace
+    \contactseparator
     \href{https://Juunghyeon.github.io}{Juunghyeon.github.io}
-    \enspace$\cdot$\enspace
-    +82-10-8274-5411
+    \contactseparator
+    +82-10-8274-5411\par
   }
-\end{center}
-\vspace{-1.2ex}
+}
+\vspace{7pt}
+{\color{ruleblue}\hrule height 0.45pt}
+
 
 \section{Education}
 
@@ -98,16 +88,16 @@
 
 \researchentry{Push Recovery for a Force-Sensorless Humanoid (Unitree G1)}{Mar. 2025 -- Present}
 \compactlist
-  \item Developed a pelvis-IMU-based disturbance estimator and an MPC-based hold-or-step controller, investigating how estimation delay and modeling errors affect in-place push recovery.
+  \item Developed a pelvis-IMU-based disturbance estimator and an MPC-based hold-or-step controller, investigating how estimation delay affects in-place push recovery.
   \item In simulation, recovered from 65 of 80 push trials versus 62 for a stepping baseline, while taking 49\% fewer steps and recovering from 30 pushes without stepping.
   \item At small delays, each additional 10\,ms of estimation delay reduced the maximum holdable push force by approximately 3.7\%.
-  \item Implemented and evaluated the estimator and hold layer on a physical Unitree G1: with stepping disabled, the median maximum lateral push sustained per block was 69\,N with the hold layer versus 0\,N without it.
+  \item Implemented and evaluated the estimator and hold layer on a physical Unitree G1. With stepping disabled, the median maximum lateral push sustained per block was 69\,N with the hold layer versus 0\,N without it.
 \finishcompactlist
 
 \researchentry{Intent-Preserving Contact Control on Unknown Surfaces (Dobot CR3A)}{Sep. 2025 -- Present}
 \compactlist
   \item Formulated a task-aware contact-control method that preserves task-relevant coordinates while allowing motion in designated yield directions, using only joint sensing.
-  \item Developed and tested the controller on a physical Dobot CR3A drawing on tilted boards unknown to the controller: figure displacement was 0.38--0.49\,mm, versus 11.3--25.2\,mm for nearest-point correction supplied with measured surface normals.
+  \item Developed and tested the controller on a physical Dobot CR3A drawing on tilted boards unknown to the controller. Figure displacement was 0.38--0.49\,mm, versus 11.3--25.2\,mm for nearest-point correction supplied with measured surface normals.
 \finishcompactlist
 
 \researchentry{Real-Time Robot Communication and Data Infrastructure}{Mar. 2025 -- Aug. 2026}
@@ -118,50 +108,71 @@
 
 \section{Publications \& Manuscripts}
 
-\textit{Accepted}
-\pubentry{H.-Y. Ju, J.-H. Kim, and S.-S. Park, ``A Study on Improving Sim-to-Real Accuracy through Dynamics Parameter Tuning in Reinforcement Learning-based Mapless Navigation,'' \textit{Journal of Institute of Control, Robotics and Systems}, accepted, 2026.}
+\textit{Accepted}\par
+\compactlist
+\pubentry{H.-Y. Ju, \textbf{J.-H. Kim}, and S.-S. Park, ``A Study on Improving Sim-to-Real Accuracy through Dynamics Parameter Tuning in Reinforcement Learning-based Mapless Navigation,'' \textit{Journal of Institute of Control, Robotics and Systems}, accepted, 2026.}
 
-\textit{Manuscripts in Preparation}
-\pubentry{J.-H. Kim and S.-S. Park, ``Feasible Is Not Faithful: Intent-Preserving Constraint Realization for Contact Tasks on Unknown Surfaces,'' manuscript in preparation.}
-\pubentry{J.-H. Kim, J. Kim, and S.-S. Park, ``Hold Before You Step: The Information Requirement of In-Place Push Recovery on Force-Sensorless Humanoids,'' manuscript in preparation.}
+\end{itemize}
+\smallskip
+\textit{Manuscripts in Preparation}\par
+\compactlist
+\pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Feasible Is Not Faithful: Intent-Preserving Constraint Realization for Contact Tasks on Unknown Surfaces,'' manuscript in preparation.}
+\pubentry{\textbf{J.-H. Kim}, J. Kim, and S.-S. Park, ``Hold Before You Step: The Information Requirement of In-Place Push Recovery on Force-Sensorless Humanoids,'' manuscript in preparation.}
+
+\end{itemize}
 
 \section{Conference Presentations}
+\compactlist
 
-\pubentry{J.-H. Kim and S.-S. Park, ``Obstacle Detection Using ORB-SLAM and UV-Disparity with a Low-Cost Quadruped Robot,'' \textit{KSPE 2025 Spring Conference}, Jeju, Republic of Korea, May 2025 (poster).}
+\pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Obstacle Detection Using ORB-SLAM and UV-Disparity with a Low-Cost Quadruped Robot,'' \textit{KSPE 2025 Spring Conference}, Jeju, Republic of Korea, May 2025 (poster).}
 
+\end{itemize}
+
+\newpage
+\vspace*{5pt}
+\fontsize{10.5}{13}\selectfont
+\titlespacing*{\section}{0pt}{26pt}{9pt}
 \section{Selected Undergraduate Design Projects}
 
 \project{Quadruped Robot Obstacle Avoidance}{Mar. 2024 -- Jan. 2025}
-Led a four-person team integrating ORB-SLAM and UV-disparity-based obstacle detection for autonomous navigation on a DOGZILLA quadruped robot.
+\compactlist
+  \item Led a four-person team integrating ORB-SLAM and UV-disparity-based obstacle detection for autonomous navigation on a DOGZILLA quadruped robot.
+\end{itemize}
 \note{President's Award, Creative Challenger Program, Korea University (2025)}
 
 \project{Ladder-Crossing Robot}{Mar. 2023 -- Sep. 2023}
-Led a five-person team designing and prototyping a rung-by-rung ladder-crossing robot, including its gripping mechanism and Arduino-based motion control.\\[1.0ex]
+\compactlist
+  \item Led a five-person team designing and prototyping a rung-by-rung ladder-crossing robot, including its gripping mechanism and Arduino-based motion control.
+\end{itemize}\medskip
 
 \project{Solar-Tracking Parasol}{Sep. 2023 -- Nov. 2023}
-Designed a linkage mechanism and light-tracking controller for an automatically orienting parasol.
+\compactlist
+  \item Designed a linkage mechanism and light-tracking controller for an automatically orienting parasol.
+\end{itemize}
 \note{Bronze Award, Creative Comprehensive Design Competition; Design Award, Capstone Design Fair (2023)}
 
 \section{Teaching Experience}
+\renewcommand{\arraystretch}{1.24}
 
-\textit{Teaching Assistant, Korea University, Seoul, Republic of Korea}\\[0.3ex]
+\textbf{Teaching Assistant}, Korea University, Seoul, Republic of Korea\par\smallskip
 \begin{tabularx}{\textwidth}{@{}Xr@{}}
-  Robotics & Spring 2026 \\
-  Computer-Aided Design & Fall 2025 \\
-  Dynamics (English-taught course) & Summer 2025 \\
-  Kinematics of Mechanisms & Spring 2025
+  Robotics & {\small Spring 2026} \\
+  Computer-Aided Design & {\small Fall 2025} \\
+  Dynamics (English-taught course) & {\small Summer 2025} \\
+  Kinematics of Mechanisms & {\small Spring 2025}
 \end{tabularx}
 
 \section{Technical Skills}
 
 \begin{tabularx}{\textwidth}{@{}l X@{}}
-Programming & Python, C/C++, MATLAB \\
-Robotics \& Systems & ROS~2, EtherCAT, Pinocchio, URDF/XACRO \\
-Control & MPC, reinforcement learning, trajectory optimization, CasADi, CVXPY \\
-Simulation \& Learning & Isaac Gym, Isaac Sim, MuJoCo, Gazebo, PyTorch \\
-Mechanical Design & SolidWorks, Creo, NX
+\textbf{Programming} & Python, C/C++, MATLAB \\
+\textbf{Robotics \& Systems} & ROS~2, EtherCAT, Pinocchio, URDF/XACRO \\
+\textbf{Control} & MPC, reinforcement learning, trajectory optimization, CasADi, CVXPY \\
+\textbf{Simulation \& Learning} & Isaac Gym, Isaac Sim, MuJoCo, Gazebo, PyTorch \\
+\textbf{Mechanical Design} & SolidWorks, Creo, NX
 \end{tabularx}
 
+\renewcommand{\arraystretch}{1}
 \section{Military Service}
 
 \project{Mandatory Military Service, Republic of Korea}{Jan. 2020 -- Oct. 2022}
