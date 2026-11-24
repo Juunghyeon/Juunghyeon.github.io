@@ -49,6 +49,10 @@
   \par\hangindent=1.15em\hangafter=1 #1\par\vspace{0.25ex}
 }
 
+\newcommand{\note}[1]{%
+  \par\vspace{0.05ex}{\small #1\par}\vspace{0.3ex}
+}
+
 \begin{document}
 
 \begin{center}
@@ -71,6 +75,7 @@
 \section{Education}
 
 \eduentry{Korea University}{M.S. in Mechanical Engineering; Advisor: Prof. Shinsuk Park; GPA: 4.25/4.5}{Seoul, Republic of Korea}{Mar. 2025 -- Aug. 2027 (Expected)}
+\note{Funding: Master's Research Encouragement Grant, National Research Foundation of Korea (2025)}
 \eduentry{Korea University}{B.S. in Mechanical Engineering; GPA: 3.91/4.5}{Seoul, Republic of Korea}{Mar. 2019 -- Feb. 2025}
 
 \section{Research Experience}
@@ -102,19 +107,12 @@
 
 \section{Technical Skills}
 
-\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
 Programming & Python, C/C++, MATLAB \\
 Robotics \& Systems & ROS~2, EtherCAT, Pinocchio, URDF/XACRO \\
 Control & MPC, reinforcement learning, trajectory optimization, CasADi, CVXPY \\
 Simulation \& Learning & Isaac Gym, Isaac Sim, MuJoCo, Gazebo, PyTorch \\
 Mechanical Design & SolidWorks, Creo, NX
-\end{tabularx}
-
-\section{Honors \& Research Support}
-
-\begin{tabularx}{\textwidth}{@{}Xr@{}}
-\textbf{Master's Research Encouragement Grant}, National Research Foundation of Korea & 2025 \\
-\textbf{President's Award}, Creative Challenger Program, Korea University & Jan. 2025
 \end{tabularx}
 
 \end{document}

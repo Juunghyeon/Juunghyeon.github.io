@@ -49,6 +49,10 @@
   \par\vspace{0.1ex}#1\par\vspace{0.45ex}
 }
 
+\newcommand{\note}[1]{%
+  \par\vspace{0.05ex}{\small #1\par}\vspace{0.3ex}
+}
+
 \newcommand{\compactlist}{%
   \begin{itemize}[leftmargin=1.3em,itemsep=0.12ex,topsep=0.22ex,parsep=0pt,partopsep=0pt]
 }
@@ -80,6 +84,7 @@
 \entry{Korea University}{M.S. in Mechanical Engineering}{Seoul, Republic of Korea}{Mar. 2025 -- Aug. 2027 (Expected)}
 \detail{Advisor: Prof. Shinsuk Park}
 \detail{GPA: 4.25/4.5 \enspace$\cdot$\enspace Research interests: robot dynamics, model-based control, contact-rich manipulation}
+\note{Funding: Master's Research Encouragement Grant, National Research Foundation of Korea (2025)}
 
 \entry{Korea University}{B.S. in Mechanical Engineering}{Seoul, Republic of Korea}{Mar. 2019 -- Feb. 2025}
 \detail{GPA: 3.91/4.5}
@@ -122,20 +127,15 @@
 \section{Selected Undergraduate Design Projects}
 
 \project{Quadruped Robot Obstacle Avoidance}{Mar. 2024 -- Jan. 2025}
-Led a four-person team integrating ORB-SLAM and UV-disparity-based obstacle detection for autonomous navigation on a DOGZILLA quadruped robot.\\[1.0ex]
+Led a four-person team integrating ORB-SLAM and UV-disparity-based obstacle detection for autonomous navigation on a DOGZILLA quadruped robot.
+\note{President's Award, Creative Challenger Program, Korea University (2025)}
 
 \project{Ladder-Crossing Robot}{Mar. 2023 -- Sep. 2023}
 Led a five-person team designing and prototyping a rung-by-rung ladder-crossing robot, including its gripping mechanism and Arduino-based motion control.\\[1.0ex]
 
 \project{Solar-Tracking Parasol}{Sep. 2023 -- Nov. 2023}
 Designed a linkage mechanism and light-tracking controller for an automatically orienting parasol.
-
-\section{Honors and Awards}
-
-\project{Master's Research Encouragement Grant, National Research Foundation of Korea}{2025}
-\project{President's Award, Creative Challenger Program, Korea University}{Jan. 2025}
-\project{Bronze Award, Creative Comprehensive Design Competition, Korea University}{Sep. 2023}
-\project{Design Award, Capstone Design Fair, Korea University}{Nov. 2023}
+\note{Bronze Award, Creative Comprehensive Design Competition; Design Award, Capstone Design Fair (2023)}
 
 \section{Teaching Experience}
 
@@ -149,7 +149,7 @@ Designed a linkage mechanism and light-tracking controller for an automatically 
 
 \section{Technical Skills}
 
-\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
 Programming & Python, C/C++, MATLAB \\
 Robotics \& Systems & ROS~2, EtherCAT, Pinocchio, URDF/XACRO \\
 Control & MPC, reinforcement learning, trajectory optimization, CasADi, CVXPY \\
