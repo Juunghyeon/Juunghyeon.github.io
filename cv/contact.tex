@@ -63,7 +63,7 @@
   }\\[0.7ex]
   \begin{minipage}{0.95\textwidth}
     \small\centering
-    Robotics researcher focused on \textbf{control-oriented dynamics modeling} and \textbf{model-based control} for humanoid and manipulation robots, with experience in MPC, reinforcement learning, robot perception, and real-time ROS~2 systems.
+    Robotics researcher focused on \textbf{control-oriented dynamics modeling}, \textbf{model-based robot control}, and \textbf{contact-rich interaction}, with experience in MPC, reinforcement learning, robot perception, and real-time ROS~2 systems.
   \end{minipage}
 \end{center}
 \vspace{-1.0ex}
@@ -78,13 +78,13 @@
 \researchentry{Push Recovery for a Force-Sensorless Humanoid (Unitree G1)}{Mar. 2025 -- Present}
 {\small\textit{Human-Machine Systems Lab, Korea University}}
 \compactlist
-  \item Developed a pelvis-IMU disturbance estimator and an MPC-based hold-or-step controller; held 30 of 80 pushes in place in simulation with 49\% fewer recovery steps than a stepping-only baseline, and validated the hold layer separately on hardware with stepping disabled.
+  \item Developed a pelvis-IMU disturbance estimator and an MPC-based hold-or-step controller; in simulation, recovered from 65 of 80 pushes (vs.\ 62 for a stepping baseline) with 49\% fewer steps, and validated the hold layer on a physical G1, sustaining a median 69\,N lateral push with stepping disabled versus 0\,N without it.
 \finishcompactlist
 
 \researchentry{Intent-Preserving Contact Control on Unknown Surfaces (Dobot CR3A)}{Sep. 2025 -- Present}
 {\small\textit{Human-Machine Systems Lab, Korea University}}
 \compactlist
-  \item Formulated contact-rich manipulation on unknown tilted surfaces as a task-preserving constraint problem; on a Dobot CR3A, kept figure drift to 0.38--0.48\,mm, versus 11.3--25.2\,mm for a nearest-point baseline given the true surface normal.
+  \item Formulated a contact-control method that lets the task specify which coordinates may yield to unknown contact, using joint sensing only; on a physical Dobot CR3A, kept figure displacement to 0.38--0.49\,mm, versus 11.3--25.2\,mm for nearest-point correction given measured surface normals.
 \finishcompactlist
 
 \researchentry{Real-Time Robot Communication and Data Infrastructure}{Mar. 2025 -- Aug. 2026}
@@ -105,8 +105,9 @@
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
 Programming & Python, C/C++, MATLAB \\
 Robotics \& Systems & ROS~2, EtherCAT, Pinocchio, URDF/XACRO \\
-Control \& Simulation & MPC, CasADi, CVXPY, Isaac Sim, Isaac Gym, MuJoCo, Gazebo \\
-Learning \& Design & PyTorch, reinforcement learning, OpenCV, ORB-SLAM, Git
+Control \& Optimization & Model predictive control, reinforcement learning, CasADi, CVXPY, trajectory optimization \\
+Simulation \& Learning & Isaac Gym, Isaac Sim, MuJoCo, Gazebo, PyTorch \\
+Mechanical Design & SolidWorks, Creo, NX
 \end{tabularx}
 
 \section{Honors \& Research Support}

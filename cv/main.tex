@@ -79,7 +79,7 @@
 
 \entry{Korea University}{M.S. in Mechanical Engineering}{Seoul, Republic of Korea}{Mar. 2025 -- Aug. 2027 (Expected)}
 \detail{Advisor: Prof. Shinsuk Park}
-\detail{GPA: 4.25/4.5 \enspace$\cdot$\enspace Research interests: control-oriented dynamics modeling and model-based control}
+\detail{GPA: 4.25/4.5 \enspace$\cdot$\enspace Research interests: control-oriented dynamics modeling, model-based robot control, contact-rich interaction}
 
 \entry{Korea University}{B.S. in Mechanical Engineering}{Seoul, Republic of Korea}{Mar. 2019 -- Feb. 2025}
 \detail{GPA: 3.91/4.5}
@@ -88,19 +88,22 @@
 
 \researchentry{Push Recovery for a Force-Sensorless Humanoid (Unitree G1)}{Mar. 2025 -- Present}
 \compactlist
-  \item Developed a pelvis-IMU disturbance estimator and an MPC-based hold-or-step controller that lets a force-sensorless humanoid decide, from motion alone, whether to hold a push in place or step to recover.
-  \item In simulation, held 30 of 80 pushes in place with 49\% fewer recovery steps than a stepping-only baseline.
-  \item Validated the hold layer separately on the physical G1 with stepping disabled.
+  \item Developed a pelvis-IMU-based disturbance estimator and an MPC-based hold-or-step controller, investigating how estimation delay and modeling errors affect in-place push recovery.
+  \item In simulation, recovered from 65 of 80 push trials versus 62 for a stepping baseline, with 49\% fewer steps and 30 recoveries without stepping versus none for the baseline; each additional 10\,ms of delay reduced the holdable push force by about 3.7\%.
+  \item Implemented and evaluated the estimator and hold layer on a physical Unitree G1: with stepping disabled, the median maximum lateral push sustained per block was 69\,N with the hold layer versus 0\,N without it.
 \finishcompactlist
 
 \researchentry{Intent-Preserving Contact Control on Unknown Surfaces (Dobot CR3A)}{Sep. 2025 -- Present}
 \compactlist
-  \item Formulated contact-rich manipulation on surfaces of unknown orientation as a task-preserving constraint problem, developing a joint-sensing-only controller that lets the task specify which coordinates may yield to the surface.
-  \item On a Dobot CR3A drawing on tilted boards, kept figure drift to 0.38--0.48\,mm, versus 11.3--25.2\,mm for a nearest-point baseline given the true surface normal.
+  \item Formulated a contact-control method that distinguishes task coordinates to preserve from directions the robot may yield to uncertain contact, using joint sensing only (no force/torque sensor).
+  \item Developed and tested the controller on a physical Dobot CR3A drawing on tilted boards unknown to the controller: figure displacement was 0.38--0.49\,mm, versus 11.3--25.2\,mm for nearest-point correction supplied with measured surface normals.
 \finishcompactlist
 
 \researchentry{Real-Time Robot Communication and Data Infrastructure}{Mar. 2025 -- Aug. 2026}
-\detail{Industry--academia project with MOVENSYS. Designed the system framework and ROS~2 communication structure connecting simulation, an LLM, a user interface, and a physical mobile manipulator, with time-synchronized edge data collection that preserves the real-time control cycle.}
+\compactlist
+  \item Developed the system framework and ROS~2 communication architecture for an industry--academia mobile-manipulator project with MOVENSYS, connecting simulation, AI applications, a user interface, and physical robot hardware.
+  \item Implemented time-synchronized sensor and motor data collection and edge-computing infrastructure while preserving the robot's real-time control cycle.
+\finishcompactlist
 
 \section{Publications \& Manuscripts}
 
@@ -111,19 +114,20 @@
 \pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Feasible Is Not Faithful: Intent-Preserving Constraint Realization for Contact Tasks on Unknown Surfaces,'' manuscript in preparation.}
 \pubentry{\textbf{J.-H. Kim}, J. Kim, and S.-S. Park, ``Hold Before You Step: The Information Requirement of In-Place Push Recovery on Force-Sensorless Humanoids,'' manuscript in preparation.}
 
-\textit{Conference Presentations}
+\section{Conference Presentations}
+
 \pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Obstacle Detection Using ORB-SLAM and UV-Disparity with a Low-Cost Quadruped Robot,'' \textit{KSPE 2025 Spring Conference}, Jeju, Republic of Korea, May 2025 (poster).}
 
 \section{Selected Undergraduate Design Projects}
 
 \project{Quadruped Robot Obstacle Avoidance}{Mar. 2024 -- Jan. 2025}
-Led a four-person team integrating ORB-SLAM depth estimation with UV-disparity-based obstacle detection on a low-cost quadruped robot.\\[1.0ex]
+Led a four-person team integrating ORB-SLAM and UV-disparity-based obstacle detection for autonomous navigation on a DOGZILLA quadruped robot.\\[1.0ex]
 
 \project{Ladder-Crossing Robot}{Mar. 2023 -- Sep. 2023}
-Led a five-person team to design and prototype a tendon-driven robot that climbs a horizontal ladder rung by rung.\\[1.0ex]
+Led a five-person team designing and prototyping a rung-by-rung ladder-crossing robot, including its gripping mechanism and Arduino-based motion control.\\[1.0ex]
 
 \project{Solar-Tracking Parasol}{Sep. 2023 -- Nov. 2023}
-Designed a linkage mechanism and sun-tracking controller that reorients a parasol's canopy to follow the incident-light direction.
+Designed a linkage mechanism and light-tracking controller for an automatically orienting parasol.
 
 \section{Honors and Awards}
 
@@ -147,8 +151,9 @@ Designed a linkage mechanism and sun-tracking controller that reorients a paraso
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
 Programming & Python, C/C++, MATLAB \\
 Robotics \& Systems & ROS~2, EtherCAT, Pinocchio, URDF/XACRO \\
-Control \& Simulation & MPC, CasADi, CVXPY, Isaac Sim, Isaac Gym, MuJoCo, Gazebo \\
-Learning \& Design & PyTorch, reinforcement learning, OpenCV, ORB-SLAM, SolidWorks/Creo/NX, Git
+Control \& Optimization & Model predictive control, reinforcement learning, CasADi, CVXPY, trajectory optimization \\
+Simulation \& Learning & Isaac Gym, Isaac Sim, MuJoCo, Gazebo, PyTorch \\
+Mechanical Design & SolidWorks, Creo, NX
 \end{tabularx}
 
 \section{Military Service}
