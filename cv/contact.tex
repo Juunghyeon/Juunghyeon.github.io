@@ -78,22 +78,16 @@
 \researchentry{Push Recovery for a Force-Sensorless Humanoid (Unitree G1)}{Mar. 2025 -- Present}
 {\small\textit{Human-Machine Systems Lab, Korea University}}
 \compactlist
-  \item Developed a pelvis-IMU disturbance estimator and an MPC-based hold-or-step controller; held 30 of 80 pushes in place in simulation (stepping baseline: 0), validated on hardware.
+  \item Developed a pelvis-IMU disturbance estimator and an MPC-based hold-or-step controller; held 30 of 80 pushes in place in simulation with 49\% fewer recovery steps than a stepping-only baseline, and validated the hold layer separately on hardware with stepping disabled.
 \finishcompactlist
 
 \researchentry{Intent-Preserving Contact Control on Unknown Surfaces (Dobot CR3A)}{Sep. 2025 -- Present}
 {\small\textit{Human-Machine Systems Lab, Korea University}}
 \compactlist
-  \item Developed a joint-sensing-only contact controller that keeps figure drift below 0.5\,mm on unknown tilted surfaces, versus up to 25\,mm for nearest-point correction.
+  \item Formulated contact-rich manipulation on unknown tilted surfaces as a task-preserving constraint problem; on a Dobot CR3A, kept figure drift to 0.38--0.48\,mm, versus 11.3--25.2\,mm for a nearest-point baseline given the true surface normal.
 \finishcompactlist
 
-\researchentry{Visual Perception for Quadrupedal Object Interaction}{Mar. 2025 -- Nov. 2025}
-{\small\textit{Human-Machine Systems Lab, Korea University}}
-\compactlist
-  \item Built a ROS~2 dual-camera system to track a ball and moving ArUco markers across fixed global and onboard views, transforming observations into a common coordinate frame for robust target localization.
-\finishcompactlist
-
-\researchentry{Real-Time Data Platform for a Generative-AI Mobile Manipulator}{Mar. 2025 -- Aug. 2026}
+\researchentry{Real-Time Robot Communication and Data Infrastructure}{Mar. 2025 -- Aug. 2026}
 {\small\textit{Industry--academia project with MOVENSYS, Human-Machine Systems Lab, Korea University}}
 \compactlist
   \item Designed the system framework and ROS~2 communication structure connecting simulation, an LLM, a UI, and a physical robot; set up time-synchronized edge data collection without interrupting the real-time control cycle.
@@ -110,9 +104,9 @@
 
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
 Programming & Python, C/C++, MATLAB \\
-Robotics \& Learning & ROS~2, EtherCAT, PyTorch, RL, MPC, Pinocchio, URDF/XACRO \\
-Simulation \& Optimization & Isaac Gym, Isaac Sim, MuJoCo, Gazebo, CVXPY, CasADi \\
-Perception \& Development & OpenCV, ORB-SLAM, Git, Linux/Ubuntu
+Robotics \& Systems & ROS~2, EtherCAT, Pinocchio, URDF/XACRO \\
+Control \& Simulation & MPC, CasADi, CVXPY, Isaac Sim, Isaac Gym, MuJoCo, Gazebo \\
+Learning \& Design & PyTorch, reinforcement learning, OpenCV, ORB-SLAM, Git
 \end{tabularx}
 
 \section{Honors \& Research Support}

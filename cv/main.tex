@@ -49,6 +49,11 @@
   \par\vspace{0.1ex}{\small #1\par}\vspace{0.45ex}
 }
 
+\newcommand{\compactlist}{%
+  \begin{itemize}[leftmargin=1.3em,itemsep=0.12ex,topsep=0.22ex,parsep=0pt,partopsep=0pt]
+}
+\newcommand{\finishcompactlist}{\end{itemize}\vspace{0.3ex}}
+
 \newcommand{\pubentry}[1]{%
   \par\hangindent=1.35em\hangafter=1 #1\par\vspace{0.45ex}
 }
@@ -82,16 +87,20 @@
 \section{Research Experience}
 
 \researchentry{Push Recovery for a Force-Sensorless Humanoid (Unitree G1)}{Mar. 2025 -- Present}
-\detail{Developed a pelvis-IMU disturbance estimator and an MPC-based hold-or-step controller for the Unitree G1. In simulation, held 30 of 80 pushes in place (stepping baseline: 0) with 49\% fewer steps; validated on hardware.}
+\compactlist
+  \item Developed a pelvis-IMU disturbance estimator and an MPC-based hold-or-step controller that lets a force-sensorless humanoid decide, from motion alone, whether to hold a push in place or step to recover.
+  \item In simulation, held 30 of 80 pushes in place with 49\% fewer recovery steps than a stepping-only baseline.
+  \item Validated the hold layer separately on the physical G1 with stepping disabled.
+\finishcompactlist
 
 \researchentry{Intent-Preserving Contact Control on Unknown Surfaces (Dobot CR3A)}{Sep. 2025 -- Present}
-\detail{Developed a joint-sensing-only contact controller that lets the task decide which coordinates may yield to an unknown surface. On a Dobot CR3A drawing on tilted boards, kept figure drift below 0.5\,mm, versus up to 25\,mm for nearest-point correction.}
+\compactlist
+  \item Formulated contact-rich manipulation on surfaces of unknown orientation as a task-preserving constraint problem, developing a joint-sensing-only controller that lets the task specify which coordinates may yield to the surface.
+  \item On a Dobot CR3A drawing on tilted boards, kept figure drift to 0.38--0.48\,mm, versus 11.3--25.2\,mm for a nearest-point baseline given the true surface normal.
+\finishcompactlist
 
-\researchentry{Real-Time Data Platform for a Generative-AI Mobile Manipulator}{Mar. 2025 -- Aug. 2026}
+\researchentry{Real-Time Robot Communication and Data Infrastructure}{Mar. 2025 -- Aug. 2026}
 \detail{Industry--academia project with MOVENSYS. Designed the system framework and ROS~2 communication structure connecting simulation, an LLM, a user interface, and a physical mobile manipulator, with time-synchronized edge data collection that preserves the real-time control cycle.}
-
-\researchentry{Visual Perception for Quadrupedal Object Interaction}{Mar. 2025 -- Nov. 2025}
-\detail{Developed a dual-camera perception system to track a ball and moving ArUco markers from fixed global and onboard views. Calibrated the cameras and transformed observations into a common coordinate frame to maintain target localization during robot motion and partial occlusion.}
 
 \section{Publications \& Manuscripts}
 
@@ -105,16 +114,16 @@
 \textit{Conference Presentations}
 \pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Obstacle Detection Using ORB-SLAM and UV-Disparity with a Low-Cost Quadruped Robot,'' \textit{KSPE 2025 Spring Conference}, Jeju, Republic of Korea, May 2025 (poster).}
 
-\section{Engineering Design Projects}
+\section{Selected Undergraduate Design Projects}
 
 \project{Quadruped Robot Obstacle Avoidance}{Mar. 2024 -- Jan. 2025}
-Led a four-person team developing autonomous obstacle detection and avoidance for the DOGZILLA quadruped robot. Integrated ORB-SLAM with UV-disparity-based obstacle detection, earning the President's Award in the Korea University Creative Challenger Program; presented as a poster at the KSPE 2025 Spring Conference.\\[1.0ex]
+Led a four-person team integrating ORB-SLAM depth estimation with UV-disparity-based obstacle detection on a low-cost quadruped robot.\\[1.0ex]
 
 \project{Ladder-Crossing Robot}{Mar. 2023 -- Sep. 2023}
-Led a five-person team to design and prototype a robot that crosses a horizontal ladder rung by rung. Developed the crossing mechanism and Arduino-based motion control.\\[1.0ex]
+Led a five-person team to design and prototype a tendon-driven robot that climbs a horizontal ladder rung by rung.\\[1.0ex]
 
 \project{Solar-Tracking Parasol}{Sep. 2023 -- Nov. 2023}
-Designed a linkage mechanism and tracking controller that automatically adjusts the parasol's orientation with changes in incident-light direction, receiving the Bronze Award at the Creative Comprehensive Design Competition and the Design Award at the Korea University Capstone Design Fair.
+Designed a linkage mechanism and sun-tracking controller that reorients a parasol's canopy to follow the incident-light direction.
 
 \section{Honors and Awards}
 
@@ -133,21 +142,17 @@ Designed a linkage mechanism and tracking controller that automatically adjusts 
   Kinematics of Mechanisms & Spring 2025
 \end{tabularx}
 
-\section{Military Service}
-
-\project{Mandatory Military Service, Republic of Korea}{Jan. 2020 -- Oct. 2022}
-
 \section{Technical Skills}
 
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
 Programming & Python, C/C++, MATLAB \\
-Robotics & ROS 2, EtherCAT (ENI/ESI configuration), Pinocchio, URDF/XACRO \\
-Hardware & Unitree G1, Dobot CR3A, EtherCAT-based arm, mobile manipulator \\
-Simulation & Isaac Gym, Isaac Sim, MuJoCo, Gazebo \\
-Learning \& Optimization & PyTorch, reinforcement learning, model predictive control, CVXPY, CasADi, trajectory optimization \\
-Perception & OpenCV, ORB-SLAM \\
-Engineering Tools & Git, SolidWorks, Creo, NX, Arduino \\
-Operating Systems & Linux/Ubuntu
+Robotics \& Systems & ROS~2, EtherCAT, Pinocchio, URDF/XACRO \\
+Control \& Simulation & MPC, CasADi, CVXPY, Isaac Sim, Isaac Gym, MuJoCo, Gazebo \\
+Learning \& Design & PyTorch, reinforcement learning, OpenCV, ORB-SLAM, SolidWorks/Creo/NX, Git
 \end{tabularx}
+
+\section{Military Service}
+
+\project{Mandatory Military Service, Republic of Korea}{Jan. 2020 -- Oct. 2022}
 
 \end{document}
