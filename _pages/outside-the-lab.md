@@ -16,7 +16,7 @@ A few things I enjoy when I'm away from the lab.
 
 ## Soccer
 
-I've played soccer for as long as I can remember. In my third year at Korea University, I led our soccer club. Playing with friends is still my favorite way to spend a weekend.
+I led the soccer club in my third year at Korea University, and I still enjoy playing on weekends.
 
 <figure class="soccer-team-photo" style="display: block; margin: 1em 0;">
   {% assign soccer_photo = '/assets/images/hobbies/soccer.jpg' | relative_url %}
@@ -30,6 +30,6 @@ I've played soccer for as long as I can remember. In my third year at Korea Univ
 
 ## Jiu-Jitsu
 
-I've trained Brazilian Jiu-Jitsu for about two years and recently took first place at a competition.
+After about two years of training, I took first place at a Brazilian Jiu-Jitsu tournament. My favorite part of training is comparing notes after a round and helping newer students practice the escapes I once struggled with.
 
 {% include gallery id="gallery_jiujitsu" %}
