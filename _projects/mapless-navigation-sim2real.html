@@ -1,0 +1,363 @@
+---
+layout: bare
+title: "Improvement of Sim-to-Real Accuracy through Dynamics Parameter Tuning in Reinforcement Learning-based Mapless Navigation"
+permalink: /projects/mapless-navigation-sim2real/
+date: 2026-11-01
+period: "2026"
+category: "Mobile Robotics · Sim-to-Real RL"
+status: "Accepted"
+venue: "Journal of ICROS"
+role: "Co-author"
+authors: "Hyeon-Yeong Ju, **Jeonghyeon Kim**, Shinsuk Park"
+affiliation: "Department of Mechanical Engineering, Korea University"
+group: "research"
+summary: "Tunes a simulator's wheel-friction and suspension parameters to real robot response data, cutting the sim-to-real trajectory gap of a LiDAR mapless-navigation RL policy by double digits — cross-validated with two independent trajectory-estimation methods."
+skills: ["Python", "Isaac Sim", "Isaac Lab", "PPO", "ROS2"]
+icon: "route"
+header:
+  teaser: /assets/images/projects/mapless-navigation-sim2real/teaser.jpg
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sim-to-Real Dynamics Tuning · Kim Jeonghyeon</title>
+<meta name="description" content="Tuning a simulator's wheel friction and suspension to real response data brought a LiDAR mapless-navigation policy's real paths closer to its simulated ones: 17.9 % lower aligned RMSE, 24.3 % lower heading RMSE.">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://juunghyeon.github.io/projects/mapless-navigation-sim2real/">
+<meta property="og:title" content="Sim-to-Real Dynamics Tuning">
+<meta property="og:description" content="Improvement of Sim-to-Real Accuracy through Dynamics Parameter Tuning in Reinforcement Learning-based Mapless Navigation">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://juunghyeon.github.io/projects/mapless-navigation-sim2real/">
+<meta property="og:image" content="https://juunghyeon.github.io/assets/mapless-navigation-sim2real/og.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M4 25C11 24 13 9 28 7' stroke='%2314171c' stroke-dasharray='3 4'/%3E%3Cpath d='M4 25C13 25 16 11 28 7' stroke='%230072b2'/%3E%3C/svg%3E">
+<link rel="preload" href="/assets/mapless-navigation-sim2real/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/mapless-navigation-sim2real/site.css">
+</head>
+<body>
+<a class="skip" href="#results">Skip to the results</a>
+<header class="bar">
+  <div class="wrap">
+    <a class="back" href="/projects/" aria-label="All projects">&larr;</a>
+    <a class="mark" href="#top">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 25C11 24 13 9 28 7" style="stroke:var(--ink)" stroke-dasharray="3 4"/><path d="M4 25C13 25 16 11 28 7" style="stroke:var(--t)"/></svg>Sim-to-Real Dynamics Tuning</a>
+    <nav aria-label="Sections">
+      <a href="#problem">Problem</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#measurement">Measurement</a>
+      <a href="#limits">Limitations</a>
+      <a href="#cite">Cite</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<!-- hero -->
+<section class="hero" aria-label="Overview">
+  <div class="wrap">
+    <div class="hero-head">
+      <div>
+        <p class="kicker">Journal of ICROS · Accepted</p>
+        <h1>Sim-to-Real<br>Dynamics Tuning</h1>
+        <p class="lede">Same robot, same PPO training. Only the simulator's wheel friction and suspension changed, fitted to the real robot's response, and the robot's real path came closer to its simulated one.</p>
+      </div>
+      <div>
+        <dl class="duel">
+          <div><dt><span class="dot u"></span>untuned sim</dt><dd>8.22 <small>cm</small></dd></div>
+          <div class="arrow" aria-hidden="true">&rarr;</div>
+          <div><dt><span class="dot t"></span>tuned sim</dt><dd>6.75 <small>cm</small></dd></div>
+        </dl>
+        <p class="fine">Aligned RMSE between the real path (LiDAR, mean of five runs) and the simulated path, averaged over the two targets. Lower means simulation predicted the real motion better.</p>
+      </div>
+    </div>
+
+    <figure class="mapcard">
+      <div class="rowbar">
+        <div class="ctrls">
+          <span class="seg-label" id="hero-seg-label">Policy trained on</span>
+          <div class="seg" role="radiogroup" aria-labelledby="hero-seg-label" id="hero-seg">
+            <button type="button" role="radio" aria-checked="true" data-c="u">untuned sim</button>
+            <button type="button" role="radio" aria-checked="false" data-c="t">tuned sim</button>
+          </div>
+          <button type="button" class="ghost" id="hero-replay">&#8635; Replay</button>
+        </div>
+        <ul class="legend">
+          <li><span class="sw u" id="hero-sw-real"></span>real robot (LiDAR, mean of 5)</li>
+          <li><span class="sw sim"></span>simulation</li>
+          <li><span class="sw gap" id="hero-sw-gap"></span>gap between them</li>
+        </ul>
+      </div>
+      <svg class="map" id="hero-map" role="img" aria-label="Top view of the 5.5 by 3 metre arena with four obstacles. For each of two targets, the real robot's mean path and the policy's simulated path from the start to the target, with the area between them shaded. The shaded gap is narrower for the policy trained on the tuned simulator."></svg>
+      <p class="readout" id="hero-readout" aria-live="polite">Aligned RMSE &nbsp; Target 1 <b>8.71 cm</b> &nbsp;·&nbsp; Target 2 <b>7.74 cm</b></p>
+      <figcaption>Top view of the 5.5 m × 3 m arena (grid 1 m; the lower strip, which no path enters, is cropped). The real path is the mean of five runs on the robot, estimated by LiDAR scan matching; the dashed path is the same policy's rollout in simulation. Switch the simulator the policy was trained on.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="byline wrap">
+  <p class="subtitle">Improvement of Sim-to-Real Accuracy through Dynamics Parameter Tuning in Reinforcement Learning-based Mapless Navigation</p>
+  <p class="authors">Hyeon-Yeong Ju <span>·</span> <b>Jeonghyeon Kim</b> <span>·</span> Shinsuk Park</p>
+  <p class="aff">Department of Mechanical Engineering, Korea University</p>
+  <p class="links">
+    <a class="btn" href="#results">Results</a>
+    <a class="btn" href="#method">Method</a>
+    <span class="btn off">Paper <small>J. ICROS, accepted</small></span>
+  </p>
+</section>
+
+<section class="keys wrap" aria-label="Key numbers">
+  <div class="key">
+    <p class="big">&minus;17.9 %</p>
+    <div class="minibars" aria-hidden="true"><span class="u" style="width:100%"></span><span class="t" style="width:82.1%"></span></div>
+    <p class="cap"><b>Aligned RMSE</b>, position.<br>8.22 &rarr; 6.75 cm</p>
+  </div>
+  <div class="key">
+    <p class="big">&minus;17.5 %</p>
+    <div class="minibars" aria-hidden="true"><span class="u" style="width:100%"></span><span class="t" style="width:82.5%"></span></div>
+    <p class="cap"><b>Normalized DTW</b>, path shape.<br>6.50 &rarr; 5.36 cm</p>
+  </div>
+  <div class="key">
+    <p class="big">&minus;24.3 %</p>
+    <div class="minibars" aria-hidden="true"><span class="u" style="width:100%"></span><span class="t" style="width:75.7%"></span></div>
+    <p class="cap"><b>Heading RMSE</b>.<br>0.245 &rarr; 0.185 rad</p>
+  </div>
+  <div class="key wide">
+    <p class="big sm">Two estimates,<br>one direction.</p>
+    <p class="cap">Measuring the real path by wheel odometry instead of LiDAR gives &minus;5.6 %, &minus;8.2 % and &minus;25.1 % on the same three metrics.</p>
+  </div>
+  <div class="key wide">
+    <p class="big sm">r &ge; 0.9,<br>MAE &le; 0.1</p>
+    <p class="cap">Tuned simulator against the real robot's wheel torque and angular velocity, averaged over six load cases.</p>
+  </div>
+</section>
+
+<!-- problem -->
+<section id="problem" class="band">
+  <div class="wrap">
+    <header class="sec">
+      <p class="part">Problem</p>
+      <h2>Trained in simulation, driven on the robot.<br>The path is not the same.</h2>
+    </header>
+    <div class="prose">
+      <p>Reinforcement learning policies for LiDAR-based mapless navigation are trained in simulation and deployed on real mobile robots. When the simulated dynamics differ from the real ones, the same velocity commands move the two robots differently, and the policy's performance degrades after deployment.</p>
+      <p>This work narrows the gap at its source. It fits the simulator's <b>wheel–ground friction</b> and <b>suspension stiffness and damping</b> to response data measured on the real robot, trains the same PPO policy once on the untuned and once on the tuned simulator, and checks on the robot whose real path stays closer to its simulated path.</p>
+      <aside class="callout"><b>What is measured.</b> Not only whether the robot reaches the target, but how closely its real path, position and heading, follows the path simulation showed. The closer they are, the more what is seen in simulation says about what the robot will do.</aside>
+    </div>
+  </div>
+</section>
+
+<!-- method -->
+<section id="method">
+  <div class="wrap">
+    <header class="sec">
+      <p class="part">Method</p>
+      <h2>Fit the wheels to the robot, then train</h2>
+    </header>
+    <ol class="steps">
+      <li>
+        <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="8" width="32" height="24" rx="4"/><path d="M8 24h5l3-10 4 14 4-10 3 6h5"/></svg>
+        <h3>Measure the robot</h3>
+        <p>Wheel torque and angular velocity on the real robot, driving straight and turning in place, under six load cases.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 11h28M6 20h28M6 29h28"/><circle cx="14" cy="11" r="3.2" style="fill:var(--card)"/><circle cx="27" cy="20" r="3.2" style="fill:var(--card)"/><circle cx="18" cy="29" r="3.2" style="fill:var(--card)"/></svg>
+        <h3>Tune the simulator</h3>
+        <p>Isaac Sim wheel–ground friction and suspension stiffness and damping, adjusted iteratively until</p>
+        <div class="chips"><span>r &ge; 0.9</span><span>steady-state MAE &le; 0.1</span><span>mean of 6 cases</span></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M9 12l11-4M9 12l11 8M9 28l11-8M9 28l11 4M20 8l11 12M20 20h11M20 32l11-12"/><circle cx="9" cy="12" r="3" style="fill:var(--card)"/><circle cx="9" cy="28" r="3" style="fill:var(--card)"/><circle cx="20" cy="8" r="3" style="fill:var(--card)"/><circle cx="20" cy="20" r="3" style="fill:var(--card)"/><circle cx="20" cy="32" r="3" style="fill:var(--card)"/><circle cx="31" cy="20" r="3" style="fill:var(--card)"/></svg>
+        <h3>Train two policies</h3>
+        <p>Identical PPO training in Isaac Lab, once on the untuned and once on the tuned simulator.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 33c9-1 11-14 21-17" stroke-dasharray="3 4"/><path d="M28 5v14M28 5l7 3.5-7 3.5"/><circle cx="5" cy="33" r="2.5"/></svg>
+        <h3>Deploy and compare</h3>
+        <p>Both policies on the physical robot, two targets, five runs each. Each real path is compared with the policy's simulated path.</p>
+      </li>
+    </ol>
+
+    <div class="duo">
+      <figure class="card photo">
+        <div><img src="/assets/images/projects/mapless-navigation-sim2real/real-vs-sim.png" width="583" height="368" alt="The real mobile robot next to its Isaac Sim model, with a wheel and the suspension highlighted on each"></div>
+        <figcaption class="figcap"><b>The real robot and its Isaac Sim model.</b> The model's wheel–ground friction and suspension are tuned until its wheel response matches the real one (Fig. 1 of the paper).</figcaption>
+      </figure>
+      <figure class="card loads">
+        <div>
+          <svg viewBox="0 0 480 330" role="img" aria-label="Six load cases, robot seen from above with the front up: no load; 20 kilograms centred; 25 kilograms at the front, back, left and right.">
+            <defs>
+              <g id="lr-robot"><rect class="lr-body" x="44" y="22" width="72" height="80" rx="9"/><path class="lr-nose" d="M71 36l9-7 9 7"/></g>
+            </defs>
+            <g><use href="#lr-robot"/><text class="lr-txt" x="80" y="130" text-anchor="middle">No load</text><text class="lr-sub" x="80" y="148" text-anchor="middle">front is up</text></g>
+            <g transform="translate(160 0)"><use href="#lr-robot"/><rect class="lr-load" x="68" y="54" width="24" height="24" rx="3"/><text class="lr-txt" x="80" y="130" text-anchor="middle">20 kg</text><text class="lr-sub" x="80" y="148" text-anchor="middle">centred</text></g>
+            <g transform="translate(320 0)"><use href="#lr-robot"/><rect class="lr-load heavy" x="67" y="40" width="26" height="26" rx="3"/><text class="lr-txt" x="80" y="130" text-anchor="middle">25 kg</text><text class="lr-sub" x="80" y="148" text-anchor="middle">front</text></g>
+            <g transform="translate(0 168)"><use href="#lr-robot"/><rect class="lr-load heavy" x="67" y="71" width="26" height="26" rx="3"/><text class="lr-txt" x="80" y="130" text-anchor="middle">25 kg</text><text class="lr-sub" x="80" y="148" text-anchor="middle">back</text></g>
+            <g transform="translate(160 168)"><use href="#lr-robot"/><rect class="lr-load heavy" x="49" y="53" width="26" height="26" rx="3"/><text class="lr-txt" x="80" y="130" text-anchor="middle">25 kg</text><text class="lr-sub" x="80" y="148" text-anchor="middle">left</text></g>
+            <g transform="translate(320 168)"><use href="#lr-robot"/><rect class="lr-load heavy" x="85" y="53" width="26" height="26" rx="3"/><text class="lr-txt" x="80" y="130" text-anchor="middle">25 kg</text><text class="lr-sub" x="80" y="148" text-anchor="middle">right</text></g>
+          </svg>
+        </div>
+        <figcaption class="figcap"><b>Six load cases</b> for the response data: no load, 20 kg centred, and 25 kg off-centre to the front, back, left and right. In each, the robot drove straight and turned in place.</figcaption>
+      </figure>
+    </div>
+
+    <header class="sec" style="margin-top:64px">
+      <h3 style="font-size:1.35rem">How the paths are compared</h3>
+    </header>
+    <div class="metric-defs">
+      <div class="card"><h3>Aligned RMSE <span class="unit">m</span></h3><p>Both paths are resampled to 300 points by arc length and matched point to point with dynamic time warping (DTW). Root-mean-square distance over the matched pairs: <b>where</b> the robot was.</p></div>
+      <div class="card"><h3>Normalized DTW <span class="unit">m</span></h3><p>The DTW distance divided by the number of matched pairs, that is, the mean distance between matched points: <b>how alike</b> the path shapes are.</p></div>
+      <div class="card"><h3>Heading RMSE <span class="unit">rad</span></h3><p>Root-mean-square difference in heading over the same matched pairs: <b>which way</b> the robot faced along the path.</p></div>
+    </div>
+    <p class="note">Significance: one-sided Welch's t-test and Mann–Whitney U test over the five runs per condition, &alpha; = 0.05.</p>
+  </div>
+</section>
+
+<!-- results -->
+<section id="results" class="band">
+  <div class="wrap">
+    <header class="sec">
+      <p class="part">Results</p>
+      <h2>The real path came closer to the simulated one</h2>
+    </header>
+    <div class="prose">
+      <p>Each panel shows one target and one policy: its simulated path (dashed), the five real runs (thin) and their mean (bold), estimated by LiDAR scan matching. The value in the corner is the aligned RMSE between the mean real path and the simulated path.</p>
+    </div>
+    <div class="rowbar" style="margin-top:22px">
+      <ul class="legend">
+        <li><span class="sw sim"></span>simulation</li>
+        <li><span class="sw u"></span><span class="sw t" style="margin-left:-4px"></span>real robot, mean of 5</li>
+        <li>thin: individual runs</li>
+      </ul>
+      <label class="toggle"><input type="checkbox" id="odom-toggle"> Show wheel-odometry mean (dotted)</label>
+    </div>
+    <div class="grid4 no-odom" id="panels">
+      <span></span>
+      <div class="colhead"><span class="sw u"></span>Policy trained on the untuned simulator</div>
+      <div class="colhead"><span class="sw t"></span>Policy trained on the tuned simulator</div>
+      <div class="rowhead">Target 1</div>
+      <div class="panel"><svg data-panel="t1-u" role="img" aria-label="Target 1, policy from the untuned simulator: real and simulated paths"></svg><span class="pv">untuned · <b>8.71 cm</b></span></div>
+      <div class="panel"><svg data-panel="t1-t" role="img" aria-label="Target 1, policy from the tuned simulator: real and simulated paths"></svg><span class="pv">tuned · <b>7.72 cm</b></span></div>
+      <div class="rowhead">Target 2</div>
+      <div class="panel"><svg data-panel="t2-u" role="img" aria-label="Target 2, policy from the untuned simulator: real and simulated paths"></svg><span class="pv">untuned · <b>7.74 cm</b></span></div>
+      <div class="panel"><svg data-panel="t2-t" role="img" aria-label="Target 2, policy from the tuned simulator: real and simulated paths"></svg><span class="pv">tuned · <b>5.78 cm</b></span></div>
+    </div>
+
+    <div class="rowbar" style="margin-top:48px">
+      <div class="ctrls">
+        <span class="seg-label" id="src-label">Real path from</span>
+        <div class="seg" role="radiogroup" aria-labelledby="src-label" id="src-seg">
+          <button type="button" role="radio" aria-checked="true" data-s="lidar">LiDAR scan matching</button>
+          <button type="button" role="radio" aria-checked="false" data-s="odom">wheel odometry</button>
+        </div>
+      </div>
+      <ul class="legend">
+        <li><span class="dot u"></span>untuned sim</li>
+        <li><span class="dot t"></span>tuned sim</li>
+      </ul>
+    </div>
+    <div class="charts3" id="charts">
+      <figure class="card chart" data-m="rmse"><h3>Aligned RMSE</h3><p class="unit">cm, lower is closer</p><svg role="img" aria-label="Aligned RMSE by target, untuned against tuned simulator"></svg></figure>
+      <figure class="card chart" data-m="dtw"><h3>Normalized DTW</h3><p class="unit">cm, lower is closer</p><svg role="img" aria-label="Normalized DTW by target, untuned against tuned simulator"></svg></figure>
+      <figure class="card chart" data-m="head"><h3>Heading RMSE</h3><p class="unit">rad, lower is closer</p><svg role="img" aria-label="Heading RMSE by target, untuned against tuned simulator"></svg></figure>
+    </div>
+    <p class="note" id="charts-note">Percentages: reduction from the untuned to the tuned simulator. p: one-sided Welch's t-test over five runs each (Mann–Whitney U in the tooltip); n.s.: not significant at 0.05.</p>
+
+    <details class="tablewrap">
+      <summary>All values as a table (mean ± std, n = 5)</summary>
+      <table>
+        <thead><tr><th>Target</th><th>Simulator</th><th>Aligned RMSE (m)</th><th>Normalized DTW (m)</th><th>Heading RMSE (rad)</th></tr></thead>
+        <tbody>
+          <tr><td colspan="5" style="color:var(--ink);font-weight:650">Real path by LiDAR scan matching (Tables 3 and 4 of the paper)</td></tr>
+          <tr><td>Target 1</td><td>untuned</td><td>0.0871 ± 0.0065</td><td>0.0656 ± 0.0036</td><td>0.3008 ± 0.0091</td></tr>
+          <tr class="tu"><td>Target 1</td><td>tuned</td><td>0.0772 ± 0.0073</td><td>0.0615 ± 0.0057</td><td>0.2133 ± 0.0155</td></tr>
+          <tr><td>Target 2</td><td>untuned</td><td>0.0774 ± 0.0057</td><td>0.0643 ± 0.0071</td><td>0.1886 ± 0.0115</td></tr>
+          <tr class="tu"><td>Target 2</td><td>tuned</td><td>0.0578 ± 0.0060</td><td>0.0458 ± 0.0024</td><td>0.1572 ± 0.0086</td></tr>
+          <tr><td>Average</td><td>untuned</td><td>0.0822 ± 0.0061</td><td>0.0650 ± 0.0054</td><td>0.2447 ± 0.0103</td></tr>
+          <tr class="tu"><td>Average</td><td>tuned</td><td>0.0675 ± 0.0067</td><td>0.0536 ± 0.0041</td><td>0.1852 ± 0.0121</td></tr>
+          <tr class="grp"><td colspan="5" style="color:var(--ink);font-weight:650;padding-top:18px">Real path by wheel odometry</td></tr>
+          <tr><td>Target 1</td><td>untuned</td><td>0.0871 ± 0.0069</td><td>0.0660 ± 0.0042</td><td>0.3077 ± 0.0096</td></tr>
+          <tr class="tu"><td>Target 1</td><td>tuned</td><td>0.0804 ± 0.0070</td><td>0.0635 ± 0.0052</td><td>0.2168 ± 0.0167</td></tr>
+          <tr><td>Target 2</td><td>untuned</td><td>0.0711 ± 0.0046</td><td>0.0580 ± 0.0046</td><td>0.1878 ± 0.0132</td></tr>
+          <tr class="tu"><td>Target 2</td><td>tuned</td><td>0.0690 ± 0.0097</td><td>0.0503 ± 0.0059</td><td>0.1545 ± 0.0079</td></tr>
+          <tr><td>Average</td><td>untuned</td><td>0.0791 ± 0.0058</td><td>0.0620 ± 0.0044</td><td>0.2478 ± 0.0114</td></tr>
+          <tr class="tu"><td>Average</td><td>tuned</td><td>0.0747 ± 0.0084</td><td>0.0569 ± 0.0056</td><td>0.1856 ± 0.0123</td></tr>
+        </tbody>
+      </table>
+    </details>
+
+    <ul class="takeaways">
+      <li>By the LiDAR estimate, tuning reduced aligned RMSE by <b>17.9 %</b>, normalized DTW by <b>17.5 %</b> and heading RMSE by <b>24.3 %</b>, averaged over both targets.</li>
+      <li>The reductions were significant on all three metrics at Target 2, and on aligned RMSE and heading RMSE at Target 1. Target 1's normalized DTW was not significant (p = 0.18).</li>
+      <li>The odometry estimate agreed in direction on every metric at both targets: <b>5.6 %</b>, <b>8.2 %</b> and <b>25.1 %</b> on average.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- measurement -->
+<section id="measurement">
+  <div class="wrap split">
+    <div>
+      <p class="part">Measurement</p>
+      <h2 style="margin-bottom:18px">Two ways to measure where the robot went</h2>
+      <div class="prose">
+        <p>A difference of a few centimetres means something only if the real path is measured well. Every comparison was therefore computed twice, from two estimates that fail in different ways.</p>
+      </div>
+      <div class="est">
+        <div class="card"><h3><span class="dot e1"></span>LiDAR scan matching</h3><p>Each 2D scan is registered to a map built from the run's earlier scans, by point-to-line ICP. No odometry enters the path, apart from one fixed mounting-angle correction estimated once for all recordings.</p></div>
+        <div class="card"><h3><span class="dot e2"></span>Wheel odometry</h3><p>Integrated from the wheel encoders. Smooth, but it cannot see the wheels slip.</p></div>
+      </div>
+    </div>
+    <figure class="card agree">
+      <h3>Reduction, untuned &rarr; tuned simulator</h3>
+      <p class="cap" style="margin-bottom:10px">Mean of both targets, by each estimate of the real path</p>
+      <ul class="legend" style="margin-bottom:6px"><li><span class="dot e1"></span>LiDAR scan matching</li><li><span class="dot e2"></span>wheel odometry</li></ul>
+      <svg id="agree" role="img" aria-label="Reduction by LiDAR and by odometry: aligned RMSE 17.9 and 5.6 percent, normalized DTW 17.5 and 8.2 percent, heading RMSE 24.3 and 25.1 percent"></svg>
+      <figcaption>Both estimates move the same way on all three metrics. On heading they agree; on position, odometry shows the smaller gain.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- limitations -->
+<section id="limits" class="band">
+  <div class="wrap">
+    <header class="sec"><h2>Limitations</h2></header>
+    <ul class="limits">
+      <li><b>Small sample.</b> Two targets in one arena, five real runs per policy and target.</li>
+      <li><b>Not every metric is significant.</b> At Target 1 the normalized DTW reduction (6.3 %) was not significant (p = 0.18).</li>
+      <li><b>The two estimates differ in size.</b> By wheel odometry the position gains are smaller, 5.6 % and 8.2 % against 17.9 % and 17.5 % by LiDAR. Heading agrees.</li>
+      <li><b>One simulated path per condition.</b> Each policy's five real runs are compared with a single rollout in simulation.</li>
+      <li><b>Two parameter groups.</b> The tuning covers wheel–ground friction and suspension stiffness and damping only.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- cite -->
+<section id="cite">
+  <div class="wrap">
+    <h2>Cite</h2>
+    <pre class="bib"><code>@article{ju2026simtoreal,
+  title   = {Improvement of Sim-to-Real Accuracy through Dynamics Parameter
+             Tuning in Reinforcement Learning-based Mapless Navigation},
+  author  = {Ju, Hyeon-Yeong and Kim, Jeonghyeon and Park, Shinsuk},
+  journal = {Journal of Institute of Control, Robotics and Systems},
+  note    = {Accepted},
+  year    = {2026}
+}</code></pre>
+    <p class="cite-note">An earlier version was presented at the 41st ICROS conference (2026).</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><a href="/projects/">&larr; All projects</a> &nbsp;·&nbsp; <a href="/">Kim Jeonghyeon</a><br>Paths drawn from the recorded runs with the paper's analysis code; values from its Tables 3 and 4 and the same analysis on wheel odometry.</div>
+    <div class="skills"><span>Python</span><span>Isaac Sim</span><span>Isaac Lab</span><span>PPO</span><span>ROS2</span></div>
+  </div>
+</footer>
+<div class="tip" id="tip" role="tooltip"></div>
+<script src="/assets/mapless-navigation-sim2real/data.js"></script>
+<script src="/assets/mapless-navigation-sim2real/site.js"></script>
+</body>
+</html>
