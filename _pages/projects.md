@@ -86,6 +86,11 @@ author_profile: true
   opacity: 0.7;
   margin: 0.4em 0 0;
 }
+.pub-row__paper {
+  font-size: 0.9em;
+  font-weight: 700;
+  margin: 0.45em 0 0;
+}
 .pub-section-title {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-weight: 700;
@@ -130,6 +135,7 @@ author_profile: true
       {% if project.award %}<p class="pub-row__award"><i class="fas fa-award" aria-hidden="true"></i> {{ project.award }}</p>{% endif %}
       {% if project.summary %}<p class="pub-row__summary">{{ project.summary }}</p>{% endif %}
       {% if project.role %}<p class="pub-row__role">Role: {{ project.role }}{% if project.team %}, {{ project.team }}{% endif %}</p>{% endif %}
+      {% if project.paper_pdf %}<p class="pub-row__paper"><a href="{{ project.paper_pdf | relative_url }}" aria-label="Preprint PDF for {{ project.title | escape }}">Preprint PDF</a></p>{% endif %}
     </div>
   </div>
 {% endfor %}
