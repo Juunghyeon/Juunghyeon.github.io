@@ -3,13 +3,6 @@ title: "Outside the Lab"
 permalink: /outside-the-lab/
 layout: single
 author_profile: true
-gallery_jiujitsu:
-  - url: /assets/images/hobbies/jiujitsu-1.jpg
-    image_path: /assets/images/hobbies/jiujitsu-1.jpg
-    alt: "Waiting before a match at a Jiu-Jitsu competition"
-  - url: /assets/images/hobbies/jiujitsu-2.jpg
-    image_path: /assets/images/hobbies/jiujitsu-2.jpg
-    alt: "On the podium at a Jiu-Jitsu competition"
 ---
 
 A few things I enjoy when I'm away from the lab.
