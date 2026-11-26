@@ -63,7 +63,7 @@
   {\small
     \href{mailto:ahdtld54@korea.ac.kr}{ahdtld54@korea.ac.kr}
     \contactseparator
-    \href{https://github.com/Juunghyeon}{github.com/Juunghyeon}
+    \href{https://www.linkedin.com/in/\%EC\%A0\%95\%ED\%98\%84-\%EA\%B9\%80-b2a0b8263/}{LinkedIn}
     \contactseparator
     \href{https://Juunghyeon.github.io}{Juunghyeon.github.io}
     \contactseparator
@@ -90,14 +90,14 @@
 \compactlist
   \item Developed a pelvis-IMU-based disturbance estimator and an MPC-based hold-or-step controller, investigating how estimation delay affects in-place push recovery.
   \item In simulation, recovered from 65 of 80 push trials versus 62 for a stepping baseline, while taking 49\% fewer steps and recovering from 30 pushes without stepping.
-  \item At small delays, each additional 10\,ms of estimation delay reduced the maximum holdable push force by approximately 3.7\%.
+  \item Measured an initial 3.7\% loss in holdable force per 10\,ms of estimation delay in simulation. On hardware, the estimator lagged a load cell by 29\,ms, versus 57\,ms for a momentum observer.
   \item Implemented and evaluated the estimator and hold layer on a physical Unitree G1. With stepping disabled, the median maximum lateral push sustained per block was 69\,N with the hold layer versus 0\,N without it.
 \finishcompactlist
 
 \researchentry{Intent-Preserving Contact Control on Unknown Surfaces (Dobot CR3A)}{Sep. 2025 -- Present}
 \compactlist
   \item Formulated a task-aware contact-control method that preserves task-relevant coordinates while allowing motion in designated yield directions, using only joint sensing.
-  \item Developed and tested the controller on a physical Dobot CR3A drawing on tilted boards unknown to the controller. Figure displacement was 0.38--0.49\,mm, versus 11.3--25.2\,mm for nearest-point correction supplied with measured surface normals.
+  \item Developed and tested the controller on a physical Dobot CR3A drawing on tilted boards unknown to the controller. On an 18-degree board, encoder measurements showed 0.21\,mm of figure displacement, versus 21.2--21.6\,mm with nearest-point correction.
 \finishcompactlist
 
 \researchentry{Real-Time Robot Communication and Data Infrastructure}{Mar. 2025 -- Aug. 2026}
@@ -106,7 +106,7 @@
   \item Implemented time-synchronized sensor and motor data collection and edge-computing infrastructure while preserving the robot's real-time control cycle.
 \finishcompactlist
 
-\section{Publications \& Manuscripts}
+\section{Publications \& Preprints}
 
 \textit{Accepted}\par
 \compactlist
@@ -114,10 +114,10 @@
 
 \end{itemize}
 \smallskip
-\textit{Manuscripts in Preparation}\par
+\textit{Preprints}\par
 \compactlist
-\pubentry{\textbf{J.-H. Kim} and S.-S. Park, ``Feasible Is Not Faithful: Intent-Preserving Constraint Realization for Contact Tasks on Unknown Surfaces,'' manuscript in preparation.}
-\pubentry{\textbf{J.-H. Kim}, J. Kim, and S.-S. Park, ``Hold Before You Step: The Information Requirement of In-Place Push Recovery on Force-Sensorless Humanoids,'' manuscript in preparation.}
+\pubentry{\textbf{J.-H. Kim} and S. Park, ``Feasible Is Not Faithful: Task Preservation in Feasibility Restoration,'' preprint, 2026.}
+\pubentry{\textbf{J.-H. Kim}, J. Kim, and S. Park, ``Hold Before You Step: The Information Requirement of In-Place Push Recovery on Force-Sensorless Humanoids,'' preprint, 2026.}
 
 \end{itemize}
 
