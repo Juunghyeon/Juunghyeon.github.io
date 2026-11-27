@@ -2,9 +2,9 @@
 title: "Solar Tracking Parasol"
 permalink: /projects/solar-parasol/
 date: 2023-11-01
-period: "Sep.2023 -- Nov.2023"
+period: "Sep. 2023 – Nov. 2023"
 category: "Mechanism Design and Control"
-award: "Bronze Award, Creative Comprehensive Design Competition — Sep.2023; Design Award, Capstone Design Fair, Korea University — Nov.2023"
+award: "Bronze Award, Creative Comprehensive Design Competition — Sep. 2023; Design Award, Capstone Design Fair, Korea University — Nov. 2023"
 role: "Team Leader"
 group: "coursework"
 skills: ["Arduino", "AutoCAD", "C++"]

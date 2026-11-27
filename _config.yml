@@ -16,17 +16,17 @@ minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "n
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Kim Jeonghyeon"
+title                    : "Jeonghyeon Kim"
 title_separator          : "-"
 subtitle                 : 
-name                     : "김정현 (Kim Jeonghyeon)"
-description              : "Kim Jeonghyeon — M.S. student at Korea University. Robot dynamics modeling and contact control, tested on humanoid and manipulator hardware."
+name                     : "Jeonghyeon Kim (김정현)"
+description              : "Jeonghyeon Kim — M.S. student at Korea University. Robot dynamics modeling and contact control, tested on humanoid and manipulator hardware."
 url                      : "https://Juunghyeon.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "https://github.com/Juunghyeon/Juunghyeon.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : "Kim Jeonghyeon" # overrides the website title displayed in the masthead, use " " for no title
+masthead_title           : "Jeonghyeon Kim" # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 future                   : true
 published                : true
@@ -104,7 +104,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "Kim Jeonghyeon"
+  name             : "Jeonghyeon Kim"
   avatar           : "/assets/images/bio-photo.jpg"
   bio              : "M.S. Student, Mechanical Engineering<br>Korea University<br>Dynamics Modeling · Humanoid & Contact Control"
   location         : "Republic of Korea"

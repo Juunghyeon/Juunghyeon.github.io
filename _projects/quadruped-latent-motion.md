@@ -2,7 +2,7 @@
 title: "Real-Time Perception for a CALM-Based Hierarchical Quadruped Controller"
 permalink: /projects/quadruped-latent-motion/
 date: 2026-01-01
-period: "2025 -- 2026"
+period: "2025 – 2026"
 category: "Legged Robotics · Perception"
 group: "graduate"
 role: "Contributor — Perception System"

@@ -2,9 +2,9 @@
 title: "Quadruped Robot Obstacle Avoidance via ORB-SLAM and UV-Disparity"
 permalink: /projects/ccp-quadruped/
 date: 2025-01-01
-period: "Mar.2024 -- Jan.2025"
+period: "Mar. 2024 – Jan. 2025"
 category: "Computer Vision · Autonomous Navigation"
-award: "President's Award (1st Place), Creative Challenger Program (CCP), Korea University — Jan.2025"
+award: "President's Award (1st Place), Creative Challenger Program (CCP), Korea University — Jan. 2025"
 role: "Team Leader"
 team: "RoboStride"
 group: "coursework"

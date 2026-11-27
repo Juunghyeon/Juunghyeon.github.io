@@ -2,7 +2,7 @@
 title: "Real-Time Architecture for a Generative-AI-Based Mobile Manipulator"
 permalink: /projects/mobile-manipulator-architecture/
 date: 2025-03-01
-period: "Mar.2025 -- Aug.2026"
+period: "Mar. 2025 – Aug. 2026"
 category: "Systems Integration · Mobile Manipulation"
 status: "Ongoing"
 role: "System Architect"

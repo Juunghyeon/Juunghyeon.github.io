@@ -65,6 +65,10 @@ author_profile: true
   font-size: 1.05em;
   line-height: 1.35;
 }
+.pub-row__authors {
+  font-size: 0.85em;
+  margin: 0.3em 0 0;
+}
 .pub-row__meta {
   font-size: 0.85em;
   opacity: 0.7;
@@ -131,10 +135,11 @@ author_profile: true
     </a>
     <div class="pub-row__body">
       <a class="pub-row__title" href="{{ project.url | relative_url }}">{{ project.title }}</a>
+      {% if project.authors %}<p class="pub-row__authors">{{ project.authors | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>{% endif %}
       <p class="pub-row__meta">{{ project.period }}{% if project.category %} &middot; {{ project.category }}{% endif %}{% if project.status %} &middot; {{ project.status }}{% if project.venue %}, {{ project.venue }}{% endif %}{% endif %}</p>
       {% if project.award %}<p class="pub-row__award"><i class="fas fa-award" aria-hidden="true"></i> {{ project.award }}</p>{% endif %}
-      {% if project.summary %}<p class="pub-row__summary">{{ project.summary }}</p>{% endif %}
-      {% if project.role %}<p class="pub-row__role">Role: {{ project.role }}{% if project.team %}, {{ project.team }}{% endif %}</p>{% endif %}
+      {% assign sum = project.home_result | default: project.summary %}{% if sum %}<p class="pub-row__summary">{{ sum }}</p>{% endif %}
+      {% if project.role and project.authors == nil %}<p class="pub-row__role">Role: {{ project.role }}{% if project.team %}, {{ project.team }}{% endif %}</p>{% endif %}
       {% if project.paper_pdf %}<p class="pub-row__paper"><a href="{{ project.paper_pdf | relative_url }}" aria-label="Preprint PDF for {{ project.title | escape }}">Preprint PDF</a></p>{% endif %}
     </div>
   </div>

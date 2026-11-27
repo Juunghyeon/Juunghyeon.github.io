@@ -2,7 +2,7 @@
 title: "Ladder-Crossing Robot"
 permalink: /projects/ladder-crossing/
 date: 2023-09-01
-period: "Mar.2023 -- Sep.2023"
+period: "Mar. 2023 – Sep. 2023"
 category: "Mechanism Design and Control"
 role: "Team Leader"
 group: "coursework"
