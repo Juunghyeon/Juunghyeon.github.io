@@ -18,9 +18,9 @@ minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "n
 locale                   : "en-US"
 title                    : "Kim Jeonghyeon"
 title_separator          : "-"
-subtitle                 : "Portfolio"
+subtitle                 : 
 name                     : "김정현 (Kim Jeonghyeon)"
-description              : "Robotics & Software Engineer Portfolio"
+description              : "Kim Jeonghyeon — M.S. student at Korea University. Robot dynamics modeling and contact control, tested on humanoid and manipulator hardware."
 url                      : "https://Juunghyeon.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "https://github.com/Juunghyeon/Juunghyeon.github.io"
@@ -60,7 +60,7 @@ reCaptcha:
   secret                 :
 atom_feed:
   path                   : # blank (default) uses feed.xml
-  hide                   : # true, false (default)
+  hide                   : true
 search                   : # true, false (default)
 search_full_content      : # true, false (default)
 search_provider          : # lunr (default), algolia, google
@@ -110,9 +110,6 @@ author:
   location         : "Republic of Korea"
   email            : "ahdtld54@korea.ac.kr"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:ahdtld54@korea.ac.kr"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Juunghyeon"

@@ -1,7 +1,7 @@
 # main links
 main:
-  - title: "About"
-    url: /about/
+  - title: "Home"
+    url: /
   - title: "Projects"
     url: /projects/
     children:
@@ -23,5 +23,7 @@ main:
         url: /projects/solar-parasol/
   - title: "CV"
     url: /cv/
+  - title: "Lab Tour"
+    url: /lab/
   - title: "Outside the Lab"
     url: /outside-the-lab/

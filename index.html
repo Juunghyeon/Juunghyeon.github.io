@@ -1,128 +1,112 @@
 ---
-layout: lab-home
+layout: single
 title: "Kim Jeonghyeon"
+author_profile: false
+classes: home-academic
 ---
-
-<div id="lab-canvas-container"></div>
-
-<div id="lab-hint">Click a robot to walk over and see the project →</div>
-
-<div id="lab-panel">
-  <button id="lab-panel-close" aria-label="Close">&times;</button>
-  <div id="lab-panel-category"></div>
-  <h2 id="lab-panel-title"></h2>
-  <p id="lab-panel-summary"></p>
-  <a id="lab-panel-link" href="#">View full project →</a>
-</div>
-
-<div id="lab-fallback" style="display:none;">
-  <div class="lab-fallback__inner">
-    <h2>Kim Jeonghyeon</h2>
-    <p>Robotics &amp; Software Engineer &middot; ROS2 &middot; C++ &middot; Python &middot; OpenCV</p>
-    <ul>
-      {% for project in site.projects %}
-      <li><a href="{{ project.url | relative_url }}">{{ project.title }}</a></li>
-      {% endfor %}
-    </ul>
-    <p><a href="{{ '/about/' | relative_url }}">About</a> &middot; <a href="{{ '/cv/' | relative_url }}">CV</a></p>
-  </div>
-</div>
-
 <style>
-  #lab-canvas-container {
-    width: 100%;
-    min-height: 70vh;
-    position: relative;
-    background: #0b1420;
-  }
-  #lab-canvas-container canvas {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-  }
-  #lab-hint {
-    position: absolute;
-    left: 50%;
-    bottom: 28px;
-    transform: translateX(-50%);
-    background: rgba(30, 30, 30, 0.82);
-    color: #fff;
-    padding: 0.55em 1.1em;
-    border-radius: 999px;
-    font-size: 0.92em;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-    z-index: 5;
-    white-space: nowrap;
-  }
-  #lab-hint.lab-hint--hidden {
-    opacity: 0;
-  }
-  #lab-panel {
-    position: absolute;
-    left: 50%;
-    bottom: 28px;
-    transform: translateX(-50%) translateY(140%);
-    width: min(90vw, 420px);
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-    padding: 1.3em 1.5em;
-    transition: transform 0.35s ease;
-    z-index: 6;
-  }
-  #lab-panel.lab-panel--open {
-    transform: translateX(-50%) translateY(0);
-  }
-  #lab-panel-close {
-    position: absolute;
-    top: 0.5em;
-    right: 0.7em;
-    background: none;
-    border: none;
-    font-size: 1.4em;
-    line-height: 1;
-    cursor: pointer;
-    color: #888;
-  }
-  #lab-panel-category {
-    font-size: 0.78em;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: #3a7bd5;
-    font-weight: 600;
-    margin-bottom: 0.3em;
-  }
-  #lab-panel-title {
-    font-size: 1.15em;
-    margin: 0 0 0.4em;
-    line-height: 1.3;
-  }
-  #lab-panel-summary {
-    font-size: 0.92em;
-    color: #555;
-    margin: 0 0 0.8em;
-    line-height: 1.5;
-  }
-  #lab-panel-link {
-    font-weight: 600;
-    text-decoration: none;
-  }
-  #lab-fallback {
-    padding: 3em 1.5em;
-    max-width: 640px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  #lab-fallback ul {
-    list-style: none;
-    padding: 0;
-    line-height: 2;
-  }
-  @media (max-width: 600px) {
-    #lab-panel-title { font-size: 1.05em; }
-  }
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+.home-academic .page__title { display: none; }
+.ha, .ha a, .ha h2 { font-family: 'Lato', Verdana, Helvetica, sans-serif; }
+.ha { max-width: 760px; margin: 0 auto; line-height: 1.6; color: #1f2933; font-size: 0.95rem; }
+.ha a { color: #1772d0; text-decoration: none; }
+.ha a:hover { text-decoration: underline; }
+.ha h2 { font-size: 1.05rem; font-weight: 700; margin: 2.2em 0 0.8em; padding-bottom: 0.3em; border-bottom: 1px solid #e3e7ec; }
+.ha-top { display: flex; gap: 2em; align-items: flex-start; flex-wrap: wrap; }
+.ha-top__text { flex: 1 1 400px; min-width: 260px; }
+.ha-top__photo { flex: 0 0 160px; }
+.ha-top__photo img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; display: block; }
+.page__content .ha p.ha-name { font-size: 1.9rem; font-weight: 400; margin: 0; line-height: 1.2; }
+.page__content .ha p.ha-role { color: #52606d; margin: 0.25em 0 0.9em; font-size: 0.95rem; }
+.ha-q { font-size: 1.08rem; font-weight: 700; margin: 0 0 0.6em; line-height: 1.45; }
+.ha-links { margin-top: 0.8em; }
+.ha-links a + a::before { content: "/"; color: #9aa5b1; margin: 0 0.55em; display: inline-block; }
+.ha-apply { margin: 1.4em 0 0; padding: 0.7em 1em; background: #eef7f5; border-left: 3px solid #2f8f80; border-radius: 3px; }
+.ha-pub { display: flex; gap: 1.3em; align-items: flex-start; padding: 1.1em 0; }
+.ha-pub + .ha-pub { border-top: 1px solid #eef1f4; }
+.ha-pub__img { flex: 0 0 180px; }
+.ha-pub__img img { width: 180px; height: 120px; object-fit: cover; border-radius: 4px; border: 1px solid #e3e7ec; display: block; background: #fff; }
+.ha-pub__body { flex: 1 1 auto; min-width: 0; }
+.ha-pub__title { font-weight: 700; color: #1f2933; line-height: 1.35; }
+.page__content .ha p.ha-pub__authors, .page__content .ha p.ha-pub__venue { font-size: 0.9em; color: #52606d; margin: 0.15em 0 0; }
+.ha-pub__venue em { color: #2f8f80; font-style: normal; font-weight: 700; }
+.page__content .ha p.ha-pub__sum { font-size: 0.9em; margin: 0.45em 0 0.3em; }
+.page__content .ha p.ha-pub__links { margin: 0; }
+.ha-pub__links a { font-size: 0.88em; font-weight: 700; margin-right: 0.9em; }
+.ha-list { list-style: none; padding: 0; margin: 0; }
+.ha-list li { display: flex; gap: 1em; margin: 0 0 0.45em; }
+.ha-list .d { flex: 0 0 8.5em; color: #52606d; font-size: 0.92em; }
+.ha-more { margin-top: 1em; font-size: 0.92em; color: #52606d; }
+@media (max-width: 640px) {
+  .ha-top__photo { order: -1; margin: 0 auto; }
+  .ha-name, .ha-role { text-align: center; }
+  .ha-pub { flex-direction: column; }
+  .ha-pub__img, .ha-pub__img img { width: 100%; height: auto; max-height: 220px; }
+  .ha-list li { flex-direction: column; gap: 0; margin-bottom: 0.8em; }
+  .ha-list .d { flex: none; }
+}
 </style>
 
-<script src="{{ '/assets/js/lab-data.js' | relative_url }}"></script>
-<script type="module" src="{{ '/assets/js/lab-scene.js' | relative_url }}"></script>
+<div class="ha" markdown="0">
+
+<div class="ha-top">
+  <div class="ha-top__text">
+    <p class="ha-name">Kim Jeonghyeon</p>
+    <p class="ha-role">M.S. student, Mechanical Engineering, Korea University<br>Human-Machine Systems Lab, advised by Prof. Shinsuk Park</p>
+    <p class="ha-q">When a robot's model is wrong, which errors actually matter for its task?</p>
+    <p>I study how task requirements should shape robot models, estimators, and controllers. On a Unitree G1 without force sensors, I quantify how fast and how accurately the push must be estimated to resist it without stepping. On a Dobot CR3A, I restore contact with an unknown tilted surface while preserving where a drawing lands, and predict how far other corrections displace it. In both, the aim is a model built at the level the task needs, not a more complex one.</p>
+    <p class="ha-links">
+      <a href="mailto:{{ site.author.email }}">Email</a><a href="{{ '/assets/files/cv.pdf' | relative_url }}">CV (PDF)</a><a href="https://github.com/Juunghyeon">GitHub</a><a href="{{ site.author.links | where: 'label', 'LinkedIn' | map: 'url' | first }}">LinkedIn</a>
+    </p>
+  </div>
+  <div class="ha-top__photo"><img src="{{ '/assets/images/bio-photo.jpg' | relative_url }}" alt="Kim Jeonghyeon"></div>
+</div>
+
+<p class="ha-apply">I am applying to Ph.D. programs in robotics for <strong>Fall 2027</strong>.</p>
+
+<h2>Research</h2>
+{% assign pubs = site.projects | where: "group", "research" | sort: "date" | reverse %}
+{% for p in pubs %}
+<div class="ha-pub">
+  {% assign link = p.project_site | default: p.url %}
+  <a class="ha-pub__img" href="{{ link }}"><img src="{{ p.header.teaser | relative_url }}" alt="" loading="lazy"></a>
+  <div class="ha-pub__body">
+    <a class="ha-pub__title" href="{{ link }}">{{ p.title }}</a>
+    {% if p.authors %}<p class="ha-pub__authors">{{ p.authors | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>{% endif %}
+    <p class="ha-pub__venue"><em>{% if p.venue %}{{ p.venue }}, {{ p.status | downcase }}{% else %}{{ p.status }}{% endif %}</em>, {{ p.date | date: "%Y" }}</p>
+    <p class="ha-pub__sum">{{ p.home_result | default: p.summary }}</p>
+    <p class="ha-pub__links">{% if p.project_site %}<a href="{{ p.project_site }}">Project page</a>{% else %}<a href="{{ p.url | relative_url }}">Project page</a>{% endif %}{% if p.paper_pdf %}<a href="{{ p.paper_pdf | relative_url }}">PDF</a>{% endif %}</p>
+  </div>
+</div>
+{% endfor %}
+<p class="ha-more">Lab and earlier projects (quadruped perception, a ROS 2 mobile-manipulator architecture, award-winning undergraduate designs): <a href="{{ '/projects/' | relative_url }}">all projects</a>.</p>
+
+<h2>Education</h2>
+<ul class="ha-list">
+  <li><span class="d">2025 – Aug. 2027<br>(expected)</span><span><strong>M.S.</strong>, Mechanical Engineering, Korea University. GPA 4.25/4.5. Master's Research Encouragement Grant, National Research Foundation of Korea (2025).</span></li>
+  <li><span class="d">2019 – 2025</span><span><strong>B.S.</strong>, Mechanical Engineering, Korea University. GPA 3.91/4.5.</span></li>
+</ul>
+
+<h2>Teaching</h2>
+<ul class="ha-list">
+  <li><span class="d">2025 – 2026</span><span>Teaching assistant, Korea University: Robotics (Spring 2026), Computer-Aided Design (Fall 2025), Dynamics (Summer 2025, taught in English), Kinematics of Mechanisms (Spring 2025).</span></li>
+</ul>
+
+<h2>Before graduate school</h2>
+<ul class="ha-list">
+  <li><span class="d">2024 – 2025</span><span>Led a four-person team on quadruped obstacle avoidance (ORB-SLAM, UV-disparity); President's Award, Creative Challenger Program; KSPE 2025 Spring poster. <a href="{{ '/projects/ccp-quadruped/' | relative_url }}">Project</a></span></li>
+  <li><span class="d">2023</span><span>Led a five-person team on a ladder-crossing robot; its first design kept swinging on its grip and missing the next rung, which is where my research question started. <a href="{{ '/projects/ladder-crossing/' | relative_url }}">Project</a></span></li>
+  <li><span class="d">2023</span><span>Led a sun-tracking parasol design; Bronze Award, Creative Comprehensive Design Competition. <a href="{{ '/projects/solar-parasol/' | relative_url }}">Project</a></span></li>
+</ul>
+
+<h2>Skills</h2>
+<ul class="ha-list">
+  <li><span class="d">Hardware</span><span>Unitree G1, Dobot CR3A, EtherCAT arm (ENI/ESI configuration), mobile manipulator</span></li>
+  <li><span class="d">Control &amp; learning</span><span>Model predictive control, CasADi / CVXPY / acados, Pinocchio, PyTorch, reinforcement learning (PPO)</span></li>
+  <li><span class="d">Simulation</span><span>MuJoCo, Isaac Sim / Isaac Lab, Gazebo, ROS 2</span></li>
+  <li><span class="d">Programming</span><span>Python, C++, MATLAB</span></li>
+</ul>
+
+<p class="ha-more">Also: a walkable <a href="{{ '/lab/' | relative_url }}">3D lab tour</a> of these robots, and <a href="{{ '/outside-the-lab/' | relative_url }}">outside the lab</a>.</p>
+
+</div>
